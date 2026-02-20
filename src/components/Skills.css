@@ -4,10 +4,7 @@
 
 .skills-section {
   padding: 100px 10%;
-  
-  /* 🟢 แก้ตรงนี้: เปลี่ยนเป็นโปร่งใส เพื่อให้มองทะลุไปเห็นเส้นสเกตไฟจาก index.css */
-  background-color: transparent; 
-  
+  background-color: transparent; /* โปร่งใสเพื่อให้เห็นเส้นสเกตไฟด้านหลัง */
   position: relative;
   z-index: 10;
 }
@@ -21,6 +18,13 @@
 .section-header {
   text-align: center;
   margin-bottom: 60px;
+  
+  /* 🟢 ไม้ตายที่ 1: ล็อกความสูงรวมของโซนหัวข้อไว้เลย เพื่อไม่ให้ขยับตอนสลับภาษา */
+  min-height: 160px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .section-title {
@@ -40,8 +44,8 @@
   font-size: 16px;
   color: var(--text-color);
   opacity: 0.7;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 800px;
+  margin: 0; /* เอา auto ออกเพราะ flex จัดการให้แล้ว */
 }
 
 /* --- Layout Grid --- */
@@ -51,28 +55,37 @@
   gap: 30px;
   position: relative;
   z-index: 2;
+  
+  /* 🟢 ไม้ตายที่ 2: บังคับให้การ์ดทุกใบในแถวเดียวกัน "ยืด" จนสูงเท่ากันเสมอ */
+  align-items: stretch; 
 }
 
-/* --- Skill Card (การ์ดตัดมุม) --- */
+/* --- Skill Card (การ์ดกระจกตัดมุม) --- */
 .skill-card {
-  /* 🟢 เปลี่ยนสีการ์ดให้สว่างกว่าพื้นหลัง (bg-main-1) เพื่อให้การ์ดดูป๊อปขึ้นมา */
-  background: var(--bg-main-1);
-  border: 1px solid var(--badge-border);
+  background: rgba(255, 255, 255, 0.03); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
   padding: 35px 30px;
   position: relative;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  
-  /* ดีไซน์ตัดมุม (Chamfered Corners) สไตล์ Tech */
   clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  
+  /* 🟢 ไม้ตายที่ 3: ทำให้เนื้อหาข้างในผลักกันเอง และบังคับการ์ดสูง 100% */
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
 }
 
-/* เอฟเฟกต์ตอนเอาเมาส์ชี้การ์ด */
+/* เอฟเฟกต์ตอนเอาเมาส์ชี้การ์ดกระจก */
 .skill-card:hover {
   transform: translateY(-10px);
-  border-color: var(--spark-1);
-  box-shadow: 0 15px 30px rgba(255, 78, 0, 0.15);
-  /* ตอน Hover ให้มีเงาส้มๆ ไล่ระดับ */
-  background: linear-gradient(145deg, var(--bg-main-1) 0%, rgba(255, 78, 0, 0.05) 100%);
+  /* สว่างขึ้นนิดนึง และมีเงาสีส้มเรืองแสงออกมา */
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 78, 0, 0.5);
+  box-shadow: 0 15px 35px rgba(255, 78, 0, 0.15);
 }
 
 .skill-card-header {
@@ -84,14 +97,15 @@
 
 .skill-icon {
   font-size: 28px;
-  background: var(--badge-bg);
+  /* ไอคอนก็ปรับให้กลืนไปกับกระจก */
+  background: rgba(255, 78, 0, 0.1);
   width: 50px;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  border: 1px solid var(--badge-border);
+  border: 1px solid rgba(255, 78, 0, 0.2);
 }
 
 .skill-title {
@@ -106,6 +120,9 @@
   opacity: 0.7;
   margin-bottom: 25px;
   line-height: 1.5;
+  
+  /* 🟢 ให้คำอธิบายยืดตัวออก เพื่อดัน Tag ทักษะให้ไปอยู่ล่างสุดเสมอ */
+  flex-grow: 1; 
 }
 
 /* --- Tags ทักษะย่อย --- */
@@ -119,8 +136,8 @@
   font-size: 13px;
   font-weight: var(--fw-reg);
   color: var(--text-color);
-  background: transparent;
-  border: 1px solid rgba(150, 150, 150, 0.3);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 6px 16px;
   border-radius: 50px;
   transition: all 0.3s ease;
@@ -172,7 +189,15 @@
   .section-title {
     font-size: 32px;
   }
+  
+  /* 🟢 ปรับความสูงขั้นต่ำของโซนหัวข้อในมือถือให้พอดีขึ้น */
+  .section-header {
+    min-height: 140px; 
+  }
+  
   .skill-card {
     padding: 25px 20px;
-  }
+    /* ลดขนาดมุมตัดในมือถือ */
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+  } 
 }

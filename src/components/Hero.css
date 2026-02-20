@@ -7,10 +7,21 @@
   padding: 0 10%;
   overflow: hidden;
   position: relative;
-  background-color: var(--bg-main-2); 
+
+  /* 🟢 แก้ไข: ใช้ตัวแปรเพื่อให้สลับสีตามโหมดสว่าง/มืด */
+  background-color: var(--bg-main-1); 
+  
+  /* 🟢 แก้ไข: ใช้ตัวแปรใน Gradient เพื่อให้รอยต่อเนียนทั้งสองธีม */
+  background: linear-gradient(
+    to bottom, 
+    var(--bg-main-1) 0%, 
+    var(--bg-main-1) 85%, 
+    var(--bg-main-2) 100%
+  );
+
+  transition: background-color 0.3s ease; /* เพิ่ม Transition ให้สีพื้นหลังเปลี่ยนแบบนุ่มนวล */
   z-index: 10;
 }
-
 /* 🟢 หิงห้อย: ปรับสีตามโหมดสว่าง/มืดอัตโนมัติ */
 .hero-section::before {
   content: "";

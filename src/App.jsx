@@ -9,6 +9,10 @@ import Hero from './components/Hero';
 import ScrollToTop from './components/layout/ScrollToTop';
 import ScrollProgress from './components/layout/ScrollProgress';
 import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Education from './components/Education';
+import Experience from './components/Experience';
+import Contact from './components/Contact';
 
 function App() {
   const [lang, setLang] = useState('th');
@@ -31,9 +35,12 @@ function App() {
       <main>
         {/* ใช้ content.hero เพื่อให้ตรงกับโครงสร้างไฟล์ th.js / en.js ของคุณ */}
         {content.hero && <Hero content={content.hero} />}
-        
         {content.about && <About content={content.about} />}
-        <Skills />
+        {content.skills && <Skills content={content.skills} />}
+        {content.projects && <Projects content={content.projects} />}
+        {content.education && <Education content={content.education} />}
+        {content.experience && <Experience content={content.experience} />}
+        {content.contact && <Contact content={content.contact} />}
       </main>
       <ScrollToTop />
     </div>

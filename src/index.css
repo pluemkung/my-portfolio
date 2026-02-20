@@ -31,7 +31,7 @@
 }
 
 .dark-mode {
-  --bg-main-1: #1a1a1c;
+  --bg-main-1: #161617;
   --bg-main-2: #0a0a0c;
   --text-color: #f0f0f0;
   --nav-bg: rgba(10, 10, 12, 0.75);
@@ -44,6 +44,7 @@
   --wave-1: rgba(245, 245, 247, 0.7);
   --wave-2: rgba(245, 245, 247, 0.5);
   --wave-3: rgba(245, 245, 247, 0.3);
+  
 }
 
 /* 2. BASE STYLES */
@@ -175,4 +176,25 @@ body::before {
 @keyframes sprintWind {
   0% { transform: translate(0, 0); }
   100% { transform: translate(-150px, 150px); }
+}
+
+/* =========================================
+   Glassmorphism Utility Class (กระจกฝ้า)
+========================================= */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03); 
+  
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* สำหรับ Safari */
+  
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.15); /* ให้ขอบบนสว่างกว่านิดนึงเหมือนโดนแสง */
+
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+body:not(.dark-mode) .glass-panel {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
 }

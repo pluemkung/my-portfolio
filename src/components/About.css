@@ -1,5 +1,5 @@
 /* =========================================
-   About Section (ไม่มีรูปภาพ เน้น Content & Tech UI)
+   About Section (เวอร์ชันดั้งเดิม - เน้นความโปร่ง)
 ========================================= */
 
 .about-section {
@@ -13,26 +13,36 @@
   max-width: 900px; /* บีบความกว้างให้แคบลง เพราะไม่มีรูปภาพช่วยถ่วงน้ำหนัก */
   margin: 0 auto;
 }
-
+.section-header {
+  text-align: center;
+  /* ลดระยะห่างลงอีกนิดเพื่อให้กล่องขยับขึ้นไปได้อิสระ */
+  margin-bottom: 15px; 
+}
 /* --- Content Layout --- */
 .about-content {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 25px; 
   align-items: center;
+
+  /* 🟢 ไม้ตาย: เขยิบ Content ทั้งก้อนขึ้นไปข้างบนแบบแมนนวล */
+  /* ปรับตัวเลขนี้ (เช่น -40px ถึง -60px) จนกว่าจะอยู่ในระดับเดียวกับหน้า Skills ครับ */
+  margin-top: -50px; 
 }
 
 /* --- กล่องข้อความหลัก (Data Panel) --- */
 .about-text-box {
   text-align: center;
-  background: var(--bg-main-1); /* ใช้สีสว่างขึ้นมานิดนึงเพื่อให้ป๊อปออกจากพื้นหลัง */
-  border: 1px solid var(--badge-border);
-  padding: 40px 50px;
-  position: relative;
+  background: rgba(255, 255, 255, 0.03); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
   
-  /* 🟢 ตัดมุมสไตล์ Tech / ZZZ UI */
+  /* 🟢 ลด Padding ภายในกล่องเล็กน้อยเพื่อให้กล่องไม่ดูใหญ่เกินเนื้อหา */
+  padding: 30px 45px; 
+  position: relative;
   clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-text-box:hover {
@@ -54,9 +64,10 @@
 
 .about-desc {
   font-size: 16px;
-  line-height: 1.8;
+  /* 🟢 ปรับระยะบรรทัดให้ชิดกันขึ้นนิดนึง (1.6 กำลังสวย) */
+  line-height: 1.6; 
   color: var(--text-color);
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   opacity: 0.85;
 }
 
@@ -74,21 +85,23 @@
 .about-highlights {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  /* 🟢 ลดช่องว่างระหว่างการ์ดไฮไลต์เล็กน้อย */
+  gap: 15px; 
   width: 100%;
 }
 
 .highlight-box {
-  background: var(--bg-main-2);
-  border-left: 3px solid var(--spark-1); /* เส้นขีดด้านซ้ายสีส้ม */
-  padding: 20px 25px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 3px solid var(--spark-1); 
+  padding: 15px 20px;
   transition: 0.3s;
 }
 
 .highlight-box:hover {
-  transform: translateY(-3px) translateX(5px); /* ขยับขึ้นและเยื้องขวานิดๆ */
+  transform: translateY(-3px);
   background: rgba(255, 78, 0, 0.05);
-  border-left: 5px solid var(--spark-2); /* เปลี่ยนสีเส้นตอน Hover */
 }
 
 .hl-title {

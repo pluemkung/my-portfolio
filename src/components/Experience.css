@@ -1,0 +1,145 @@
+/* =========================================
+   Experience Section (Standardized Tech Style)
+========================================= */
+
+.exp-section {
+  padding: 100px 10%;
+  background-color: transparent;
+  position: relative;
+  z-index: 10;
+}
+
+.exp-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.exp-timeline {
+  position: relative;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* เส้น Spine ของประสบการณ์ */
+.exp-spine {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--spark-1), transparent);
+  opacity: 0.3;
+}
+
+.exp-item {
+  display: flex;
+  gap: 30px;
+  position: relative;
+}
+
+/* จุด Timeline */
+.exp-dot-wrapper {
+  position: relative;
+  z-index: 3;
+}
+
+.exp-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--bg-main-1);
+  border: 2px solid var(--spark-1);
+  border-radius: 50%;
+  margin-top: 35px; /* จัดให้ตรงกับหัวข้อการ์ด */
+  box-shadow: 0 0 10px var(--spark-1);
+}
+
+/* --- การ์ดประสบการณ์ (เอาเยี่ยงอย่างจากหน้า Projects) --- */
+.exp-card {
+  background: var(--badge-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--badge-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+  
+  padding: 30px;
+  flex: 1;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* มุมตัดสไตล์ Tech */
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+}
+
+.exp-item:hover .exp-card {
+  transform: translateX(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--spark-1);
+}
+
+.exp-duration {
+  font-size: 13px;
+  color: var(--spark-1);
+  font-weight: var(--fw-bold);
+  letter-spacing: 1px;
+}
+
+.exp-role {
+  font-size: 22px;
+  color: var(--name-color);
+  margin: 5px 0;
+}
+
+.exp-company {
+  font-size: 16px;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 15px;
+}
+
+.exp-desc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-color);
+  opacity: 0.75;
+  margin-bottom: 20px;
+}
+
+/* Tags ทักษะที่ใช้ */
+.exp-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.exp-skill-tag {
+  font-size: 12px;
+  color: var(--text-color);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--badge-border);
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+/* ของตกแต่งมุมการ์ด */
+.card-ui-corner.bottom-right {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 12px;
+  height: 12px;
+  border-bottom: 2px solid var(--spark-1);
+  border-right: 2px solid var(--spark-1);
+  opacity: 0.3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .exp-section { padding: 60px 5%; }
+  .exp-spine { left: 15px; }
+  .exp-dot { margin-top: 30px; }
+  .exp-card { padding: 25px 20px; }
+  .exp-role { font-size: 19px; }
+}

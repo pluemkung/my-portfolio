@@ -1,0 +1,177 @@
+/* =========================================
+   Education Section (Standardized with Projects Style)
+========================================= */
+
+.edu-section {
+  padding: 100px 10%;
+  background-color: transparent;
+  position: relative;
+  z-index: 10;
+}
+
+.edu-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* --- Timeline Layout --- */
+.edu-timeline {
+  position: relative;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* เส้น Spine หลัก (อิงตามสี Spark) */
+.timeline-spine {
+  position: absolute;
+  left: 45px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--spark-1) 0%, transparent 100%);
+  opacity: 0.5;
+}
+
+.edu-item {
+  display: flex;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- ส่วนโลโก้สถาบัน (Logo Area) --- */
+.logo-circle {
+  width: 90px;
+  height: 90px;
+  /* ใช้สีพื้นหลังจาก index.css เพื่อให้สลับธีมแล้วไม่มืดจม */
+  background: var(--bg-main-2); 
+  border: 2px solid var(--badge-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 0 20px var(--badge-glow);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-shrink: 0; /* ป้องกันวงกลมเบี้ยว */
+}
+
+.edu-item:hover .logo-circle {
+  transform: scale(1.1);
+  border-color: var(--spark-1);
+  box-shadow: 0 0 30px rgba(255, 78, 0, 0.3);
+}
+
+.edu-img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  /* เพิ่ม Filter นิดหน่อยให้ตราสถาบันดูชัดขึ้นในโหมดมืด */
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.1));
+}
+
+/* --- การ์ดการศึกษา (เอาเยี่ยงอย่างจาก Project Card) --- */
+.edu-card {
+  /* ใช้ Glassmorphism แบบเดียวกับหน้า Projects แต่เพิ่มความสว่าง */
+  background: var(--badge-bg); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--badge-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* ขอบบนสว่างสไตล์หน้า Projects */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  
+  padding: 30px;
+  flex: 1;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* มุมตัดสไตล์ Tech แบบหน้า Projects */
+  clip-path: polygon(25px 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%, 0 25px);
+}
+
+.edu-item:hover .edu-card {
+  transform: translateX(15px); /* เขยิบออกข้างแทนการยกขึ้น */
+  border-color: rgba(255, 78, 0, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* --- ข้อมูลตัวอักษร --- */
+.edu-year {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: var(--fw-bold);
+  color: var(--spark-1);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.edu-level {
+  font-size: 22px;
+  color: var(--name-color);
+  margin: 0 0 5px 0;
+  line-height: 1.3;
+}
+
+.edu-school {
+  font-size: 16px;
+  color: var(--text-color);
+  opacity: 0.9;
+  margin-bottom: 15px;
+  font-weight: var(--fw-med);
+}
+
+.edu-desc {
+  font-size: 14.5px;
+  color: var(--text-color);
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* --- ของตกแต่งมุมการ์ด (ดึงมาจากหน้า Projects) --- */
+.card-ui-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 0.2;
+  transition: 0.3s;
+}
+
+.card-ui-corner.bottom-right {
+  bottom: 15px;
+  right: 15px;
+  border-bottom: 2px solid var(--text-color);
+  border-right: 2px solid var(--text-color);
+}
+
+.edu-item:hover .card-ui-corner {
+  opacity: 1;
+  border-color: var(--spark-1);
+}
+
+/* =========================================
+   Responsive 
+========================================= */
+@media (max-width: 768px) {
+  .edu-section {
+    padding: 70px 5%;
+  }
+  .edu-item {
+    gap: 20px;
+  }
+  .timeline-spine {
+    left: 30px;
+  }
+  .logo-circle {
+    width: 60px;
+    height: 60px;
+  }
+  .edu-card {
+    padding: 25px 20px;
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+  }
+  .edu-level {
+    font-size: 18px;
+  }
+}

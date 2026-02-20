@@ -1,28 +1,9 @@
 import React from 'react';
 import './Skills.css';
 
-const Skills = () => {
-  // จัดกลุ่มทักษะเพื่อให้ดูเป็นระเบียบและอ่านง่าย
-  const skillCategories = [
-    {
-      title: "Software & Web",
-      icon: "💻",
-      description: "การพัฒนาเว็บไซต์และโปรแกรมมิ่ง",
-      skills: ["React", "JavaScript", "HTML5 & CSS3", "Node.js", "C / C++"]
-    },
-    {
-      title: "Hardware & Electronics",
-      icon: "🔌",
-      description: "ระบบวงจร ไมโครคอนโทรลเลอร์ และพลังงาน",
-      skills: ["Microcontrollers", "IoT Systems", "Power Electronics", "Inverter Design", "Circuit Design"]
-    },
-    {
-      title: "Tools & Workflow",
-      icon: "🛠️",
-      description: "เครื่องมือและการจัดการโปรเจกต์",
-      skills: ["Git & GitHub", "VS Code", "Figma", "Troubleshooting"]
-    }
-  ];
+const Skills = ({ content }) => {
+  // ป้องกัน Error กรณีส่ง content มาไม่ทัน
+  if (!content) return null;
 
   return (
     <section id="skills" className="skills-section">
@@ -32,17 +13,19 @@ const Skills = () => {
         <div className="section-header">
           <div className="hero-badge" style={{ marginBottom: '15px' }}>
             <span className="badge-star">✦</span>
-            <span className="badge-text">EXPERTISE</span>
+            <span className="badge-text">{content.badge}</span>
           </div>
-          <h2 className="section-title">ทักษะและ<span className="highlight">ความเชี่ยวชาญ</span></h2>
+          <h2 className="section-title">
+            {content.titleStart}<span className="highlight">{content.titleHighlight}</span>
+          </h2>
           <p className="section-subtitle">
-            ผสมผสานความรู้ด้านฮาร์ดแวร์อิเล็กทรอนิกส์ เข้ากับเทคโนโลยีซอฟต์แวร์สมัยใหม่
+            {content.subtitle}
           </p>
         </div>
 
         {/* --- Grid การ์ดทักษะ --- */}
         <div className="skills-grid">
-          {skillCategories.map((category, index) => (
+          {content.categories.map((category, index) => (
             <div className="skill-card" key={index}>
               <div className="skill-card-header">
                 <span className="skill-icon">{category.icon}</span>
@@ -50,15 +33,16 @@ const Skills = () => {
               </div>
               <p className="skill-desc">{category.description}</p>
               
+              {/* --- วนลูปสร้าง Tag ทักษะย่อย --- */}
               <div className="skill-tags-container">
-                {category.skills.map((skill, idx) => (
+                {category.items.map((item, idx) => (
                   <span className="skill-tag" key={idx}>
-                    {skill}
+                    {item}
                   </span>
                 ))}
               </div>
               
-              {/* เส้นตกแต่งมุมล่างขวา */}
+              {/* เส้นตกแต่งมุมล่างขวาสไตล์ UI */}
               <div className="card-decoration"></div>
             </div>
           ))}

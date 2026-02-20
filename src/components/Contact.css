@@ -1,0 +1,164 @@
+/* =========================================
+   Contact Section (High Contrast & Adaptive Theme)
+========================================= */
+
+.contact-section {
+  padding: 80px 10%;
+  position: relative;
+  z-index: 10;
+}
+
+.contact-main-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 30px;
+  margin-top: 40px;
+  align-items: stretch; 
+}
+
+/* --- Left Side --- */
+.contact-left-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-top-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.contact-info-card {
+  /* 🟢 เพิ่มความทึบของพื้นหลังเพื่อให้ตัวอักษรลอยออกมา */
+  background: rgba(255, 255, 255, 0.08); 
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--badge-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.25); /* เพิ่มความสว่างขอบบน */
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+  transition: all 0.4s ease;
+}
+
+.card-text .label {
+  font-size: 11px;
+  color: var(--spark-1); /* สีส้ม Spark */
+  font-weight: var(--fw-bold);
+  letter-spacing: 1px;
+  opacity: 1; /* บังคับให้สว่างสุด */
+}
+
+.card-text p {
+  margin: 0;
+  /* 🟢 ใช้สีขาวเกือบสนิทในโหมดมืดเพื่อให้มองเห็นชัด */
+  color: #ffffff; 
+  font-weight: var(--fw-med);
+  font-size: 15px;
+}
+
+body:not(.dark-mode) .card-text p {
+  color: var(--text-color); /* กลับเป็นสีมืดเมื่อเป็น Light Mode */
+}
+
+/* --- Map Area --- */
+.contact-map-wrapper {
+  flex-grow: 1;
+  min-height: 350px;
+}
+
+.map-glass-frame {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--badge-border);
+  padding: 10px;
+  clip-path: polygon(25px 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%, 0 25px);
+}
+
+.map-glass-frame iframe {
+  filter: grayscale(1) invert(0.9) contrast(1.2) opacity(0.8);
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+}
+
+body:not(.dark-mode) .map-glass-frame iframe {
+  filter: grayscale(0.2) opacity(0.9);
+}
+
+/* --- Right Side (Form Card) --- */
+.contact-form-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--badge-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 40px;
+  position: relative;
+  clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-title {
+  margin-bottom: 25px;
+  color: #ffffff; /* 🟢 ชื่อหัวข้อแบบสว่างชัดเจน */
+  font-size: 24px;
+}
+
+body:not(.dark-mode) .form-title {
+  color: var(--name-color);
+}
+
+/* --- Input Fields --- */
+.input-field {
+  margin-bottom: 15px;
+}
+
+.input-field input, .input-field textarea {
+  width: 100%;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3); /* 🟢 พื้นหลัง Input ให้เข้มขึ้นเพื่อตัดกับตัวหนังสือขาว */
+  border: 1px solid var(--badge-border);
+  color: #ffffff; /* 🟢 ตัวอักษรขณะพิมพ์ให้เป็นสีขาวชัดเจน */
+  font-family: 'Mitr', sans-serif;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* 🟢 ปรับสี Placeholder ให้สว่างขึ้นเพื่อให้มองออกว่าต้องพิมพ์อะไร */
+.input-field input::placeholder, 
+.input-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body:not(.dark-mode) .input-field input,
+body:not(.dark-mode) .input-field textarea {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text-color);
+}
+
+body:not(.dark-mode) .input-field input::placeholder, 
+body:not(.dark-mode) .input-field textarea::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* 🟢 UI Decorations */
+.card-ui-corner {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-color: var(--spark-1);
+  opacity: 0.8; /* เพิ่มความชัดของมุม */
+}
+
+.card-ui-corner.bottom-right { bottom: 12px; right: 12px; border-bottom: 2px solid; border-right: 2px solid; }
+.card-ui-corner.top-right { top: 12px; right: 12px; border-top: 2px solid; border-right: 2px solid; }
+
+/* Responsive */
+@media (max-width: 992px) {
+  .contact-main-grid { grid-template-columns: 1fr; }
+  .info-top-row { grid-template-columns: 1fr; }
+}
