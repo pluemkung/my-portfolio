@@ -1,55 +1,41 @@
 import React from 'react';
 import './About.css';
 
-const About = () => {
+const About = ({ content }) => {
+  // ป้องกัน Error กรณีส่ง content มาไม่ทัน
+  if (!content) return null;
+
   return (
     <section id="about" className="about-section">
       <div className="about-container">
         
-        {/* หัวข้อสไตล์ ZZZ (มี Slash สีส้มนำหน้า) */}
+        {/* --- ส่วนหัวข้อ --- */}
         <div className="section-header">
-          <span className="slash">/</span>
-          <h2 className="th-title">เกี่ยวกับฉัน</h2>
-          <span className="en-title">About Me</span>
+          <div className="hero-badge" style={{ marginBottom: '15px' }}>
+            <span className="badge-star">✦</span>
+            <span className="badge-text">{content.badge}</span>
+          </div>
+          <h2 className="section-title">
+            {content.titleStart}<span className="highlight">{content.titleHighlight}</span>
+          </h2>
         </div>
 
+        {/* --- ส่วนเนื้อหา --- */}
         <div className="about-content">
-          {/* ฝั่งซ้าย: ข้อความแนะนำตัว */}
           <div className="about-text-box">
-            <p className="greeting">
-              สวัสดีครับ! ผม <span className="highlight-name">นัทธกิตติ์</span>
-            </p>
-            <p className="description">
-              ผมเป็นนักพัฒนาเว็บไซต์ (Web Developer) ที่หลงใหลในการสร้างสรรค์แอปพลิเคชันบนเว็บที่รวดเร็ว ตอบสนองได้ดี และใช้งานง่าย 
-              ผมชอบแก้ปัญหาที่ท้าทายด้วยการเขียนโค้ด และพร้อมที่จะนำไอเดียใหม่ๆ มาเปลี่ยนเป็นผลงานที่จับต้องได้จริง!
-            </p>
-            
-            {/* ป้ายแสดงทักษะแบบเฉียง (ZZZ Tech Badges) */}
-            <div className="tech-stack">
-              <span className="tech-badge">
-                <span className="badge-icon">⚛️</span> React
-              </span>
-              <span className="tech-badge">
-                <span className="badge-icon">🟨</span> JavaScript
-              </span>
-              <span className="tech-badge">
-                <span className="badge-icon">🌐</span> HTML/CSS
-              </span>
-            </div>
+            {/* ดึงข้อความจาก content */}
+            <p className="about-desc">{content.desc1}</p>
+            <p className="about-desc">{content.desc2}</p>
           </div>
 
-          {/* ฝั่งขวา: กรอบรูปโปรไฟล์ */}
-          <div className="about-visual">
-            <div className="image-frame">
-              {/* ตรงนี้คุณสามารถเปลี่ยนเป็น <img src="..." /> รูปตัวเองได้ในอนาคต */}
-              <div className="image-placeholder">
-                NK
+          {/* --- กล่องไฮไลต์ (วนลูปสร้างอัตโนมัติจากไฟล์ Content) --- */}
+          <div className="about-highlights">
+            {content.highlights.map((item, index) => (
+              <div className="highlight-box" key={index}>
+                <h4 className="hl-title">{item.title}</h4>
+                <p className="hl-desc">{item.desc}</p>
               </div>
-              
-              {/* เส้นตกแต่งกรอบรูปให้ดูไซเบอร์ */}
-              <div className="deco-line top-left"></div>
-              <div className="deco-line bottom-right"></div>
-            </div>
+            ))}
           </div>
         </div>
 
