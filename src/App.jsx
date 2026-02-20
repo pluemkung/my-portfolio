@@ -9,11 +9,11 @@ import Hero from './components/Hero';
 import ScrollToTop from './components/layout/ScrollToTop';
 import ScrollProgress from './components/layout/ScrollProgress';
 
-
 function App() {
   const [lang, setLang] = useState('th');
   const [isDarkMode, setIsDarkMode] = useState(true);
   
+  // ตัวแปร content จะเปลี่ยนตาม lang อัตโนมัติเมื่อมีการกดปุ่มสลับภาษา
   const content = lang === 'th' ? th : en;
 
   return (
@@ -28,11 +28,10 @@ function App() {
         content={content}
       />
       <main>
+        {/* ใช้ content.hero เพื่อให้ตรงกับโครงสร้างไฟล์ th.js / en.js ของคุณ */}
         {content.hero && <Hero content={content.hero} />}
-
+        
         {content.about && <About content={content.about} />}
-
-        {/* หน้าอื่นๆ ต่อไป... */}
       </main>
       <ScrollToTop />
     </div>

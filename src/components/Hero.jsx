@@ -1,30 +1,36 @@
 import React from 'react';
 import './Hero.css';
 
-const Hero = ({ content = {} }) => {
+const Hero = ({ content }) => {
+  // ป้องกัน Error หากไม่มีข้อมูลส่งมา
+  if (!content) return null;
+
   return (
     <section id="home" className="hero-section">
       <div className="hero-content">
-        
-        {/* ฝั่งข้อความ */}
         <div className="hero-text">
-          <h2>{content?.greeting || '// เกี่ยวกับฉัน'}</h2>
+          {/* ดึงข้อมูลภาษาตามที่เลือกไว้ใน App.jsx */}
+          <h2 className="fade-in">{content.greeting}</h2>
           
           <h1 className="name-title">
-            {content?.name || 'Natthakit Moonwong'}
+            {content.name}
           </h1>
           
-          <h3 className="role-text">{content?.role || 'นักศึกษาอิเล็กทรอนิกส์คอมพิวเตอร์เทคโนโลยี'}</h3>
-          <p className="hero-desc">
-            {content?.description || 'สนใจการสร้างเทคโนโลยีทุกรูปแบบตั้งแต่ฮาร์ดแวร์ อิเล็กทรอนิกส์ ไปจนถึงเว็บแอปและซอฟต์แวร์'}
-          </p>
+          <h3 className="role-text">{content.role}</h3>
+          <p className="hero-desc">{content.description}</p>
+          
+          {/* ข้อมูลติดต่อ (Phone / Email) */}
+          <div style={{ marginBottom: '30px', display: 'flex', gap: '20px', opacity: 0.8 }}>
+             <span className="contact-info">📞 {content.phone}</span>
+             <span className="contact-info">✉ {content.email}</span>
+          </div>
           
           <div className="hero-btns">
             <a href="#projects" className="zzz-btn-primary">
-              {content?.viewProjects || 'GET IN TOUCH ->'}
+              {content.viewProjects}
             </a>
             <a href="#contact" className="zzz-btn-outline">
-              {content?.contactMe || 'VIEW PROJECTS'}
+              {content.contactMe}
             </a>
           </div>
         </div>
@@ -35,7 +41,6 @@ const Hero = ({ content = {} }) => {
             <div className="tag-id">#ID_NATTHAKIT_2026</div>
           </div>
         </div>
-
       </div>
     </section>
   );

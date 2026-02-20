@@ -10,14 +10,12 @@ export const en = {
     contact: 'CONTACT'
   },
   hero: {
-    greeting: "// เกี่ยวกับฉัน",
+    greeting: "// ABOUT ME",
     name: "Natthakit",
-    role: "นักศึกษาอิเล็กทรอนิกส์...",
-    description: "สนใจการสร้างเทคโนโลยี...",
-    phone: "062-464-5582", // เพิ่มตรงนี้
-    email: "arunburapha.k@gmail.com", // เพิ่มตรงนี้
-    viewProjects: "</> ดูโปรเจกต์",
-    contactMe: ">_ ติดต่อ"
+    role: "Electronics Student...",
+    description: "Interested in all types of technology...",
+    viewProjects: "</> VIEW PROJECTS",
+    contactMe: ">_ CONTACT"
   },
   about: {
     title: 'ABOUT ME',
