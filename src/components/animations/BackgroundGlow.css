@@ -1,0 +1,69 @@
+.dark-fire-container {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  /* ดึงสีพื้นหลังจาก index.css ซึ่งจะเปลี่ยนตามโหมด */
+  background-color: var(--bg-main-2); 
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.dark-gradient-bg {
+  position: absolute;
+  inset: 0;
+  /* ดึงสีไล่ระดับจาก index.css */
+  background: linear-gradient(to bottom, var(--bg-main-1), var(--bg-main-2));
+  opacity: 0.8;
+  transition: background 0.3s ease;
+}
+
+.sparks-layer {
+  position: absolute;
+  inset: 0;
+  perspective: 1000px;
+}
+
+.fiery-shard {
+  position: absolute;
+  bottom: -10vh;
+  left: 0;
+  width: 80px; 
+  height: 3px; 
+  /* ดึงสีสะเก็ดไฟจาก index.css */
+  background: var(--color);
+  box-shadow: 0 0 10px var(--color), 0 0 20px var(--color);
+  border-radius: 2px;
+  
+  transform-origin: center bottom;
+  transform: translateX(var(--startX)) rotate(-45deg) scale(var(--scale));
+  opacity: 0;
+  animation: riseAndFade var(--duration) linear infinite;
+  animation-delay: var(--delay);
+  /* ใช้ screen ตอนมืด และ multiply/normal ตอนสว่าง */
+  mix-blend-mode: normal; 
+}
+
+@keyframes riseAndFade {
+  0% {
+    opacity: 0;
+    transform: translateX(var(--startX)) translateY(0) rotate(-45deg) scale(0);
+  }
+  20% {
+    opacity: 1; 
+    transform: translateX(calc(var(--startX) + (var(--driftX) * 0.2))) translateY(-30vh) rotate(-45deg) scale(var(--scale));
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(calc(var(--startX) + var(--driftX))) translateY(-120vh) rotate(-45deg) scale(0);
+  }
+}
+
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: var(--noise-opacity);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}

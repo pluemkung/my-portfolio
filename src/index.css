@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700;900&display=swap');
+
+:root {
+  /* --- Light Mode --- */
+  --bg-main-1: #ffffff;
+  --bg-main-2: #f5f5f7;
+  --text-color: #1a1a1e;
+  --nav-bg: rgba(255, 255, 255, 0.75);
+  --spark-1: #ff4e00;  /* ZZZ Orange */
+  --spark-2: #ffcc00;  /* Festival Gold */
+  --kitasan-red: #d90429; /* Kitasan Crimson Red (สีแดงดุดัน) */
+}
+
+.dark-mode {
+  /* --- Dark Mode --- */
+  --bg-main-1: #1a1a1c;
+  --bg-main-2: #0a0a0c; /* ดำสนิทแบบรัตติกาล */
+  --text-color: #f0f0f0;
+  --nav-bg: rgba(10, 10, 12, 0.75);
+  --spark-1: #ff4e00;
+  --spark-2: #ffcc00;
+  --kitasan-red: #d90429;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 10px;
+  background-color: var(--bg-main-2);
+  transition: background-color 0.3s ease;
+  overflow-x: hidden; /* ป้องกันหน้าจอเลื่อนซ้ายขวาจากเอฟเฟกต์ */
+}
+
+body {
+  margin: 0;
+  font-family: 'Kanit', sans-serif;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* =========================================
+   🏮 ZZZ x KITASAN BLACK : CYBER-MATSURI
+========================================= */
+
+/* 🟠 Layer 1: Festival Aura (ออร่าพลังงาน แดง-ส้ม-ทอง มุมขวาล่าง) 
+   ให้อารมณ์เหมือนแสงไฟจากงานเทศกาลญี่ปุ่นที่ทรงพลัง */
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -20vh;
+  right: -10vw;
+  width: 75vw;
+  height: 75vh;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(217, 4, 41, 0.25) 0%,   /* แดงคิตะซัน แกนกลาง */
+    rgba(255, 78, 0, 0.15) 40%,  /* ส้ม ZZZ ฟุ้งกระจาย */
+    rgba(255, 204, 0, 0.05) 60%, /* ทองงานเทศกาล */
+    transparent 80%
+  );
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: -2;
+  animation: matsuriAura 4s ease-in-out infinite alternate;
+}
+
+/* 🟠 Layer 2: Speed Lines (เส้นสปีดพุ่งทะยานเฉียงๆ) 
+   ให้ฟีลเหมือนความเร็วลมตอนคิตะซันวิ่ง + ลายเส้นไซเบอร์ของ ZZZ */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 60px,
+    rgba(255, 78, 0, 0.03) 60px, /* เส้นส้มบางๆ */
+    rgba(255, 78, 0, 0.04) 62px,
+    transparent 62px,
+    transparent 68px,
+    rgba(217, 4, 41, 0.03) 68px, /* เส้นแดงบางๆ ซ้อนกัน */
+    rgba(217, 4, 41, 0.03) 70px
+  );
+  pointer-events: none;
+  z-index: -1;
+  animation: sprintWind 10s linear infinite;
+}
+
+/* อนิเมชันออร่ากระเพื่อมแบบดุดัน */
+@keyframes matsuriAura {
+  0% { transform: scale(0.9) translate(2%, 2%); opacity: 0.7; }
+  100% { transform: scale(1.15) translate(-2%, -2%); opacity: 1; }
+}
+
+/* อนิเมชันเส้นสปีดพุ่งเฉียงลงมาเหมือนลมตีหน้า */
+@keyframes sprintWind {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-150px, 150px); } 
+}
