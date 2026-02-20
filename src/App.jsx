@@ -8,6 +8,7 @@ import './index.css';
 import Hero from './components/Hero';
 import ScrollToTop from './components/layout/ScrollToTop';
 import ScrollProgress from './components/layout/ScrollProgress';
+import Skills from './components/Skills';
 
 function App() {
   const [lang, setLang] = useState('th');
@@ -32,6 +33,7 @@ function App() {
         {content.hero && <Hero content={content.hero} />}
         
         {content.about && <About content={content.about} />}
+        <Skills />
       </main>
       <ScrollToTop />
     </div>

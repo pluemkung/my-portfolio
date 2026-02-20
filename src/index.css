@@ -71,29 +71,18 @@ body {
 }
 
 /* 3. GLOBAL TYPOGRAPHY - แก้ปัญหา "ตัวหนาที่แปลกๆ" */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-b,
-strong {
+h1, h2, h3, h4, h5, h6, b, strong {
   font-weight: var(--fw-med) !important;
   /* สำหรับ Mitr ระดับ 500 คือสวยที่สุด */
   letter-spacing: 0.5px;
   line-height: 1.2;
 }
 
-p,
-span,
-li,
-a {
+p, span, li, a {
   font-weight: var(--fw-light);
 }
 
 /* 4. REUSABLE COMPONENTS (ย้ายจากไฟล์ย่อยมาไว้ที่นี่) */
-
 /* ปุ่มสไตล์ ZZZ */
 .zzz-btn-primary {
   background: var(--spark-1);
@@ -115,7 +104,27 @@ a {
   display: inline-block;
 }
 
-/* 5. BACKGROUND EFFECTS (ZZZ x KITASAN) */
+/* =========================================
+   5. BACKGROUND EFFECTS (ZZZ x KITASAN) 
+========================================= */
+
+/* 🟠 1. ก้อนสีส้มเบลอๆ สว่าง-ดับ (อยู่หลังสุด Z-index: -3) */
+html::before {
+  content: '';
+  position: fixed;
+  top: 10%;
+  left: 15%;
+  width: 60vw;
+  height: 60vh;
+  /* ไล่สีจากตรงกลางเป็นสีส้ม ขอบเป็นโปร่งใส */
+  background: radial-gradient(circle, var(--spark-1) 0%, transparent 65%);
+  filter: blur(120px); /* ทำให้เบลอจัดๆ */
+  pointer-events: none;
+  z-index: -3; 
+  animation: orangePulse 6s ease-in-out infinite alternate;
+}
+
+/* 🔴 2. ออร่ามุมขวาล่าง (Z-index: -2) */
 body::after {
   content: '';
   position: fixed;
@@ -130,6 +139,7 @@ body::after {
   animation: matsuriAura 4s ease-in-out infinite alternate;
 }
 
+/* ⚡ 3. เส้นสเกตไฟเฉียงๆ (Z-index: -1) */
 body::before {
   content: '';
   position: fixed;
@@ -143,24 +153,26 @@ body::before {
   animation: sprintWind 10s linear infinite;
 }
 
-@keyframes matsuriAura {
-  0% {
-    transform: scale(0.9) translate(2%, 2%);
-    opacity: 0.7;
-  }
+/* --- ANIMATIONS พื้นหลัง --- */
 
+/* อนิเมชั่นก้อนสีส้ม (สว่าง-ดับ และ ย่อ-ขยาย) */
+@keyframes orangePulse {
+  0% {
+    opacity: 0.1;
+    transform: scale(0.8) translate(-5%, -5%);
+  }
   100% {
-    transform: scale(1.15) translate(-2%, -2%);
-    opacity: 1;
+    opacity: 0.35; /* ปรับค่านี้ถ้ารู้สึกว่าสว่างหรือมืดไป (0.0 - 1.0) */
+    transform: scale(1.1) translate(5%, 5%);
   }
 }
 
-@keyframes sprintWind {
-  0% {
-    transform: translate(0, 0);
-  }
+@keyframes matsuriAura {
+  0% { transform: scale(0.9) translate(2%, 2%); opacity: 0.7; }
+  100% { transform: scale(1.15) translate(-2%, -2%); opacity: 1; }
+}
 
-  100% {
-    transform: translate(-150px, 150px);
-  }
+@keyframes sprintWind {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-150px, 150px); }
 }

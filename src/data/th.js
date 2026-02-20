@@ -12,10 +12,10 @@ export const th = {
   hero: {
     greeting: "Creative Technologist • Thailand",
     name: "ณัฐกิตติ์ มูนวงษ์",
-    role: "นักศึกษาอิเล็กทรอนิกส์...",
-    description: "สนใจการสร้างเทคโนโลยี...",
-    phone: "062-464-5582", // เพิ่มตรงนี้
-    email: "arunburapha.k@gmail.com", // เพิ่มตรงนี้
+    role: "นักศึกษาอิเล็กทรอนิกส์คอมพิวเตอร์เทคโนโลยี", 
+    description: "สนใจในการสร้างเทคโนโลยี...", 
+    phone: "063-758-8253", 
+    email: "natthakit.moonwong@gmail.com", 
     viewProjects: "โปรเจกต์",
     contactMe: "ติดต่อ"
   },
