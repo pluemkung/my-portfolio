@@ -1,3 +1,4 @@
+/* --- Layout หลัก --- */
 .hero-section {
   min-height: 100vh;
   display: flex;
@@ -5,6 +6,7 @@
   justify-content: center;
   padding: 0 10%;
   overflow: hidden;
+  position: relative; /* สำคัญ: เพื่อให้คลื่นเกาะอยู่ด้านล่างสุด */
 }
 
 .hero-content {
@@ -14,51 +16,97 @@
   align-items: center;
   width: 100%;
   max-width: 1200px;
+  z-index: 10; /* ให้อยู่เหนือเลเยอร์คลื่น */
 }
 
-.hero-text h2 {
-  font-size: 24px;
-  color: var(--text-color);
-  margin-bottom: 0;
-  opacity: 0.8;
+/* --- Badge: Creative Technologist --- */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  box-shadow: 0 0 15px var(--badge-glow);
+  padding: 6px 18px;
+  border-radius: 100px;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
-.name-title {
-  font-size: 72px;
-  font-weight: 900;
-  margin: 10px 0;
-  color: var(--spark-1);
+.badge-text {
+  font-size: 13px;
+  font-weight: var(--fw-med);
+  color: var(--badge-text);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  letter-spacing: -2px;
-  line-height: 1;
+}
+
+.badge-star {
+  color: var(--spark-1);
+  font-size: 16px;
+  filter: drop-shadow(0 0 5px var(--spark-1));
+}
+
+/* --- Typography --- */
+.name-title {
+  font-size: 58px;
+  font-weight: var(--fw-med); 
+  margin: 10px 0;
+  color: var(--name-color); /* สลับ ขาว (Dark) / ดำ (Light) */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  transition: color 0.3s ease;
 }
 
 .role-text {
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: var(--fw-reg); 
   color: var(--text-color);
   margin-bottom: 25px;
+  letter-spacing: 0.5px;
 }
 
 .hero-desc {
   max-width: 500px;
   font-size: 16px;
   line-height: 1.6;
-  margin-bottom: 40px;
-  opacity: 0.7;
+  margin-bottom: 30px;
+  color: var(--text-color);
+  opacity: 0.6; 
 }
 
-.hero-btns {
-  display: flex;
-  gap: 20px;
+/* --- Contact & Buttons --- */
+.contact-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; 
+  font-size: 15px; 
+  font-weight: var(--fw-reg); 
+  color: var(--text-color); 
+  opacity: 0.85; 
+  margin-right: 25px;
+  margin-bottom: 35px;
+  transition: all 0.3s ease;
+  text-decoration: none; 
 }
 
-/* ปุ่มหลัก สีส้มเด่น */
+.contact-info span { color: var(--spark-1); }
+
+.contact-info:hover {
+  opacity: 1;
+  color: var(--spark-1); 
+  transform: translateY(-2px); 
+}
+
+.hero-btns { display: flex; gap: 20px; }
+
 .zzz-btn-primary {
   background: var(--spark-1);
-  color: #fff;
+  color: #fff !important;
   padding: 12px 30px;
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   text-decoration: none;
   clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
   transition: 0.3s;
@@ -69,12 +117,11 @@
   transform: scale(1.05) skewX(-5deg);
 }
 
-/* ปุ่มรอง แบบโปร่งแสง */
 .zzz-btn-outline {
   border: 1px solid var(--text-color);
   color: var(--text-color);
   padding: 12px 30px;
-  font-weight: 700;
+  font-weight: var(--fw-med);
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -83,34 +130,17 @@
   transition: 0.3s;
 }
 
-.zzz-btn-outline:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--spark-1);
-}
-
-/* ฝั่งรูปภาพ */
-.hero-image-container {
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
+/* --- ฝั่งรูปภาพ --- */
 .main-image-frame {
   width: 350px;
   height: 450px;
-  background: rgba(255, 78, 0, 0.1);
+  background: rgba(255, 78, 0, 0.05);
   border: 4px solid var(--spark-1);
   clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-}
-
-.image-placeholder {
-  font-size: 120px;
-  font-weight: 900;
-  color: rgba(255, 78, 0, 0.2);
 }
 
 .tag-id {
@@ -121,52 +151,53 @@
   color: #fff;
   padding: 5px 15px;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   transform: rotate(-90deg);
 }
 
-/* --- Responsive สำหรับ iPad (จอ 992px ลงไป) --- */
+/* --- 🌊 Wave Animation Section --- */
+.hero-waves {
+  position: absolute;
+  bottom: -1px; /* กันเส้นแลบ */
+  left: 0;
+  width: 100%;
+  height: 25vh;
+  min-height: 150px;
+  max-height: 250px;
+  overflow: hidden;
+  z-index: 5; /* อยู่หลัง Content แต่หน้า Background */
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+.parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+.parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+.parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+.parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+
+@keyframes move-forever {
+  0% { transform: translate3d(-90px, 0, 0); }
+  100% { transform: translate3d(85px, 0, 0); }
+}
+
+/* --- Responsive --- */
 @media (max-width: 992px) {
   .hero-content {
     grid-template-columns: 1fr;
     text-align: center; 
-    gap: 50px;
     margin-top: 80px;
   }
-  .hero-btns {
-    justify-content: center; 
-  }
-  .name-title {
-    font-size: 60px;
-  }
+  .hero-btns { justify-content: center; }
+  .name-title { font-size: 45px; }
 }
 
-@media (max-width: 576px) {
-  .name-title {
-    font-size: 42px; 
-    letter-spacing: -1px;
-  }
-  .role-text {
-    font-size: 24px;
-  }
-  .hero-desc {
-    font-size: 14px;
-    margin: 0 auto 30px auto;
-  }
-  .hero-btns {
-    flex-direction: column; 
-    align-items: center;
-    gap: 15px;
-  }
-  .zzz-btn-primary, .zzz-btn-outline {
-    width: 80%;
-    justify-content: center;
-  }
-  .main-image-frame {
-    width: 280px;
-    height: 350px;
-  }
-  .image-placeholder {
-    font-size: 80px;
-  }
+@media (max-width: 768px) {
+  .hero-waves { height: 60px; min-height: 60px; }
 }

@@ -1,25 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700;900&display=swap');
+/* 1. IMPORT & GLOBAL SETUP */
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600&display=swap');
 
 :root {
-  /* --- Light Mode --- */
+  /* Colors */
   --bg-main-1: #ffffff;
   --bg-main-2: #f5f5f7;
   --text-color: #1a1a1e;
   --nav-bg: rgba(255, 255, 255, 0.75);
-  --spark-1: #ff4e00;  /* ZZZ Orange */
-  --spark-2: #ffcc00;  /* Festival Gold */
-  --kitasan-red: #d90429; /* Kitasan Crimson Red (สีแดงดุดัน) */
+  --spark-1: #ff4e00;
+  /* ZZZ Orange */
+  --spark-2: #ffcc00;
+  /* Festival Gold */
+  --kitasan-red: #d90429;
+  --name-color: #1a1a1e;
+  --badge-bg: rgba(255, 78, 0, 0.05);
+  --badge-border: rgba(255, 78, 0, 0.2);
+  --badge-text: #1a1a1e;
+  --badge-glow: rgba(255, 78, 0, 0.1);
+  --wave-main: #1a1a1e;
+  --wave-1: rgba(26, 26, 30, 0.7);
+  --wave-2: rgba(26, 26, 30, 0.5);
+  --wave-3: rgba(26, 26, 30, 0.3);
+
+  /* Font Weights - คุมน้ำหนัก Mitr ให้มาตรฐานเดียวกัน */
+  --fw-thin: 200;
+  --fw-light: 300;
+  --fw-reg: 400;
+  --fw-med: 500;
+  --fw-bold: 600;
 }
 
 .dark-mode {
-  /* --- Dark Mode --- */
   --bg-main-1: #1a1a1c;
-  --bg-main-2: #0a0a0c; /* ดำสนิทแบบรัตติกาล */
+  --bg-main-2: #0a0a0c;
   --text-color: #f0f0f0;
   --nav-bg: rgba(10, 10, 12, 0.75);
-  --spark-1: #ff4e00;
-  --spark-2: #ffcc00;
-  --kitasan-red: #d90429;
+  --name-color: #ffffff;
+  --badge-bg: rgba(0, 0, 0, 0.3);
+  --badge-border: rgba(255, 78, 0, 0.3);
+  --badge-text: #ffffff;
+  --badge-glow: rgba(255, 78, 0, 0.2);
+  --wave-main: #f5f5f7;
+  --wave-1: rgba(245, 245, 247, 0.7);
+  --wave-2: rgba(245, 245, 247, 0.5);
+  --wave-3: rgba(245, 245, 247, 0.3);
+}
+
+/* 2. BASE STYLES */
+* {
+  box-sizing: border-box;
+  font-family: 'Mitr', sans-serif !important;
+  /* บังคับใช้ Mitr ทั้งเว็บ */
 }
 
 html {
@@ -27,23 +58,64 @@ html {
   scroll-padding-top: 10px;
   background-color: var(--bg-main-2);
   transition: background-color 0.3s ease;
-  overflow-x: hidden; /* ป้องกันหน้าจอเลื่อนซ้ายขวาจากเอฟเฟกต์ */
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
-  font-family: 'Kanit', sans-serif;
   color: var(--text-color);
-  transition: color 0.3s ease;
-  overflow-x: hidden;
+  font-weight: var(--fw-light);
+  /* ตัวปกติใช้แบบบางจะดู Modern กว่า */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* =========================================
-   🏮 ZZZ x KITASAN BLACK : CYBER-MATSURI
-========================================= */
+/* 3. GLOBAL TYPOGRAPHY - แก้ปัญหา "ตัวหนาที่แปลกๆ" */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong {
+  font-weight: var(--fw-med) !important;
+  /* สำหรับ Mitr ระดับ 500 คือสวยที่สุด */
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
 
-/* 🟠 Layer 1: Festival Aura (ออร่าพลังงาน แดง-ส้ม-ทอง มุมขวาล่าง) 
-   ให้อารมณ์เหมือนแสงไฟจากงานเทศกาลญี่ปุ่นที่ทรงพลัง */
+p,
+span,
+li,
+a {
+  font-weight: var(--fw-light);
+}
+
+/* 4. REUSABLE COMPONENTS (ย้ายจากไฟล์ย่อยมาไว้ที่นี่) */
+
+/* ปุ่มสไตล์ ZZZ */
+.zzz-btn-primary {
+  background: var(--spark-1);
+  color: #fff !important;
+  padding: 12px 30px;
+  text-decoration: none;
+  clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.zzz-btn-outline {
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  padding: 12px 30px;
+  text-decoration: none;
+  clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+  transition: 0.3s;
+  display: inline-block;
+}
+
+/* 5. BACKGROUND EFFECTS (ZZZ x KITASAN) */
 body::after {
   content: '';
   position: fixed;
@@ -51,21 +123,13 @@ body::after {
   right: -10vw;
   width: 75vw;
   height: 75vh;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(217, 4, 41, 0.25) 0%,   /* แดงคิตะซัน แกนกลาง */
-    rgba(255, 78, 0, 0.15) 40%,  /* ส้ม ZZZ ฟุ้งกระจาย */
-    rgba(255, 204, 0, 0.05) 60%, /* ทองงานเทศกาล */
-    transparent 80%
-  );
+  background: radial-gradient(ellipse at center, rgba(217, 4, 41, 0.25) 0%, rgba(255, 78, 0, 0.15) 40%, rgba(255, 204, 0, 0.05) 60%, transparent 80%);
   filter: blur(80px);
   pointer-events: none;
   z-index: -2;
   animation: matsuriAura 4s ease-in-out infinite alternate;
 }
 
-/* 🟠 Layer 2: Speed Lines (เส้นสปีดพุ่งทะยานเฉียงๆ) 
-   ให้ฟีลเหมือนความเร็วลมตอนคิตะซันวิ่ง + ลายเส้นไซเบอร์ของ ZZZ */
 body::before {
   content: '';
   position: fixed;
@@ -73,30 +137,30 @@ body::before {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent 0,
-    transparent 60px,
-    rgba(255, 78, 0, 0.03) 60px, /* เส้นส้มบางๆ */
-    rgba(255, 78, 0, 0.04) 62px,
-    transparent 62px,
-    transparent 68px,
-    rgba(217, 4, 41, 0.03) 68px, /* เส้นแดงบางๆ ซ้อนกัน */
-    rgba(217, 4, 41, 0.03) 70px
-  );
+  background: repeating-linear-gradient(-45deg, transparent 0, transparent 60px, rgba(255, 78, 0, 0.03) 60px, rgba(255, 78, 0, 0.04) 62px, transparent 62px, transparent 68px, rgba(217, 4, 41, 0.03) 68px, rgba(217, 4, 41, 0.03) 70px);
   pointer-events: none;
   z-index: -1;
   animation: sprintWind 10s linear infinite;
 }
 
-/* อนิเมชันออร่ากระเพื่อมแบบดุดัน */
 @keyframes matsuriAura {
-  0% { transform: scale(0.9) translate(2%, 2%); opacity: 0.7; }
-  100% { transform: scale(1.15) translate(-2%, -2%); opacity: 1; }
+  0% {
+    transform: scale(0.9) translate(2%, 2%);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.15) translate(-2%, -2%);
+    opacity: 1;
+  }
 }
 
-/* อนิเมชันเส้นสปีดพุ่งเฉียงลงมาเหมือนลมตีหน้า */
 @keyframes sprintWind {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(-150px, 150px); } 
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(-150px, 150px);
+  }
 }
