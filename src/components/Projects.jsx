@@ -1,62 +1,76 @@
 import React from 'react';
+import { useInView } from 'react-intersection-observer';
 import './Projects.css';
 
 const Projects = ({ content }) => {
+  // 🟢 ตั้งค่า Option เดียวกับหน้า About เพื่อให้จังหวะ Scroll เหมือนกัน
+  const options = { triggerOnce: false, threshold: 0.1, rootMargin: '100px 0px' };
+
+  const { ref: hRef, inView: hIn } = useInView(options);
+  const { ref: pRef, inView: pIn } = useInView(options);
+
   if (!content) return null;
 
   return (
     <section id="projects" className="projects-section">
       <div className="projects-container">
         
-        {/* --- หัวข้อ Section --- */}
-        <div className="section-header">
-          <div className="hero-badge" style={{ marginBottom: '15px' }}>
-            <span className="badge-star">✦</span>
-            <span className="badge-text">{content.badge}</span>
-          </div>
+        {/* หัวข้อ Section: ใช้ระบบ Reveal แบบหน้า About */}
+        <div ref={hRef} className={`section-header reveal ${hIn ? 'reveal-visible' : ''}`}>
+          <div className="hero-badge"><span className="badge-text">{content.badge}</span></div>
           <h2 className="section-title">
-            {content.titleStart}<span className="highlight">{content.titleHighlight}</span>
+            {content.titleStart}
+            <span className="highlight" style={{color: 'var(--spark-1)'}}>{content.titleHighlight}</span>
           </h2>
-          <p className="section-subtitle">
-            {content.subtitle}
-          </p>
+          {content.subtitle && <p className="section-subtitle">{content.subtitle}</p>}
         </div>
 
-        {/* --- Grid โปรเจกต์ --- */}
-        <div className="projects-grid">
+        {/* 🟢 Grid ผลงาน: ทยอยเฟดโผล่ทีละใบด้วยระบบ Delay */}
+        <div className="projects-grid" ref={pRef}>
           {content.items.map((project, index) => (
-            <div className="project-card" key={index}>
-              {/* ส่วนรูปภาพโปรเจกต์ (กล่องจำลองใส่สีเทาโปร่งแสงไว้ก่อน) */}
-              <div className="project-image-placeholder">
-                <span className="image-icon">📷</span>
-                {/* ถ้ามีรูปจริงในอนาคต สามารถใช้ <img src={project.image} alt={project.title} /> แทนได้ครับ */}
+            <div 
+              key={index} 
+              className={`matsuri-card project-item reveal delay-${(index % 3) + 1} ${pIn ? 'reveal-visible' : ''}`}
+            >
+              {/* ส่วนรูปภาพโปรเจกต์ */}
+              <div className="project-image-wrapper">
+                {project.imageUrl ? (
+                  <img src={project.imageUrl} alt={project.title} className="project-thumbnail" />
+                ) : (
+                  <div className="project-image-placeholder">
+                    <span className="icon-placeholder">📷</span>
+                  </div>
+                )}
               </div>
-              
-              {/* ส่วนเนื้อหา */}
-              <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-desc">{project.description}</p>
-                
-                {/* Tech Stack Tags */}
-                <div className="project-tech">
-                  {project.tech.map((tech, idx) => (
-                    <span className="tech-tag" key={idx}>{tech}</span>
-                  ))}
+
+              <div className="project-inner">
+                {/* ดึงค่า DOC_TYPE และ ID มาโชว์ */}
+                <div className="project-meta">
+                  <span className={`prj-tag tag-${project.docType?.toLowerCase() || 'engineer'}`}>
+                    DOC_TYPE: {project.docType || 'ENGINEER'}
+                  </span>
+                  <span className="prj-id">ID: {String(index + 1).padStart(2, '0')}</span>
                 </div>
                 
-                {/* ปุ่มลิงก์ */}
-                <a href={project.linkUrl} className="project-link" target="_blank" rel="noreferrer">
-                  {project.linkText} <span className="arrow">↗</span>
-                </a>
+                <h3 className="project-title">{project.title}</h3>
+                <p className="project-desc">{project.description}</p>
+
+                {/* Tech Stack Tags */}
+                <div className="project-tech-stack">
+                  {project.tech.map((tech, idx) => (
+                    <span key={idx} className="tech-badge">{tech}</span>
+                  ))}
+                </div>
+
+                <div className="project-footer">
+                  <a href={project.linkUrl} className="explore-btn" target="_blank" rel="noreferrer">
+                    OPEN_DATA <span className="arrow">↗</span>
+                  </a>
+                </div>
               </div>
-              
-              {/* ของตกแต่ง UI มุมการ์ด */}
-              <div className="card-ui-corner top-right"></div>
-              <div className="card-ui-corner bottom-left"></div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

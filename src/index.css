@@ -1,14 +1,16 @@
-/* 1. IMPORT & GLOBAL SETUP */
+/* ============================================================
+   1. IMPORT & GLOBAL SETUP
+============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600&display=swap');
 
 :root {
   /* Colors */
   --bg-main-1: #ffffff;
-  --bg-main-2: #f8f8fa; /* ปรับให้เทาขึ้นนิดหน่อยเพื่อให้ตัดกับสีขาวของการ์ด */
+  --bg-main-2: #f8f8fa; 
   --text-color: #1a1a1e;
   --nav-bg: rgba(255, 255, 255, 0.75);
-  --spark-1: #ff4e00; /* ZZZ Orange */
-  --spark-2: #ffcc00; /* Festival Gold */
+  --spark-1: #ff4e00; 
+  --spark-2: #ffcc00; 
   --kitasan-red: #d90429;
   --name-color: #1a1a1e;
   --badge-bg: rgba(255, 78, 0, 0.05);
@@ -20,14 +22,18 @@
   --wave-2: rgba(26, 26, 30, 0.5);
   --wave-3: rgba(26, 26, 30, 0.3);
 
-  /* Font Weights - คุมน้ำหนัก Mitr ให้มาตรฐานเดียวกัน */
+  /* Matsuri Cards Setup (ล็อคสีตามโหมดสว่าง) */
+  --matsuri-bg: rgba(255, 255, 255, 0.85);
+  --matsuri-border: rgba(0, 0, 0, 0.08);
+
+  /* Font Weights */
   --fw-thin: 200;
   --fw-light: 300;
   --fw-reg: 400;
   --fw-med: 500;
   --fw-bold: 600;
 
-  --header-min-height: 160px; /* จองพื้นที่ให้หัวข้อทุกหน้าเท่ากัน */
+  --header-min-height: 160px; 
   --card-shadow-light: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
@@ -45,33 +51,41 @@
   --wave-1: rgba(245, 245, 247, 0.7);
   --wave-2: rgba(245, 245, 247, 0.5);
   --wave-3: rgba(245, 245, 247, 0.3);
+
+  /* Matsuri Cards Setup (ล็อคสีตามโหมดมืด) */
+  --matsuri-bg: rgba(26, 26, 30, 0.95);
+  --matsuri-border: rgba(255, 78, 0, 0.3);
 }
 
-/* 2. BASE STYLES */
+/* ============================================================
+   2. BASE STYLES
+============================================================ */
 * {
   box-sizing: border-box;
-  font-family: 'Mitr', sans-serif !important; /* บังคับใช้ Mitr ทั้งเว็บ */
+  font-family: 'Mitr', sans-serif !important; 
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 10px;
   background-color: var(--bg-main-2);
-  transition: background-color 0.3s ease;
+  /* ⚡ ค่อยๆ เปลี่ยนสีพื้นหลังหลัก */
+  transition: background-color 0.6s ease;
   overflow-x: hidden;
 }
 
 body {
   margin: 0;
   color: var(--text-color);
-  font-weight: var(--fw-light); /* ตัวปกติใช้แบบบางจะดู Modern กว่า */
+  font-weight: var(--fw-light);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  /* ⚡ ค่อยๆ เปลี่ยนสีตัวหนังสือ */
+  transition: color 0.6s ease;
 }
 
-/* 3. GLOBAL TYPOGRAPHY - แก้ปัญหา "ตัวหนาที่แปลกๆ" */
 h1, h2, h3, h4, h5, h6, b, strong {
-  font-weight: var(--fw-med) !important; /* สำหรับ Mitr ระดับ 500 คือสวยที่สุด */
+  font-weight: var(--fw-med) !important; 
   letter-spacing: 0.5px;
   line-height: 1.2;
 }
@@ -80,7 +94,9 @@ p, span, li, a {
   font-weight: var(--fw-light);
 }
 
-/* 4. REUSABLE COMPONENTS */
+/* ============================================================
+   3. REUSABLE COMPONENTS (Buttons & Matsuri Cards)
+============================================================ */
 .zzz-btn-primary {
   background: var(--spark-1);
   color: #fff !important;
@@ -91,241 +107,188 @@ p, span, li, a {
   display: inline-block;
 }
 
-.zzz-btn-outline {
-  border: 1px solid var(--text-color);
+/* Matsuri Card - ปรับจังหวะให้ค่อยๆ เปลี่ยนสีแบบที่คุณชอบ */
+.matsuri-card {
+  position: relative;
+  /* 🟢 ถอด !important ออกเพื่อให้ transition ทำงานได้นุ่มนวล */
+  background: var(--matsuri-bg);
+  border: 1px solid var(--matsuri-border);
   color: var(--text-color);
-  padding: 12px 30px;
-  text-decoration: none;
-  clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
-  transition: 0.3s;
-  display: inline-block;
+  clip-path: polygon(0 0, 97% 0, 100% 12%, 100% 100%, 3% 100%, 0 88%);
+  padding: 2.5rem;
+  backdrop-filter: blur(12px);
+  /* ⚡ บรรทัดนี้ทำให้กล่องค่อยๆ เปลี่ยนสีจากดำไปขาว */
+  transition: background 0.6s ease, border 0.6s ease, color 0.6s ease, transform 0.4s ease;
 }
 
-/* =========================================
-   5. BACKGROUND EFFECTS (ZZZ x KITASAN) 
-========================================= */
+.matsuri-card-mini {
+  position: relative;
+  background: var(--matsuri-bg);
+  color: var(--text-color);
+  border-left: 4px solid var(--spark-1);
+  clip-path: polygon(0 0, 90% 0, 100% 25%, 100% 100%, 0 100%);
+  padding: 1.5rem;
+  /* ⚡ ค่อยๆ เปลี่ยนสีเหมือนกัน */
+  transition: background 0.6s ease, border 0.6s ease, color 0.6s ease, transform 0.4s ease;
+}
 
-/* 🟠 1. ก้อนสีส้มเบลอๆ สว่าง-ดับ (ของเดิม) */
+/* ============================================================
+   4. BACKGROUND EFFECTS (ZZZ x KITASAN)
+============================================================ */
+
+/* 🟠 1. ก้อนสีส้มเบลอๆ */
 html::before {
-  content: '';
-  position: fixed;
-  top: 10%;
-  left: 15%;
-  width: 60vw;
-  height: 60vh;
+  content: ''; position: fixed; top: 10%; left: 15%; width: 60vw; height: 60vh;
   background: radial-gradient(circle, var(--spark-1) 0%, transparent 65%);
-  filter: blur(120px);
-  pointer-events: none;
-  z-index: -3;
+  filter: blur(120px); pointer-events: none; z-index: -3;
   animation: orangePulse 6s ease-in-out infinite alternate;
 }
 
-/* 🔴 2. ออร่ามุมขวาล่าง (ของเดิม) */
+/* 🔴 2. ออร่ามุมขวาล่าง */
 body::after {
-  content: '';
-  position: fixed;
-  bottom: -20vh;
-  right: -10vw;
-  width: 75vw;
-  height: 75vh;
+  content: ''; position: fixed; bottom: -20vh; right: -10vw; width: 75vw; height: 75vh;
   background: radial-gradient(ellipse at center, rgba(217, 4, 41, 0.25) 0%, rgba(255, 78, 0, 0.15) 40%, rgba(255, 204, 0, 0.05) 60%, transparent 80%);
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: -2;
+  filter: blur(80px); pointer-events: none; z-index: -2;
   animation: matsuriAura 4s ease-in-out infinite alternate;
 }
 
-/* ⚡ 3. เส้นสเกตไฟเฉียงๆ (ของเดิม) */
+/* ⚡ 3. เส้นสเกตไฟเฉียงๆ */
 body::before {
-  content: '';
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
   background: repeating-linear-gradient(-45deg, transparent 0, transparent 60px, rgba(255, 78, 0, 0.03) 60px, rgba(255, 78, 0, 0.04) 62px, transparent 62px, transparent 68px, rgba(217, 4, 41, 0.03) 68px, rgba(217, 4, 41, 0.03) 70px);
-  pointer-events: none;
-  z-index: -1;
-  animation: sprintWind 10s linear infinite;
+  pointer-events: none; z-index: -1; animation: sprintWind 10s linear infinite;
 }
 
-/* ==============================================================================
-   🌀 4. [อัปเกรดใหม่] ก้อน Blob คู่หู สว่าง-ดับ ละมุนนี (ใช้ #root::before และ ::after)
-============================================================================== */
+/* 🌀 4. Blob คู่หู สว่าง-ดับ */
+#root::before, #root::after {
+  content: ''; position: fixed; filter: blur(60px); pointer-events: none; z-index: 0;
+}
 
-/* --- ก้อนที่ 1 (ตัวเดิม ขวาบน) --- */
 #root::before {
-  content: '';
-  position: fixed;
-  top: 20%;
-  right: -10%; /* แอบขวา */
-  width: 55vw;
-  height: 55vw;
-  max-width: 700px;
-  max-height: 700px;
-  
-  /* สีส้มทอง */
+  top: 20%; right: -10%; width: 55vw; height: 55vw; max-width: 700px;
   background: linear-gradient(135deg, var(--spark-1) 0%, var(--spark-2) 80%);
-  
-  /* ค่าเริ่มต้น (จะถูก override ด้วย animation) */
-  opacity: 0.4;
-  filter: blur(60px);
-  
-  pointer-events: none;
-  z-index: 0; /* อยู่หลังเนื้อหา แต่อยู่หน้าพื้นหลังสุด */
-  
-  /* เล่น 2 อนิเมชั่นพร้อมกัน: ขยับรูปทรง + สว่างดับ */
-  animation: 
-    blob-bounce 25s infinite ease-in-out alternate,
-    blob-pulse-smooth 8s infinite ease-in-out alternate; /* หายใจช้าๆ 8วิ */
+  opacity: 0.4; animation: blob-bounce 25s infinite ease-in-out alternate, blob-pulse-smooth 8s infinite ease-in-out alternate;
 }
 
-/* --- ก้อนที่ 2 (ตัวใหม่ ซ้ายล่าง) --- */
 #root::after {
-  content: '';
-  position: fixed;
-  bottom: 10%;
-  left: -15%; /* แอบซ้ายล่าง */
-  width: 45vw; /* เล็กกว่าก้อนแรกหน่อย */
-  height: 45vw;
-  max-width: 600px;
-  max-height: 600px;
-  
-  /* สีส้มอมแดงนิดๆ ให้ดูมีมิติ */
+  bottom: 10%; left: -15%; width: 45vw; height: 45vw; max-width: 600px;
   background: linear-gradient(to top right, var(--spark-1) 20%, rgba(255, 120, 0, 0.8) 100%);
-  
-  /* ค่าเริ่มต้น */
-  opacity: 0.3;
-  filter: blur(70px);
-  
-  pointer-events: none;
-  z-index: 0;
-
-  /* เล่นอนิเมชั่นเหมือนกัน แต่ตั้งเวลาต่างกัน (delay) เพื่อไม่ให้มันขยับพร้อมกันเป๊ะ */
-  animation: 
-    blob-bounce 30s infinite ease-in-out alternate-reverse -5s, /* เริ่มช้ากว่า 5วิ และหมุนกลับด้าน */
-    blob-pulse-smooth 10s infinite ease-in-out alternate -2s; /* หายใจช้ากว่า (10วิ) และเริ่มช้ากว่า 2วิ */
+  opacity: 0.3; animation: blob-bounce 30s infinite ease-in-out alternate-reverse -5s, blob-pulse-smooth 10s infinite ease-in-out alternate -2s;
 }
 
-/* 🟢 ปรับโหมดสว่าง (Light Mode) ให้ทั้ง 2 ก้อนจางลง ไม่กวนสายตา */
-body:not(.dark-mode) #root::before,
-body:not(.dark-mode) #root::after {
-  opacity: 0.1 !important; /* บังคับให้จางสุดๆ */
-  filter: blur(90px) brightness(1) !important; /* ยกเลิกเอฟเฟกต์สว่างวาบในโหมดขาว */
-  animation-name: blob-bounce; /* เล่นแค่ขยับ ไม่เล่นสว่างดับ */
+body:not(.dark-mode) #root::before, body:not(.dark-mode) #root::after {
+  opacity: 0.1 !important; filter: blur(90px) brightness(1) !important; animation-name: blob-bounce;
 }
 
-/* =========================================
-   ANIMATIONS พื้นหลัง (เพิ่มใหม่ + ของเดิม)
-========================================= */
+/* ============================================================
+   5. SCROLL REVEAL & ANIMATIONS
+============================================================ */
 
-/* 🆕 [ใหม่] อนิเมชั่นหายใจ สว่าง-ดับ แบบละมุน */
+/* ⚡ Reveal System */
+.reveal {
+  opacity: 0; transform: translateY(20px) scaleX(0.95); filter: blur(10px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-visible { opacity: 1; transform: translateY(0) scaleX(1); filter: blur(0); }
+
+/* หัวข้อกะพริบนีออน */
+.section-header.reveal.reveal-visible { animation: neonFlicker 0.6s ease-in-out forwards; }
+
+@keyframes neonFlicker {
+  0% { opacity: 0; filter: brightness(3); }
+  20% { opacity: 1; filter: brightness(1); }
+  40% { opacity: 0.3; filter: brightness(2); }
+  100% { opacity: 1; filter: brightness(1); }
+}
+
 @keyframes blob-pulse-smooth {
-  0% {
-    opacity: 0.3; /* มืดลง */
-    filter: blur(60px) brightness(1); /* เบลอปกติ */
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0.55; /* สว่างขึ้น */
-    /* ลดเบลอลงนิดนึง + เพิ่มความสว่าง (brightness) ให้ดูวาบขึ้นมา */
-    filter: blur(50px) brightness(1.3); 
-    transform: scale(1.05); /* ขยายตัวนิดเดียวตอนหายใจเข้า */
-  }
+  0% { opacity: 0.3; filter: blur(60px) brightness(1); transform: scale(1); }
+  100% { opacity: 0.55; filter: blur(50px) brightness(1.3); transform: scale(1.05); }
 }
 
-/* อนิเมชั่น Blob ขยับรูปทรง (ของเดิม) */
 @keyframes blob-bounce {
-  0% {
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    transform: translate(0, 0) rotate(0deg);
-  }
-  33% {
-    border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
-    transform: translate(5vw, 5vh) rotate(90deg);
-  }
-  66% {
-    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
-    transform: translate(-5vw, 10vh) rotate(180deg);
-  }
-  100% {
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    transform: translate(0, 0) rotate(360deg);
-  }
+  0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
+  33% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; transform: translate(-10vw, 5vh) rotate(90deg) scale(1.1); }
+  66% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; transform: translate(-5vw, 15vh) rotate(180deg) scale(0.9); }
+  100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(0, 0) rotate(360deg) scale(1); }
 }
 
-/* ... (Keyframes อื่นๆ ของเดิม: orangePulse, matsuriAura, sprintWind เก็บไว้เหมือนเดิม) ... */
+@keyframes orangePulse { 0% { opacity: 0.1; transform: scale(0.8); } 100% { opacity: 0.35; transform: scale(1.1); } }
+@keyframes matsuriAura { 0% { transform: scale(0.9); opacity: 0.7; } 100% { transform: scale(1.15); opacity: 1; } }
+@keyframes sprintWind { 0% { transform: translate(0, 0); } 100% { transform: translate(-150px, 150px); } }
 
-/* --- ANIMATIONS พื้นหลัง --- */
+/* Delays */
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.45s; }
+.delay-4 { transition-delay: 0.6s; }
 
-/* อนิเมชั่น Blob (ของใหม่) */
-@keyframes blob-bounce {
-  0% {
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  33% {
-    border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
-    transform: translate(-10vw, 5vh) rotate(90deg) scale(1.1);
-  }
-  66% {
-    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
-    transform: translate(-5vw, 15vh) rotate(180deg) scale(0.9);
-  }
-  100% {
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    transform: translate(0, 0) rotate(360deg) scale(1);
-  }
-}
-
-/* อนิเมชั่นก้อนสีส้ม (สว่าง-ดับ และ ย่อ-ขยาย) */
-@keyframes orangePulse {
-  0% {
-    opacity: 0.1;
-    transform: scale(0.8) translate(-5%, -5%);
-  }
-  100% {
-    opacity: 0.35;
-    transform: scale(1.1) translate(5%, 5%);
-  }
-}
-
-@keyframes matsuriAura {
-  0% {
-    transform: scale(0.9) translate(2%, 2%);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(1.15) translate(-2%, -2%);
-    opacity: 1;
-  }
-}
-
-@keyframes sprintWind {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-150px, 150px);
-  }
-}
-
-/* =========================================
-   Glassmorphism Utility Class (กระจกฝ้า)
-========================================= */
+/* ============================================================
+   6. UTILITIES (Glassmorphism)
+============================================================ */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-  transition: background 0.3s, border 0.3s, box-shadow 0.3s;
+  background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08); border-top: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
 }
 
 body:not(.dark-mode) .glass-panel {
-  background: rgba(255, 255, 255, 0.85); 
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+/* ============================================================
+   7. SECTION HEADERS & BADGES
+============================================================ */
+
+/* 🟢 คุมโครงสร้างหัวข้อให้อยู่ตรงกลาง และป้องกันการยืด */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ⚡ ตัวนี้แหละที่แก้ปัญหาป้ายยืด! */
+  text-align: center;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+/* 🟢 ป้าย Badge (เช่น EXPERTISE, ABOUT ME) */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content !important; /* บังคับให้หดพอดีคำ */
+  margin-bottom: 1rem;
+  padding: 6px 18px;
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  border-radius: 50px; /* ทรงแคปซูลมนๆ */
+  color: var(--badge-text);
+  box-shadow: 0 0 15px var(--badge-glow);
+  font-size: 0.85rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 1.5px;
+  /* ⚡ ค่อยๆ เปลี่ยนสีตามโหมด 0.6 วินาที */
+  transition: all 0.6s ease;
+}
+
+/* 🟢 ตัวหนังสือหัวข้อหลัก */
+.section-title {
+  color: var(--text-color); /* ⚡ ล็อคสีให้สว่างในโหมดมืด */
+  font-size: 2.5rem;
+  margin: 0 0 10px 0;
+  transition: color 0.6s ease;
+}
+
+/* 🟢 ตัวหนังสือหัวข้อรอง (ถ้ามี) */
+.section-subtitle {
+  color: var(--text-color);
+  opacity: 0.7;
+  max-width: 600px;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.6;
+  transition: color 0.6s ease;
+}
+
+/* 🟢 ไฮไลท์ข้อความ (สีส้ม ZZZ) */
+.highlight {
+  color: var(--spark-1);
 }

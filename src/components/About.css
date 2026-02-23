@@ -1,73 +1,57 @@
 /* =========================================
-   About Section (แยกโหมดชัดเจน ไม่เละแน่นอน)
+   About Section (เวอร์ชันดั้งเดิม - เน้นความโปร่ง)
 ========================================= */
 
 .about-section {
   padding: 100px 10%;
-  background-color: transparent;
+  background-color: transparent; /* โปร่งใสเพื่อให้เห็นเส้นสเกตไฟด้านหลัง */
   position: relative;
   z-index: 10;
 }
 
 .about-container {
-  max-width: 900px;
+  max-width: 900px; /* บีบความกว้างให้แคบลง เพราะไม่มีรูปภาพช่วยถ่วงน้ำหนัก */
   margin: 0 auto;
 }
-
 .section-header {
   text-align: center;
+  /* ลดระยะห่างลงอีกนิดเพื่อให้กล่องขยับขึ้นไปได้อิสระ */
   margin-bottom: 15px; 
-  min-height: 140px; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
-
+/* --- Content Layout --- */
 .about-content {
   display: flex;
   flex-direction: column;
   gap: 25px; 
   align-items: center;
-  margin-top: -50px; 
+
+  /* 🟢 ไม้ตาย: เขยิบ Content ทั้งก้อนขึ้นไปข้างบนแบบแมนนวล */
+  /* ปรับตัวเลขนี้ (เช่น -40px ถึง -60px) จนกว่าจะอยู่ในระดับเดียวกับหน้า Skills ครับ */
+  margin-top: 20px; 
 }
 
-/* =========================================
-   1. กล่องข้อความหลัก (Data Panel)
-========================================= */
-
-/* 🎯 โหมดสว่าง (Light Mode) : ตีกรอบ, พื้นขาวทึบ */
+/* --- กล่องข้อความหลัก (Data Panel) --- */
 .about-text-box {
   text-align: center;
-  background: #ffffff; 
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  padding: 30px 45px; 
-  position: relative;
-  clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-/* 🎯 โหมดมืด (Dark Mode) : โปร่งใส ดั้งเดิมของคุณเป๊ะๆ */
-.dark-mode .about-text-box {
   background: rgba(255, 255, 255, 0.03); 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  
+  /* 🟢 ลด Padding ภายในกล่องเล็กน้อยเพื่อให้กล่องไม่ดูใหญ่เกินเนื้อหา */
+  padding: 30px 45px; 
+  position: relative;
+  clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
 }
 
 .about-text-box:hover {
   transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 78, 0, 0.08);
   border-color: rgba(255, 78, 0, 0.4);
 }
-.dark-mode .about-text-box:hover {
-  box-shadow: 0 15px 30px rgba(255, 78, 0, 0.08);
-}
 
+/* เส้นขีดตกแต่งด้านบนของกล่อง */
 .about-text-box::before {
   content: '';
   position: absolute;
@@ -78,62 +62,45 @@
   background: linear-gradient(90deg, var(--spark-1), transparent);
 }
 
-/* --- สีตัวอักษร --- */
 .about-desc {
   font-size: 16px;
+  /* 🟢 ปรับระยะบรรทัดให้ชิดกันขึ้นนิดนึง (1.6 กำลังสวย) */
   line-height: 1.6; 
-  color: #2d2d32; /* โหมดสว่างสีเข้ม */
+  color: var(--text-color);
   margin-bottom: 15px;
-}
-
-.dark-mode .about-desc {
-  color: var(--text-color); /* กลับไปเป็นดั้งเดิมในโหมดมืด */
-  opacity: 0.85; 
+  opacity: 0.85;
 }
 
 .about-desc:last-child {
   margin-bottom: 0;
 }
 
+/* เน้นคำสำคัญให้เป็นสีส้ม */
 .about-desc strong {
   color: var(--spark-1);
   font-weight: var(--fw-med);
 }
 
-/* =========================================
-   2. กล่องไฮไลต์ (Highlight Boxes)
-========================================= */
+/* --- กล่องไฮไลต์ (Highlight Boxes) --- */
 .about-highlights {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  /* 🟢 ลดช่องว่างระหว่างการ์ดไฮไลต์เล็กน้อย */
   gap: 15px; 
   width: 100%;
 }
 
-/* 🎯 โหมดสว่าง */
 .highlight-box {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-left: 3px solid var(--spark-1); 
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  padding: 15px 20px;
-  transition: 0.3s;
-  min-height: 100px;
-}
-
-/* 🎯 โหมดมืด */
-.dark-mode .highlight-box {
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-left: 3px solid var(--spark-1); 
-  box-shadow: none;
+  padding: 15px 20px;
+  transition: 0.3s;
 }
 
 .highlight-box:hover {
   transform: translateY(-3px);
-}
-.dark-mode .highlight-box:hover {
   background: rgba(255, 78, 0, 0.05);
 }
 
@@ -148,14 +115,10 @@
 
 .hl-desc {
   font-size: 14px;
-  color: #2d2d32; /* โหมดสว่าง */
-  margin: 0;
-  line-height: 1.4;
-}
-
-.dark-mode .hl-desc {
   color: var(--text-color);
   opacity: 0.7;
+  margin: 0;
+  line-height: 1.4;
 }
 
 /* =========================================
@@ -173,14 +136,14 @@
   }
   .about-text-box {
     padding: 30px 20px;
-    min-height: auto;
+    /* ลดขนาดมุมตัดในมือถือ */
     clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
   }
   .about-desc {
     font-size: 14px;
-    text-align: left; 
+    text-align: left; /* ในมือถือจัดซ้ายจะอ่านง่ายกว่า */
   }
   .about-highlights {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr; /* เรียงเป็นแถวเดียวในมือถือ */
   }
 }

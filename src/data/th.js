@@ -63,6 +63,8 @@ export const th = {
     items: [
       {
         title: "Parallel Pure Sine Wave Inverters",
+        docType: "HARDWARE",
+        imageUrl: "/images/test3.png",
         description: "โปรเจกต์จบ: การออกแบบและพัฒนาอินเวอร์เตอร์แบบขนานที่จ่ายคลื่นไซน์บริสุทธิ์ เพื่อเพิ่มเสถียรภาพและประสิทธิภาพในการจ่ายพลังงานไฟฟ้า",
         tech: ["Power Electronics", "Microcontroller", "Circuit Design", "C++"],
         linkText: "ดูรายละเอียด",
@@ -70,6 +72,8 @@ export const th = {
       },
       {
         title: "Personal Portfolio Website",
+        docType: "WEB_DEV",
+        imageUrl: "/images/test1.png",
         description: "เว็บไซต์พอร์ตโฟลิโอส่วนตัวที่ออกแบบด้วยสไตล์ Tech & Glassmorphism รองรับ 2 ภาษา พัฒนาด้วย React และเทคโนโลยีเว็บสมัยใหม่",
         tech: ["React", "CSS3", "JavaScript", "Vite"],
         linkText: "ดูโค้ดบน GitHub",
@@ -77,6 +81,8 @@ export const th = {
       },
       {
         title: "Smart Home IoT Controller",
+        docType: "SYSTEM_LOG",
+        imageUrl: "/images/test2.png",
         description: "ระบบควบคุมอุปกรณ์ไฟฟ้าในบ้านผ่านอินเทอร์เน็ต สามารถมอนิเตอร์สถานะการใช้พลังงานได้แบบ Real-time",
         tech: ["ESP32", "IoT", "Node.js", "React"],
         linkText: "ดูรายละเอียด",

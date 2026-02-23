@@ -1,203 +1,114 @@
-/* =========================================
-   Skills Section (ทักษะความเชี่ยวชาญ)
-========================================= */
-
+/* ============================================================
+   SKILLS SECTION - COMPACT & MINIMAL FESTIVAL
+============================================================ */
 .skills-section {
-  padding: 100px 10%;
-  background-color: transparent; /* โปร่งใสเพื่อให้เห็นเส้นสเกตไฟด้านหลัง */
-  position: relative;
-  z-index: 10;
+  padding: 80px 10%;
 }
 
-.skills-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* --- Typography หัวข้อ --- */
-.section-header {
-  text-align: center;
-  margin-bottom: 60px;
-  
-  /* 🟢 ไม้ตายที่ 1: ล็อกความสูงรวมของโซนหัวข้อไว้เลย เพื่อไม่ให้ขยับตอนสลับภาษา */
-  min-height: 160px; 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.section-title {
-  font-size: 42px;
-  font-weight: var(--fw-med);
-  color: var(--name-color);
-  margin: 0 0 15px 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.section-title .highlight {
-  color: var(--spark-1);
-}
-
-.section-subtitle {
-  font-size: 16px;
-  color: var(--text-color);
-  opacity: 0.7;
-  max-width: 800px;
-  margin: 0; /* เอา auto ออกเพราะ flex จัดการให้แล้ว */
-}
-
-/* --- Layout Grid --- */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  position: relative;
-  z-index: 2;
-  
-  /* 🟢 ไม้ตายที่ 2: บังคับให้การ์ดทุกใบในแถวเดียวกัน "ยืด" จนสูงเท่ากันเสมอ */
-  align-items: stretch; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px; /* ลดระยะห่างระหว่างการ์ด */
+  margin-top: 40px;
 }
 
-/* --- Skill Card (การ์ดกระจกตัดมุม) --- */
-.skill-card {
-  background: rgba(255, 255, 255, 0.03); 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-  padding: 35px 30px;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+/* 🟢 การ์ดแบบใหม่: กระชับ ไม่ยืด */
+.compact-skill-card {
+  /* ⚡ ล็อคความนุ่มนวล 0.6s ตอนสลับโหมด */
+  transition: background 0.6s ease, border 0.6s ease, color 0.6s ease, transform 0.4s ease !important;
+  background: var(--matsuri-bg);
+  border: 1px solid var(--matsuri-border);
+  color: var(--text-color);
   
-  /* 🟢 ไม้ตายที่ 3: ทำให้เนื้อหาข้างในผลักกันเอง และบังคับการ์ดสูง 100% */
+  padding: 25px !important; /* ลด Padding จาก 40px เหลือ 25px */
+  min-height: auto !important; /* 🟢 ปลดล็อคความสูงที่กินพื้นที่ */
   display: flex;
   flex-direction: column;
-  height: 100%; 
+  gap: 20px;
+  clip-path: polygon(0 0, 95% 0, 100% 8%, 100% 100%, 5% 100%, 0 92%);
 }
 
-/* เอฟเฟกต์ตอนเอาเมาส์ชี้การ์ดกระจก */
-.skill-card:hover {
-  transform: translateY(-10px);
-  /* สว่างขึ้นนิดนึง และมีเงาสีส้มเรืองแสงออกมา */
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 78, 0, 0.5);
-  box-shadow: 0 15px 35px rgba(255, 78, 0, 0.15);
+.compact-skill-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--spark-1) !important;
+  box-shadow: 0 10px 20px rgba(255, 78, 0, 0.05);
 }
 
-.skill-card-header {
+/* --- Header ของการ์ด (Icon + Text) --- */
+.skill-card-head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 15px;
-  margin-bottom: 15px;
 }
 
-.skill-icon {
-  font-size: 28px;
-  /* ไอคอนก็ปรับให้กลืนไปกับกระจก */
-  background: rgba(255, 78, 0, 0.1);
-  width: 50px;
-  height: 50px;
+.skill-icon-wrapper {
+  background: rgba(255, 78, 0, 0.05);
+  padding: 12px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 78, 0, 0.2);
+  border: 1px solid rgba(255, 78, 0, 0.1);
 }
 
-.skill-title {
-  font-size: 20px;
-  color: var(--name-color);
+.skill-icon { font-size: 1.5rem; }
+
+.skill-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skill-cat-title {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  font-weight: 600;
   margin: 0;
 }
 
-.skill-desc {
-  font-size: 14px;
-  color: var(--text-color);
-  opacity: 0.7;
-  margin-bottom: 25px;
-  line-height: 1.5;
-  
-  /* 🟢 ให้คำอธิบายยืดตัวออก เพื่อดัน Tag ทักษะให้ไปอยู่ล่างสุดเสมอ */
-  flex-grow: 1; 
+.skill-cat-desc {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin: 0;
+  line-height: 1.4;
 }
 
-/* --- Tags ทักษะย่อย --- */
+/* --- Tags ทรง Pill (มินิมอล) --- */
 .skill-tags-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
+  margin-top: auto;
 }
 
-.skill-tag {
-  font-size: 13px;
-  font-weight: var(--fw-reg);
-  color: var(--text-color);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 6px 16px;
-  border-radius: 50px;
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--badge-border);
+  border-radius: 20px; /* 🟢 ทรงแคปซูล ดูคลีนและประหยัดพื้นที่ */
+  background: rgba(0, 0, 0, 0.02);
   transition: all 0.3s ease;
 }
 
-.skill-card:hover .skill-tag:hover {
+.compact-skill-card:hover .skill-pill {
+  border-color: rgba(255, 78, 0, 0.3);
+}
+
+.skill-pill:hover {
+  border-color: var(--spark-1) !important;
+  background: rgba(255, 78, 0, 0.1) !important;
+  transform: translateY(-2px);
+}
+
+/* จุดสีส้มหน้า Tag */
+.spark-dot {
+  width: 5px;
+  height: 5px;
   background: var(--spark-1);
-  color: #fff;
-  border-color: var(--spark-1);
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(255, 78, 0, 0.4);
-}
-
-/* ของตกแต่งมุมล่างขวาของการ์ด */
-.card-decoration {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  width: 25px;
-  height: 25px;
-  border-bottom: 2px solid var(--spark-1);
-  border-right: 2px solid var(--spark-1);
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.skill-card:hover .card-decoration {
-  opacity: 1;
-  bottom: 20px;
-  right: 20px;
-}
-
-/* =========================================
-   Responsive 
-========================================= */
-@media (max-width: 1024px) {
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .skills-section {
-    padding: 70px 5%;
-  }
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-  .section-title {
-    font-size: 32px;
-  }
-  
-  /* 🟢 ปรับความสูงขั้นต่ำของโซนหัวข้อในมือถือให้พอดีขึ้น */
-  .section-header {
-    min-height: 140px; 
-  }
-  
-  .skill-card {
-    padding: 25px 20px;
-    /* ลดขนาดมุมตัดในมือถือ */
-    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
-  } 
+  border-radius: 50%;
+  box-shadow: 0 0 5px var(--spark-1); /* 🟢 เอฟเฟกต์ไฟเทศกาลเล็กๆ */
 }

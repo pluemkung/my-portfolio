@@ -1,181 +1,148 @@
-/* =========================================
-   Projects Section (ผลงาน / กระจกฝ้า)
-========================================= */
+/* ============================================================
+   PROJECTS SECTION - COMPACT EDITION
+============================================================ */
 
 .projects-section {
-  padding: 100px 10%;
-  background-color: transparent;
+  padding: 80px 10%;
   position: relative;
-  z-index: 10;
 }
 
-.projects-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* --- Layout Grid --- */
 .projects-grid {
   display: grid;
-  /* จัดแบบ Auto-fit ให้รองรับจอหลายขนาด ถ้ากว้างพอก็จะเป็น 3 คอลัมน์ ถ้าแคบจะหดเหลือ 2 หรือ 1 */
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 40px;
-  position: relative;
-  z-index: 2;
-  margin-top: 50px;
+  /* 🟢 ปรับขนาดให้เล็กลงเพื่อความคลีน */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 25px;
+  margin-top: 40px;
 }
 
-/* --- Project Card (กระจกฝ้า) --- */
-.project-card {
-  background: rgba(255, 255, 255, 0.03); 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+/* 🟢 การ์ดแบบ Compact: ล็อค Transition 0.6s ตามโหมด */
+.compact-card {
+  position: relative;
+  background: var(--matsuri-bg);
+  border: 1px solid var(--matsuri-border);
+  color: var(--text-color);
+  /* ⚡ หัวใจสำคัญ: ค่อยๆ เปลี่ยนสี 0.6 วินาทีตอนสลับโหมด */
+  transition: background 0.6s ease, border 0.6s ease, color 0.6s ease, transform 0.4s ease !important;
   
+  min-height: auto !important;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  
-  /* มุมตัดสไตล์ Tech */
-  clip-path: polygon(25px 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%, 0 25px);
-  overflow: hidden; /* ไม่ให้รูปภาพล้นขอบกระจก */
+  overflow: hidden;
+  /* ทรงเดียวกับ About เป๊ะๆ */
+  clip-path: polygon(0 0, 95% 0, 100% 8%, 100% 100%, 5% 100%, 0 92%);
 }
 
-.project-card:hover {
-  transform: translateY(-12px);
-  border-color: rgba(255, 78, 0, 0.5);
-  box-shadow: 0 15px 40px rgba(255, 78, 0, 0.2);
-  background: rgba(255, 255, 255, 0.05);
+/* 🟢 Hover Effect: ยกตัว + เรืองแสงส้ม ZZZ */
+.compact-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--spark-1) !important;
+  box-shadow: 0 15px 30px rgba(255, 78, 0, 0.15);
 }
 
-/* --- Project Image Area --- */
-.project-image-placeholder {
-  height: 200px;
-  background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+/* --- พื้นที่รูปภาพ (ลดขนาดลง) --- */
+.compact-img {
+  width: 100%;
+  height: 160px !important;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--matsuri-border);
+}
+
+.project-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.compact-card:hover .project-thumbnail {
+  transform: scale(1.1);
+}
+
+/* --- เนื้อหาภายใน --- */
+.compact-inner {
+  padding: 18px !important;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.compact-title {
+  font-size: 1.2rem !important;
+  margin: 8px 0 12px 0 !important;
+  color: var(--text-color);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+.compact-card:hover .compact-title {
+  color: var(--spark-1);
+}
+
+/* --- Tech Stack (Compact) --- */
+.compact-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 15px !important;
+}
+
+.tech-more {
+  font-size: 0.7rem;
+  opacity: 0.5;
+  align-self: center;
+}
+
+/* --- Footer & Button --- */
+.compact-footer {
+  margin-top: auto;
+  padding-top: 12px !important;
+  border-top: 1px dashed var(--matsuri-border);
+}
+
+.explore-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.3s;
+}
+
+.explore-btn:hover {
+  color: var(--spark-1);
+  gap: 10px;
+}
+
+/* 🟢 ส่วนเสริม: MODAL GLASSMORPHISM (ที่เพิ่มจากโค้ดที่แล้ว) */
+.project-modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
-  opacity: 0.5;
-  transition: 0.3s;
+  padding: 20px;
 }
 
-.project-card:hover .project-image-placeholder {
-  background: rgba(255, 78, 0, 0.1);
-  opacity: 0.8;
-}
-
-/* --- Project Content Area --- */
-.project-content {
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1; /* ดันปุ่มให้ลงไปอยู่ล่างสุดเสมอ */
-}
-
-.project-title {
-  font-size: 22px;
-  color: var(--name-color);
-  margin: 0 0 15px 0;
-  line-height: 1.3;
-}
-
-.project-desc {
-  font-size: 14px;
-  color: var(--text-color);
-  opacity: 0.7;
-  line-height: 1.6;
-  margin-bottom: 25px;
-  flex-grow: 1;
-}
-
-/* --- Tech Tags --- */
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 25px;
-}
-
-.tech-tag {
-  font-size: 12px;
-  color: var(--spark-1);
-  background: rgba(255, 78, 0, 0.05);
-  border: 1px solid rgba(255, 78, 0, 0.2);
-  padding: 4px 12px;
-  border-radius: 4px; /* Tag หน้าโปรเจกต์จะใช้ทรงเหลี่ยมให้ดูเหมือน Code block */
-}
-
-/* --- Action Link --- */
-.project-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  font-weight: var(--fw-med);
-  color: var(--text-color);
-  text-decoration: none;
-  transition: 0.3s;
-  width: fit-content;
-}
-
-.project-link .arrow {
-  color: var(--spark-1);
-  font-size: 18px;
-  transition: 0.3s;
-}
-
-.project-link:hover {
-  color: var(--spark-1);
-}
-
-.project-link:hover .arrow {
-  transform: translate(3px, -3px); /* ลูกศรเด้งชี้ขึ้นขวา */
-}
-
-/* --- ของตกแต่งมุมการ์ด (Sci-fi Elements) --- */
-.card-ui-corner {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  opacity: 0.3;
-  transition: 0.3s;
-}
-
-.card-ui-corner.top-right {
-  top: 15px;
-  right: 15px;
-  border-top: 2px solid var(--text-color);
-  border-right: 2px solid var(--text-color);
-}
-
-.card-ui-corner.bottom-left {
-  bottom: 15px;
-  left: 15px;
-  border-bottom: 2px solid var(--text-color);
-  border-left: 2px solid var(--text-color);
-}
-
-.project-card:hover .card-ui-corner {
-  opacity: 1;
-  border-color: var(--spark-1);
-}
-
-/* =========================================
-   Responsive 
-========================================= */
-@media (max-width: 768px) {
-  .projects-section {
-    padding: 70px 5%;
-  }
-  .project-content {
-    padding: 25px 20px;
-  }
-  .project-image-placeholder {
-    height: 180px;
-  }
+.project-modal-content {
+  background: var(--matsuri-bg);
+  border: 1px solid var(--matsuri-border);
+  transition: background 0.6s ease, border 0.6s ease !important;
+  border-radius: 12px;
+  max-width: 1000px;
+  width: 100%;
+  overflow: hidden;
 }
