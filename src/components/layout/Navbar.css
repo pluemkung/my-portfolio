@@ -1,5 +1,5 @@
 /* =========================================
-   1. MAIN NAVBAR (แคปซูลกระจกลอยตัว - ออริจินัลของคุณ)
+   1. MAIN NAVBAR (แคปซูลกระจกลอยตัว)
 ========================================= */
 .nav-container {
   position: fixed;
@@ -7,12 +7,11 @@
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: center; /* ดันแคปซูลให้อยู่ตรงกลางจอ */
+  justify-content: center;
   z-index: 1000;
 }
 
 .navbar {
-  /* รัดกล่องให้กว้างพอดีกับเนื้อหาข้างใน ปิดรอยโหว่ทั้งหมด! */
   width: max-content; 
   height: 55px;
   display: flex;
@@ -20,7 +19,7 @@
   padding: 0 10px 0 20px; 
   gap: 15px; 
   
-  /* 🟢 กระจกฝ้า (Glassmorphism) ของคุณสวยอยู่แล้วครับ */
+  /* กระจกฝ้า */
   background: var(--nav-bg); 
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
@@ -28,7 +27,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 100px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: all 0.6s ease; /* 🟢 ปรับให้สมูทตอนเปลี่ยนโหมด */
+  transition: all 0.6s ease;
 }
 
 .nav-links {
@@ -39,7 +38,6 @@
   padding: 0;
 }
 
-/* 🟢 ฟิกซ์ความกว้างให้ทุกเมนูเท่ากันเป๊ะ เปลี่ยนภาษาแล้วไม่ดีด */
 .nav-links li {
   width: 90px; 
   text-align: center;
@@ -54,33 +52,46 @@
   opacity: 0.8;
   transition: 0.3s;
   
-  /* 🟢 ปรับโครงสร้างเพื่อรองรับกรอบ Active */
   display: flex; 
   align-items: center;
   justify-content: center;
-  height: 35px; /* ความสูงของกรอบ */
-  border-radius: 50px; /* ทรงแคปซูลให้เข้ากับกล่องแม่ */
-  border: 1px solid transparent; /* เตรียมกรอบใสๆ ไว้ก่อน */
+  height: 35px;
+  border-radius: 50px;
+  border: 1px solid transparent; 
 }
 
 .nav-links a:hover {
   opacity: 1;
   color: var(--spark-1);
-  transform: translateY(-2px);
 }
 
 /* =========================================
-   2. ACTIVE FRAME (กรอบบอกหน้าปัจจุบัน)
+   2. ACTIVE FRAME (ซิงค์สีกับ index.css สลับโหมดได้ 100%)
 ========================================= */
-/* 🟢 กรอบนีออนสีส้ม จะโผล่มาเมื่อเลื่อนจอถึงหน้านั้นๆ */
 .nav-links a.active-nav-item {
-  border: 1px solid var(--spark-1); 
-  background: rgba(255, 78, 0, 0.08); 
-  color: var(--spark-1);
+  /* 🟢 ดึงสีพื้นหลังจากตัวแปร (มืด=เทาเข้ม, สว่าง=ส้มอ่อนๆ) */
+  background: var(--badge-bg); 
+  
+  /* 🟢 ตัวหนังสือสีส้ม ZZZ โดดเด่นเสมอทั้ง 2 โหมด */
+  color: var(--spark-1) !important; 
+  font-weight: 600; 
   opacity: 1;
-  font-weight: 600;
-  box-shadow: inset 0 0 10px rgba(255, 78, 0, 0.15); 
-  transform: translateY(0); /* ล็อคให้อยู่กับที่ */
+  
+  /* 🟢 ขอบใช้ตัวแปรจากหน้าเว็บ (สลับสีตามโหมดอัตโนมัติ) */
+  border: 1px solid var(--badge-border); 
+  border-radius: 50px; 
+  
+  /* 🟢 แสงฟุ้ง (Glow) ซิงค์กับระบบ Badge ของเว็บคุณ */
+  box-shadow: 0 0 10px var(--badge-glow), 
+              inset 0 0 5px var(--badge-glow); 
+  
+  /* 🟢 แสงเรืองของตัวอักษรนิดๆ ให้ดูมีมิติ */
+  text-shadow: 0 0 4px var(--badge-glow);
+  
+  transform: translateY(0);
+  
+  /* ⚡ สมูท 0.6 วินาที ตอนสลับโหมด! */
+  transition: all 0.6s ease; 
 }
 
 /* =========================================
@@ -96,6 +107,7 @@
   display: flex;
   align-items: center;
   gap: 8px; 
+  margin-left: auto; 
 }
 
 .control-btn {
@@ -115,10 +127,9 @@
   transition: 0.3s;
 }
 
-/* 🟢 ล็อคความกว้างปุ่มภาษา (ไม่หด/ขยาย) */
 .control-btn.lang-btn {
   width: 40px; 
-  border-radius: 20px; /* ปรับให้เป็นแคปซูลนิดๆ จะได้ใส่คำว่า TH/EN ได้พอดี */
+  border-radius: 20px; 
 }
 
 .control-btn:hover {
@@ -126,6 +137,7 @@
   color: var(--bg-main-1);
 }
 
+/* ปุ่ม Contact ทรง ZZZ คงไว้ที่ขวาสุดเป็นลูกเล่น */
 .zzz-nav-btn {
   background-color: var(--spark-1);
   color: #fff !important;
@@ -134,7 +146,6 @@
   font-weight: 700;
   text-decoration: none;
   
-  /* 🟢 ฟิกซ์ขนาด 85x34px เป๊ะๆ ตามออริจินัลของคุณ! */
   width: 85px;
   height: 34px;
   display: flex;
@@ -142,7 +153,6 @@
   justify-content: center;
   transition: 0.3s;
   
-  /* 🟢 ตัดมุมด้วยพิกเซล (10px) สีจะเทเต็มกล่อง ไม่แหว่ง และไม่ตัดโดนตัวหนังสือ */
   clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
 }
 
@@ -151,6 +161,7 @@
   color: #1a1a1e !important; 
   transform: scale(1.05);
 }
+
 /* =========================================
    4. RESPONSIVE (มือถือ & Tablet)
 ========================================= */
@@ -168,7 +179,7 @@
   .mobile-toggle { display: block; }
 
   .navbar {
-    width: 95%; /* 🟢 ยืดออกเกือบเต็มจอในมือถือ */
+    width: 95%; 
     justify-content: space-between;
     padding: 0 15px;
   }
@@ -198,7 +209,7 @@
   }
 
   .nav-links li { width: 100%; display: flex; justify-content: center; }
-  .nav-links a { width: 80%; font-size: 15px; height: 40px; } /* 🟢 ขยายกรอบในมือถือให้กดง่าย */
+  .nav-links a { width: 80%; font-size: 15px; height: 40px; }
 }
 
 @media (max-width: 480px) {
