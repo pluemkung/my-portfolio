@@ -1,3 +1,6 @@
+/* =========================================
+   1. MAIN NAVBAR (แคปซูลกระจกลอยตัว - ออริจินัลของคุณ)
+========================================= */
 .nav-container {
   position: fixed;
   top: 20px;
@@ -14,9 +17,10 @@
   height: 55px;
   display: flex;
   align-items: center;
-  padding: 0 10px 0 20px; /* ขอบซ้าย 20 ขอบขวา 10 (เพราะขวามีปุ่มเฉียงอยู่แล้ว) */
-  gap: 15px; /* ระยะห่างระหว่างกลุ่มเมนู กับกลุ่มปุ่ม */
+  padding: 0 10px 0 20px; 
+  gap: 15px; 
   
+  /* 🟢 กระจกฝ้า (Glassmorphism) ของคุณสวยอยู่แล้วครับ */
   background: var(--nav-bg); 
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
@@ -24,7 +28,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 100px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+  transition: all 0.6s ease; /* 🟢 ปรับให้สมูทตอนเปลี่ยนโหมด */
 }
 
 .nav-links {
@@ -35,7 +39,7 @@
   padding: 0;
 }
 
-/* ฟิกซ์ความกว้างให้ทุกเมนูเท่ากันเป๊ะ เปลี่ยนภาษาแล้วไม่ดีด */
+/* 🟢 ฟิกซ์ความกว้างให้ทุกเมนูเท่ากันเป๊ะ เปลี่ยนภาษาแล้วไม่ดีด */
 .nav-links li {
   width: 90px; 
   text-align: center;
@@ -49,7 +53,14 @@
   text-decoration: none;
   opacity: 0.8;
   transition: 0.3s;
-  display: block; 
+  
+  /* 🟢 ปรับโครงสร้างเพื่อรองรับกรอบ Active */
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  height: 35px; /* ความสูงของกรอบ */
+  border-radius: 50px; /* ทรงแคปซูลให้เข้ากับกล่องแม่ */
+  border: 1px solid transparent; /* เตรียมกรอบใสๆ ไว้ก่อน */
 }
 
 .nav-links a:hover {
@@ -58,7 +69,23 @@
   transform: translateY(-2px);
 }
 
-/* เส้นคั่น */
+/* =========================================
+   2. ACTIVE FRAME (กรอบบอกหน้าปัจจุบัน)
+========================================= */
+/* 🟢 กรอบนีออนสีส้ม จะโผล่มาเมื่อเลื่อนจอถึงหน้านั้นๆ */
+.nav-links a.active-nav-item {
+  border: 1px solid var(--spark-1); 
+  background: rgba(255, 78, 0, 0.08); 
+  color: var(--spark-1);
+  opacity: 1;
+  font-weight: 600;
+  box-shadow: inset 0 0 10px rgba(255, 78, 0, 0.15); 
+  transform: translateY(0); /* ล็อคให้อยู่กับที่ */
+}
+
+/* =========================================
+   3. กลุ่มควบคุม และปุ่มต่างๆ
+========================================= */
 .nav-divider {
   width: 1px;
   height: 24px;
@@ -68,7 +95,7 @@
 .nav-controls {
   display: flex;
   align-items: center;
-  gap: 8px; /* ระยะห่างระหว่างปุ่ม */
+  gap: 8px; 
 }
 
 .control-btn {
@@ -88,6 +115,12 @@
   transition: 0.3s;
 }
 
+/* 🟢 ล็อคความกว้างปุ่มภาษา (ไม่หด/ขยาย) */
+.control-btn.lang-btn {
+  width: 40px; 
+  border-radius: 20px; /* ปรับให้เป็นแคปซูลนิดๆ จะได้ใส่คำว่า TH/EN ได้พอดี */
+}
+
 .control-btn:hover {
   background: var(--text-color);
   color: var(--bg-main-1);
@@ -100,22 +133,27 @@
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
-  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
   
+  /* 🟢 ฟิกซ์ขนาด 85x34px เป๊ะๆ ตามออริจินัลของคุณ! */
   width: 85px;
   height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: 0.3s;
-  border-right: 3px solid var(--spark-2); /* คงความเท่แบบ ZZZ */
+  
+  /* 🟢 ตัดมุมด้วยพิกเซล (10px) สีจะเทเต็มกล่อง ไม่แหว่ง และไม่ตัดโดนตัวหนังสือ */
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
 }
 
 .zzz-nav-btn:hover {
   background-color: var(--spark-2);
+  color: #1a1a1e !important; 
   transform: scale(1.05);
 }
-/* ซ่อนปุ่ม ☰ บนจอคอม */
+/* =========================================
+   4. RESPONSIVE (มือถือ & Tablet)
+========================================= */
 .mobile-toggle {
   display: none;
   font-size: 20px;
@@ -125,60 +163,44 @@
   font-weight: 900;
 }
 
-/* --- Responsive สำหรับ iPad และ มือถือ (จอเล็กกว่า 950px) --- */
 @media (max-width: 950px) {
-  .mobile-toggle {
-    display: block; /* โชว์ปุ่ม ☰ */
-  }
+  .nav-container { top: 10px; }
+  .mobile-toggle { display: block; }
 
-  /* จัดเรียง Navbar ใหม่ */
   .navbar {
-    width: 100%;
+    width: 95%; /* 🟢 ยืดออกเกือบเต็มจอในมือถือ */
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 15px;
   }
 
-  /* ซ่อนเมนูแนวยาวไปก่อน */
   .nav-links {
     position: absolute;
     top: 70px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
-    background: var(--bg-main-1); /* ใช้สีพื้นหลังทึบ */
+    width: 95%;
+    background: var(--bg-main-1); 
     border: 2px solid var(--spark-1);
     border-radius: 15px;
     flex-direction: column;
     padding: 20px 0;
-    gap: 15px;
+    gap: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    
-    /* อนิเมชั่นซ่อน/โชว์ */
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
   }
 
-  /* เมื่อเปิดเมนู */
   .nav-links.active {
     opacity: 1;
     visibility: visible;
     top: 65px;
   }
 
-  .nav-links li {
-    width: 100%;
-  }
-
-  .nav-links a {
-    font-size: 16px;
-    padding: 10px 0;
-  }
+  .nav-links li { width: 100%; display: flex; justify-content: center; }
+  .nav-links a { width: 80%; font-size: 15px; height: 40px; } /* 🟢 ขยายกรอบในมือถือให้กดง่าย */
 }
 
-/* จอมือถือขนาดเล็กมาก */
 @media (max-width: 480px) {
-  .zzz-nav-btn {
-    display: none; /* ซ่อนปุ่มติดต่อแบบเฉียงไปก่อนถ้าที่พิงไม่พอ */
-  }
+  .zzz-nav-btn { display: none; }
 }
