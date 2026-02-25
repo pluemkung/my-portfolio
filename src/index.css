@@ -243,10 +243,12 @@ body:not(.dark-mode) .glass-panel {
 .section-header {
   display: flex;
   flex-direction: column;
-  align-items: center; /* ⚡ ตัวนี้แหละที่แก้ปัญหาป้ายยืด! */
+  align-items: center; 
+  justify-content: flex-end; /* ⚡ ดันเนื้อหาให้ชิดด้านล่างของกล่อง */
   text-align: center;
   margin-bottom: 3rem;
   width: 100%;
+  min-height: 120px; /* ⚡ ล็อคความสูงไว้เผื่อเปลี่ยนภาษา หน้าจะได้ไม่ขยับ! */
 }
 
 /* 🟢 ป้าย Badge (เช่น EXPERTISE, ABOUT ME) */
