@@ -18,34 +18,30 @@ const Skills = ({ content }) => {
           <div className="hero-badge"><span className="badge-text">{content.badge}</span></div>
           <h2 className="section-title">
             {content.titleStart}
-            <span className="highlight" style={{color: 'var(--spark-1)'}}>{content.titleHighlight}</span>
+            <span className="highlight" style={{color: 'var(--spark-1)'}}> {content.titleHighlight}</span>
           </h2>
           {content.subtitle && <p className="section-subtitle">{content.subtitle}</p>}
         </div>
 
-        {/* 🟢 Grid ทักษะ: ลดพื้นที่ว่าง จัดระเบียบใหม่ */}
+        {/* 🟢 Grid ทักษะ */}
         <div className="skills-grid" ref={sRef}>
           {content.categories.map((category, catIndex) => (
             <div 
               key={catIndex} 
-              className={`matsuri-card compact-skill-card reveal delay-${catIndex + 1} ${sIn ? 'reveal-visible' : ''}`}
+              /* ⚡ ใช้ matsuri-card ดึงธีมกระจก และ cyber-skill-card จัดทรง */
+              className={`matsuri-card cyber-skill-card reveal delay-${(catIndex % 4) + 1} ${sIn ? 'reveal-visible' : ''}`}
             >
-              {/* ย้าย Icon มาอยู่ข้างๆ Title เพื่อประหยัดพื้นที่แนวตั้ง */}
               <div className="skill-card-head">
-                <div className="skill-icon-wrapper">
+                <div className="skill-icon-box">
                   <span className="skill-icon">{category.icon}</span>
                 </div>
-                <div className="skill-title-group">
-                  <h3 className="skill-cat-title">{category.title}</h3>
-                  <p className="skill-cat-desc">{category.description}</p>
-                </div>
+                <h3 className="skill-cat-title">{category.title}</h3>
               </div>
 
-              {/* Tag ทักษะทรง Pill ประหยัดพื้นที่ */}
               <div className="skill-tags-container">
                 {category.items.map((skill, index) => (
-                  <span key={index} className="skill-pill">
-                    <span className="spark-dot"></span> {skill}
+                  <span key={index} className="tech-skill-pill">
+                    {skill}
                   </span>
                 ))}
               </div>

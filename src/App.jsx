@@ -13,6 +13,7 @@ import Projects from './components/Projects';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   const [lang, setLang] = useState('th');
@@ -24,6 +25,7 @@ function App() {
   return (
     <div className={isDarkMode ? 'dark-mode' : ''} style={{ minHeight: '100vh' }}>
       <ScrollProgress />
+      <CustomCursor />
       <BackgroundGlow />
       <Navbar 
         lang={lang} 

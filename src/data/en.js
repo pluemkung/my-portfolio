@@ -36,23 +36,30 @@ export const en = {
     subtitle: "Combining hardware electronics knowledge with modern software technologies.",
     categories: [
       {
+        title: "Languages",
+        icon: "🌐",
+        description: "Programming and development languages.",
+        items: ["Java", "Python", "C", "SQL" , "PHP"]
+      },
+      {
         title: "Software & Web",
         icon: "💻",
         description: "Web development and programming.",
-        items: ["React", "JavaScript", "HTML5 & CSS3", "Node.js", "C / C++"]
+        items: ["React", "JavaScript", "HTML5 & CSS", "Node.js", ]
       },
       {
         title: "Hardware & Electronics",
         icon: "🔌",
         description: "Circuit systems, microcontrollers, and power electronics.",
-        items: ["Microcontrollers", "IoT Systems", "Power Electronics", "Inverter Design", "Circuit Design"]
+        items: ["Microcontrollers", "IoT Systems", "Power Electronics", "Circuit Design"]
       },
       {
         title: "Tools & Workflow",
         icon: "🛠️",
         description: "Development tools and project management.",
-        items: ["Git & GitHub", "VS Code", "Figma", "Troubleshooting"]
+        items: ["Git & GitHub", "VS Code", "SolidWorks", "Arduino IDE", "Blender"]
       }
+      
     ]
   },
   projects: {
@@ -133,8 +140,8 @@ export const en = {
     titleStart: "My Contact",
     titleHighlight: "Information",
     subtitle: "I'm open to feedback and collaboration opportunities.",
-    email: "your.email@gmail.com",
-    phone: "08X-XXX-XXXX",
+    email: "pluemkub1313@gmail.com",
+    phone: "063-758-82533",
     location: "กรุงเทพมหานคร, ประเทศไทย",
     github: "github.com/yourusername",
     formTitle: "ส่งข้อความหาผม",

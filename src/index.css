@@ -283,7 +283,10 @@ body:not(.dark-mode) .glass-panel {
 .section-subtitle {
   color: var(--text-color);
   opacity: 0.7;
-  max-width: 600px;
+  
+  /* ⚡ พระเอกคือตรงนี้ครับ ขยายจาก 600px เป็น 900px ข้อความจะได้ไม่ร่วง */
+  max-width: 900px; 
+  
   font-size: 1rem;
   margin: 0;
   line-height: 1.6;
@@ -295,3 +298,44 @@ body:not(.dark-mode) .glass-panel {
   color: var(--spark-1);
 }
 
+/* =========================================
+   SMOOTH TRAILING CURSOR (วงแหวนสมูท ไม่บังเมาส์หลัก)
+========================================= */
+
+/* 🟢 วงแหวนออร่าโปร่งแสงที่วิ่งตามเมาส์ */
+.zz-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 78, 0, 0.4); /* วงแหวนสีส้มโปร่งแสง */
+  border-radius: 50%;
+  pointer-events: none; /* กดทะลุได้ 100% ไม่กวนการคลิก */
+  z-index: 999999;
+  
+  /* ⚡ เคล็ดลับความลื่น: สั่งให้เบราว์เซอร์เตรียมการ์ดจอไว้รอเลย */
+  will-change: transform;
+  
+  /* อนิเมชันเฉพาะตอนเปลี่ยนขนาด/สี (ไม่เกี่ยวกับตอนขยับ) */
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 🟢 เอฟเฟกต์ตอนเอาเมาส์ไปชี้กล่องกระจกหรือปุ่ม */
+.zz-cursor-ring.hover-active {
+  width: 60px; /* ขยายวงแหวนให้กว้างขึ้น */
+  height: 60px;
+  border-color: var(--spark-1); /* สีขอบเข้มขึ้น */
+  background-color: rgba(255, 78, 0, 0.05); /* เติมสีพื้นหลังจางๆ */
+  
+  /* ชดเชยตำแหน่งเวลาวงแหวนมันใหญ่ขึ้น จะได้อยู่กึ่งกลางเหมือนเดิม */
+  margin-top: -10px;
+  margin-left: -10px; 
+}
+
+/* 📱 ปิดการทำงานในมือถือและแท็บเล็ต */
+@media (max-width: 991px) {
+  .zz-cursor-ring {
+    display: none !important;
+  }
+}

@@ -36,23 +36,26 @@ export const th = {
     subtitle: "ผสมผสานความรู้ด้านฮาร์ดแวร์อิเล็กทรอนิกส์ เข้ากับเทคโนโลยีซอฟต์แวร์สมัยใหม่",
     categories: [
       {
-        title: "Software & Web",
+        title: "ภาษาโปรแกรม",
+        icon: "🌐",
+        items: ["Java", "Python", "C", "SQL" , "PHP"]
+      },
+      {
+        title: "ซอฟต์แวร์และเว็บไซต์",
         icon: "💻",
-        description: "การพัฒนาเว็บไซต์และโปรแกรมมิ่ง",
-        items: ["React", "JavaScript", "HTML5 & CSS3", "Node.js", "C / C++"]
+        items: ["React", "JavaScript", "HTML5 & CSS", "Node.js", ]
       },
       {
-        title: "Hardware & Electronics",
+        title: "ฮาร์ดแวร์และอิเล็กทรอนิกส์",
         icon: "🔌",
-        description: "ระบบวงจร ไมโครคอนโทรลเลอร์ และพลังงาน",
-        items: ["Microcontrollers", "IoT Systems", "Power Electronics", "Inverter Design", "Circuit Design"]
+        items: ["Microcontrollers", "IoT Systems", "Power Electronics", "Circuit Design"]
       },
       {
-        title: "Tools & Workflow",
+        title: "เครื่องมือและเฉพาะทาง",
         icon: "🛠️",
-        description: "เครื่องมือและการจัดการโปรเจกต์",
-        items: ["Git & GitHub", "VS Code", "Figma", "Troubleshooting"]
-      }
+        items: ["Git & GitHub", "VS Code", "SolidWorks", "Arduino IDE", "Blender"]
+      },
+      
     ]
   }, 
   projects: {
@@ -139,8 +142,8 @@ export const th = {
     titleStart: "ช่องทางการ",
     titleHighlight: "ติดต่อ",
     subtitle: "ยินดีรับฟังข้อเสนอแนะหรือโอกาสในการร่วมงานครับ",
-    email: "อีเมลของคุณ@gmail.com",
-    phone: "08X-XXX-XXXX",
+    email: "pluemkub1313@gmail.com",
+    phone: "063-758-82533",
     location: "กรุงเทพมหานคร, ประเทศไทย",
     github: "github.com/yourusername",
     formTitle: "ส่งข้อความหาผม",

@@ -1,5 +1,5 @@
 /* ============================================================
-   PROJECTS SECTION - COMPACT EDITION
+   PROJECTS SECTION - PREMIUM CYBER-GLASS EDITION
 ============================================================ */
 
 .projects-section {
@@ -9,68 +9,132 @@
 
 .projects-grid {
   display: grid;
-  /* 🟢 ปรับขนาดให้เล็กลงเพื่อความคลีน */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-  gap: 25px;
+  /* ⚡ ล็อคความกว้างให้การ์ดไม่บานเต็มจอ */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 320px)); 
+  justify-content: center; 
+  gap: 25px; 
   margin-top: 40px;
 }
 
-/* 🟢 การ์ดแบบ Compact: ล็อค Transition 0.6s ตามโหมด */
-.compact-card {
+/* 🟢 ตัวการ์ด (อัปเกรดความพรีเมียม ตัดมุมขวาล่าง) */
+.project-card {
   position: relative;
   background: var(--matsuri-bg);
-  border: 1px solid var(--matsuri-border);
   color: var(--text-color);
-  /* ⚡ หัวใจสำคัญ: ค่อยๆ เปลี่ยนสี 0.6 วินาทีตอนสลับโหมด */
-  transition: background 0.6s ease, border 0.6s ease, color 0.6s ease, transform 0.4s ease !important;
   
-  min-height: auto !important;
+  /* ⚡ ขอบปกติเป็นกระจกใสๆ มีแสงสะท้อนเบาๆ ที่ขอบบน */
+  border: 1px solid var(--matsuri-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.15); 
+  
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  
+  /* ⚡ ล็อคความสูงขั้นต่ำ แก้โรคภาษาไทย/อังกฤษ ยืดไม่เท่ากัน */
+  min-height: 400px !important;
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  /* ทรงเดียวกับ About เป๊ะๆ */
-  clip-path: polygon(0 0, 95% 0, 100% 8%, 100% 100%, 5% 100%, 0 92%);
+  
+  /* ⚡ ทรง UI ล้ำๆ: ตัดมุมล่างขวากว้างๆ มุมเดียว */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-/* 🟢 Hover Effect: ยกตัว + เรืองแสงส้ม ZZZ */
-.compact-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: var(--spark-1) !important;
-  box-shadow: 0 15px 30px rgba(255, 78, 0, 0.15);
+/* 🟢 โฮเวอร์เอฟเฟกต์ (มีแสงนีออนสาดลงมา) */
+.project-card:hover {
+  transform: translateY(-8px);
+  border-top: 2px solid var(--spark-1) !important;
+  border-color: rgba(255, 78, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 
+              0 -5px 20px rgba(255, 78, 0, 0.15);
 }
 
-/* --- พื้นที่รูปภาพ (ลดขนาดลง) --- */
-.compact-img {
+/* --- พื้นที่รูปภาพ --- */
+.project-img-wrapper {
   width: 100%;
-  height: 160px !important;
+  height: 180px; /* ⚡ เพิ่มความสูงรูปขึ้นนิดนึงให้ดูเต็มตา */
+  position: relative;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid var(--matsuri-border);
+  background: #0a0a0c; /* พื้นหลังสีดำสนิท */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-img-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.15) 0px,
+    rgba(0,0,0,0.15) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.img-gradient-overlay {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%; height: 60px; /* เพิ่มระยะไล่สีให้เนียนขึ้น */
+  background: linear-gradient(to bottom, transparent, var(--matsuri-bg));
+  pointer-events: none;
+  z-index: 3;
 }
 
 .project-thumbnail {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.7s ease;
+  filter: brightness(0.8) contrast(1.1); /* ⚡ ตอนปกติหรี่ไฟลงนิดนึงให้ดูลึกลับ */
+  z-index: 1;
 }
 
-.compact-card:hover .project-thumbnail {
-  transform: scale(1.1);
+.project-card:hover .project-thumbnail {
+  transform: scale(1.05); 
+  filter: brightness(1.1) contrast(1.1); 
+}
+.project-image-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: monospace; color: var(--text-color); opacity: 0.5;
 }
 
 /* --- เนื้อหาภายใน --- */
-.compact-inner {
-  padding: 18px !important;
-  flex-grow: 1;
+.project-inner {
+  padding: 0 22px 22px 22px; 
+  flex-grow: 1; /* ⚡ ดันพื้นที่ให้เต็ม เพื่อถีบปุ่มลงล่าง */
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 3;
 }
 
-.compact-title {
-  font-size: 1.2rem !important;
-  margin: 8px 0 12px 0 !important;
+/* Meta Data (แก้ตัวหนังสือชิดกัน) */
+.project-meta {
+  display: flex;
+  justify-content: space-between; /* แยกซ้ายขวาชัดเจน */
+  align-items: center;
+  font-family: monospace;
+  font-size: 0.75rem;
+  margin-bottom: 15px;
+}
+
+.prj-tag {
+  background: rgba(128, 128, 128, 0.1);
+  color: var(--spark-1);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.prj-id {
+  opacity: 0.5;
+}
+
+/* Title & Desc */
+.project-title {
+  font-size: 1.25rem;
+  margin: 0 0 8px 0;
   color: var(--text-color);
   font-weight: 600;
   white-space: nowrap;
@@ -79,70 +143,281 @@
   transition: color 0.3s ease;
 }
 
-.compact-card:hover .compact-title {
+.project-card:hover .project-title {
   color: var(--spark-1);
 }
 
-/* --- Tech Stack (Compact) --- */
-.compact-tech {
+.project-desc {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin: 0 0 15px 0;
+  line-height: 1.6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Tech Stack (แก้ปัญหาตัวอักษรติดกัน) --- */
+.project-tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 15px !important;
+  gap: 8px; /* ⚡ เพิ่มระยะห่างให้แต่ละป้าย */
+  margin-bottom: 20px;
 }
 
-.tech-more {
-  font-size: 0.7rem;
-  opacity: 0.5;
-  align-self: center;
-}
-
-/* --- Footer & Button --- */
-.compact-footer {
-  margin-top: auto;
-  padding-top: 12px !important;
-  border-top: 1px dashed var(--matsuri-border);
-}
-
-.explore-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
+.tech-badge {
+  font-size: 0.65rem;
+  font-family: monospace; 
+  padding: 4px 8px;
+  background: rgba(128, 128, 128, 0.08);
+  border-radius: 2px; 
+  border-left: 2px solid var(--spark-1); 
   color: var(--text-color);
-  font-weight: bold;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  opacity: 0.8;
   transition: 0.3s;
 }
 
-.explore-btn:hover {
-  color: var(--spark-1);
-  gap: 10px;
+.project-card:hover .tech-badge {
+  opacity: 1;
+  background: rgba(255, 78, 0, 0.05);
 }
 
-/* 🟢 ส่วนเสริม: MODAL GLASSMORPHISM (ที่เพิ่มจากโค้ดที่แล้ว) */
+/* --- Footer & Button (อัปเกรดเป็นกล่องปุ่ม Interactive) --- */
+.project-footer {
+  margin-top: auto; 
+  padding-top: 15px;
+  /* ลบเส้นคั่นออก เพราะเราจะทำให้ปุ่มมีขอบของตัวเอง */
+}
+
+.explore-btn {
+  position: relative;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(128, 128, 128, 0.05); /* พื้นหลังกระจกจางๆ */
+  border: 1px solid rgba(128, 128, 128, 0.2); /* กรอบปุ่ม */
+  border-radius: 4px;
+  color: var(--text-color);
+  font-weight: 600;
+  font-family: 'Kanit', sans-serif; /* ใช้ฟอนต์หลักให้ดูเป็นทางการขึ้น */
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  overflow: hidden; /* สำคัญ: ซ่อนสีที่จะวิ่งเข้ามาไม่ให้ล้นขอบ */
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+/* ⚡ ลูกเล่นแถบสีวิ่งจากซ้ายไปขวาตอน Hover */
+.explore-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; 
+  width: 0%; /* ปกติความกว้างเป็น 0 */
+  height: 100%;
+  background: var(--spark-1);
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: -1;
+}
+
+/* ตอนเอาเมาส์ชี้ที่ปุ่ม */
+.explore-btn:hover {
+  color: #ffffff !important; /* เปลี่ยนสีอักษรเป็นขาวให้ตัดกับพื้นส้ม */
+  border-color: var(--spark-1);
+  box-shadow: 0 0 15px rgba(255, 78, 0, 0.3); /* แสงฟุ้งรอบปุ่ม */
+}
+
+/* ให้สีส้มวิ่งจนเต็มกล่อง */
+.explore-btn:hover::before {
+  width: 100%; 
+}
+
+.explore-btn .arrow {
+  font-family: monospace;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.explore-btn:hover .arrow {
+  transform: translate(3px, -3px); 
+  color: #ffffff;
+}
+
+/* ============================================================
+   🔥 MODAL GLASSMORPHISM (หน้าต่างข้อมูลลอยตัว)
+============================================================ */
+
+/* พื้นหลังสีดำเบลอๆ ทับทั้งหน้าจอ */
 .project-modal-overlay {
   position: fixed;
   top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  z-index: 2000;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  animation: modalFadeIn 0.4s ease;
+}
+/* ============================================================
+   🔥 MODAL GLASSMORPHISM (CLEAN & COMPACT EDITION)
+============================================================ */
+
+.project-modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalFadeIn 0.3s ease;
 }
 
+/* ⚡ 1. ย่อขนาดกล่องให้เล็กลงจาก 850px เหลือ 650px (ดูพอดีคำ ไม่แน่น) */
 .project-modal-content {
-  background: var(--matsuri-bg);
-  border: 1px solid var(--matsuri-border);
-  transition: background 0.6s ease, border 0.6s ease !important;
+  background: rgba(26, 26, 30, 0.85); 
+  border: 1px solid rgba(255, 78, 0, 0.3);
+  border-top: 3px solid var(--spark-1); 
   border-radius: 12px;
-  max-width: 1000px;
+  max-width: 650px; 
   width: 100%;
-  overflow: hidden;
+  max-height: 85vh;
+  
+  /* 🟢 ให้เลื่อนขึ้นลงได้ตามปกติ */
+  overflow-y: auto; 
+  
+  /* 🟢 พระเอกของเรา: ซ่อนแถบเลื่อนสำหรับ Firefox, IE และ Edge */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+  
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6), 
+              0 0 40px rgba(255, 78, 0, 0.15),
+              inset 0 0 20px rgba(255, 78, 0, 0.05);
+  animation: modalSlideUp 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+.project-modal-content::-webkit-scrollbar {
+  display: none;
+}
+/* ⚡ 2. รูปภาพปรับให้เตี้ยลง ไม่กินพื้นที่จอ */
+.modal-img-container {
+  width: 100%;
+  height: 250px; 
+  background: #0a0a0c;
+  position: relative;
+  border-bottom: 1px solid var(--matsuri-border);
+}
+
+.modal-img-container img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+.modal-no-img {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: monospace; opacity: 0.5; color: var(--text-color);
+}
+
+.modal-scanline {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.05) 2px, rgba(255, 255, 255, 0.05) 4px);
+  pointer-events: none;
+}
+
+/* ⚡ 3. จัดระเบียบข้อความให้อ่านง่ายขึ้น */
+.modal-info-container {
+  padding: 30px; 
+  color: var(--text-color);
+}
+
+.modal-meta { margin-bottom: 10px; }
+
+.modal-info-container h2 {
+  font-size: 1.6rem; 
+  color: var(--text-color); 
+  margin: 0 0 15px 0;
+}
+
+.modal-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.8;
+  margin-bottom: 25px;
+}
+
+/* ⚡ 4. กล่องใส่ผลงาน/รางวัล (ดีไซน์แยกออกมาให้ดูเด่น) */
+.modal-achievements {
+  background: rgba(128, 128, 128, 0.05);
+  border: 1px solid rgba(128, 128, 128, 0.15);
+  border-left: 3px solid var(--spark-2); /* ขีดเส้นสีเหลือง/ส้ม ด้านซ้าย */
+  border-radius: 6px;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+}
+
+.modal-achievements h4 {
+  margin: 0 0 10px 0;
+  font-size: 0.85rem;
+  color: var(--spark-2);
+  letter-spacing: 1px;
+}
+
+.modal-achievements ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.modal-tech {
+  margin-bottom: 30px;
+}
+
+/* ⚡ 5. ปุ่มปิดด้านล่าง (ใหญ่ กดง่าย มินิมอลสุดๆ) */
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgba(128, 128, 128, 0.15);
+  padding-top: 25px;
+}
+
+.modal-close-action-btn {
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--matsuri-border);
+  padding: 10px 40px;
+  border-radius: 50px; /* ทรงแคปซูลมนๆ */
+  font-family: monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-close-action-btn:hover {
+  background: var(--text-color);
+  color: var(--bg-main-1);
+  transform: translateY(-2px);
+}
+
+/* แอนิเมชัน */
+@keyframes modalFadeIn {
+  from { opacity: 0; backdrop-filter: blur(0px); }
+  to { opacity: 1; backdrop-filter: blur(10px); }
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(30px) scale(0.98); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
 }

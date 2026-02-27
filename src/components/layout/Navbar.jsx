@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 
 const Navbar = ({ lang, setLang, isDarkMode, setIsDarkMode, content }) => {
-  const mainNavItems = ['about', 'skills', 'projects', 'education', 'experience', 'internship', 'interests'];
+  const mainNavItems = ['about', 'skills', 'projects', 'education', 'experience'];
   
   // State ควบคุมเมนูมือถือ
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
