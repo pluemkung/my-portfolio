@@ -57,48 +57,32 @@ export const th = {
       }
     ]
   },
-  projects: {
+ projects: {
     badge: "MY WORK",
     titleStart: "ผลงาน",
     titleHighlight: "โปรเจกต์",
     subtitle: "รวมผลงานเด่นที่สะท้อนถึงการประยุกต์ใช้ความรู้ด้านฮาร์ดแวร์และซอฟต์แวร์",
+    docType: "ประเภท",
+    noImage: "NO IMAGE DATA",
+    openBtn: "OPEN DATA",
+    rewardsTitle: "รางวัลและความสำเร็จ",
+    noRewards: "- อยู่ในระหว่างการรวบรวมข้อมูล...",
+    closeBtn: "ปิด PANEL",
     items: [
       {
-        title: "Parallel Pure Sine Wave Inverters",
-        docType: "HARDWARE",
-        imageUrl: "/images/test3.png",
-        description: "โปรเจกต์จบ: การออกแบบและพัฒนาอินเวอร์เตอร์แบบขนานที่จ่ายคลื่นไซน์บริสุทธิ์ เพื่อเพิ่มเสถียรภาพและประสิทธิภาพในการจ่ายพลังงานไฟฟ้า",
-        tech: ["Power Electronics", "Microcontroller", "Circuit Design", "C++"],
-        linkText: "ดูรายละเอียด",
-        linkUrl: "#"
+        title: "Business Expense Tracker", // เปลี่ยนชื่อแอปตามต้องการได้เลยครับ
+        docType: "SOFTWARE", // เปลี่ยนประเภทเป็น SOFTWARE หรือ MOBILE APP
+        images: [
+          "/images/project1.png" 
+        ],
+        description: "มินิโปรเจกต์: พัฒนาแอปพลิเคชันบันทึกรายรับ-รายจ่ายสำหรับธุรกิจด้วย Flutter เพื่อช่วยให้ผู้ประกอบการสามารถจัดการบัญชีและดูสรุปยอดได้อย่างสะดวกและรวดเร็วบนมือถือ",
+        tech: ["Flutter", "Dart", "Mobile Development", "UI/UX"], // ถ้าใช้ Database อย่าง Firebase หรือ SQLite เพิ่มเข้าไปได้เลยครับ
+        achievements: [
+          "พัฒนาแบบ Cross-platform ให้รองรับ Android ผ่าน Flutter",
+          "ระบบสามารถคำนวณและสรุปยอดบัญชีได้แบบ Real-time"
+        ],
+        link: "#" // ถ้ามีลิงก์ GitHub หรือวิดีโอสาธิตการใช้งาน เอาลิงก์มาวางแทน "#" ได้เลยครับ
       },
-      {
-        title: "Parallel Pure Sine Wave Inverters",
-        docType: "HARDWARE",
-        imageUrl: "/images/test3.png",
-        description: "โปรเจกต์จบ: การออกแบบและพัฒนาอินเวอร์เตอร์แบบขนานที่จ่ายคลื่นไซน์บริสุทธิ์ เพื่อเพิ่มเสถียรภาพและประสิทธิภาพในการจ่ายพลังงานไฟฟ้า",
-        tech: ["Power Electronics", "Microcontroller", "Circuit Design", "C++"],
-        linkText: "ดูรายละเอียด",
-        linkUrl: "#"
-      },
-      {
-        title: "Personal Portfolio Website",
-        docType: "WEB_DEV",
-        imageUrl: "/images/test1.png",
-        description: "เว็บไซต์พอร์ตโฟลิโอส่วนตัวที่ออกแบบด้วยสไตล์ Tech & Glassmorphism รองรับ 2 ภาษา พัฒนาด้วย React และเทคโนโลยีเว็บสมัยใหม่",
-        tech: ["React", "CSS3", "JavaScript", "Vite"],
-        linkText: "ดูโค้ดบน GitHub",
-        linkUrl: "#"
-      },
-      {
-        title: "Smart Home IoT Controller",
-        docType: "SYSTEM_LOG",
-        imageUrl: "/images/test2.png",
-        description: "ระบบควบคุมอุปกรณ์ไฟฟ้าในบ้านผ่านอินเทอร์เน็ต สามารถมอนิเตอร์สถานะการใช้พลังงานได้แบบ Real-time",
-        tech: ["ESP32", "IoT", "Node.js", "React"],
-        linkText: "ดูรายละเอียด",
-        linkUrl: "#"
-      }
     ]
   },
   education: {

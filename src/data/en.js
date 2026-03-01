@@ -64,31 +64,30 @@ export const en = {
   },
   projects: {
     badge: "MY WORK",
-    titleStart: "Featured ",
+    titleStart: "My ",
     titleHighlight: "Projects",
-    subtitle: "A showcase of my major projects combining hardware design and software development.",
+    subtitle: "A showcase of my featured projects combining hardware design and software development.",
+    docType: "Type",
+    noImage: "NO IMAGE DATA",
+    openBtn: "OPEN DATA",
+    rewardsTitle: "Achievements",
+    noRewards: "- No achievements yet...",
+    closeBtn: "CLOSE PANEL",
     items: [
       {
-        title: "Parallel Pure Sine Wave Inverters",
-        description: "Final Project: Designing and developing parallel pure sine wave inverters to enhance stability and power distribution efficiency.",
-        tech: ["Power Electronics", "Microcontroller", "Circuit Design", "C++"],
-        linkText: "View Details",
-        linkUrl: "#"
+        title: "Business Expense Tracker", // เปลี่ยนชื่อแอปตามต้องการได้เลยครับ
+        docType: "SOFTWARE", // เปลี่ยนประเภทเป็น SOFTWARE หรือ MOBILE APP
+        images: [
+          "/images/project1.png" 
+        ],
+        description: "Mini project: Developed a business expense tracking app using Flutter to help entrepreneurs manage their accounts and view summaries easily on mobile devices.",
+        tech: ["Flutter", "Dart", "Mobile Development", "UI/UX"], // ถ้าใช้ Database อย่าง Firebase หรือ SQLite เพิ่มเข้าไปได้เลยครับ
+        achievements: [
+          "Developed cross-platform support for Android using Flutter",
+          "System can calculate and summarize account balances in real-time"
+        ],
+        link: "#" // ถ้ามีลิงก์ GitHub หรือวิดีโอสาธิตการใช้งาน เอาลิงก์มาวางแทน "#" ได้เลยครับ
       },
-      {
-        title: "Personal Portfolio Website",
-        description: "A bilingual personal portfolio website featuring a Tech & Glassmorphism UI, built with modern web technologies.",
-        tech: ["React", "CSS3", "JavaScript", "Vite"],
-        linkText: "View on GitHub",
-        linkUrl: "#"
-      },
-      {
-        title: "Smart Home IoT Controller",
-        description: "An internet-based home appliance control system with real-time energy monitoring capabilities.",
-        tech: ["ESP32", "IoT", "Node.js", "React"],
-        linkText: "View Details",
-        linkUrl: "#"
-      }
     ]
   },
   education: {

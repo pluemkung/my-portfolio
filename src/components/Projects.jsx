@@ -1,143 +1,190 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useInView } from 'react-intersection-observer';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import './Projects.css';
 
 const Projects = ({ content }) => {
-  const options = { triggerOnce: false, threshold: 0.1, rootMargin: '100px 0px' };
-
+  const options = { triggerOnce: true, threshold: 0.2 }; 
   const { ref: hRef, inView: hIn } = useInView(options);
   const { ref: pRef, inView: pIn } = useInView(options);
 
-  // 🟢 1. สร้าง State สำหรับเปิด/ปิด Modal
+  const sectionRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
+  
+  // 🌟 เพิ่ม State สำหรับเลื่อนภาพใน Popup
+  const [modalImgIndex, setModalImgIndex] = useState(0);
+  const [isDark, setIsDark] = useState(false);
 
-  // ฟังก์ชันเปิด Modal (รับข้อมูลโปรเจกต์ที่โดนคลิกมาเก็บไว้)
+  // 🔍 เรดาร์ดักจับ Dark Mode
+  useEffect(() => {
+    const checkTheme = () => {
+      if (sectionRef.current) {
+        const isDarkModeActive = !!sectionRef.current.closest('.dark-mode') || 
+                                 document.body.classList.contains('dark-mode') ||
+                                 document.documentElement.classList.contains('dark-mode');
+        setIsDark(isDarkModeActive);
+      }
+    };
+    
+    checkTheme();
+    const interval = setInterval(checkTheme, 300);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!content || !content.items) return null;
+
+  const projects = content.items;
+  const length = projects.length;
+
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % length);
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + length) % length);
+
   const openModal = (project) => {
     setSelectedProject(project);
-    // ปิดการเลื่อนหน้าจอชั่วคราวตอนเปิด Modal
-    document.body.style.overflow = 'hidden'; 
+    setModalImgIndex(0); // 🌟 รีเซ็ตภาพกลับไปรูปแรกเสมอเมื่อเปิด Popup ใหม่
+    document.body.style.overflow = 'hidden';
   };
 
-  // ฟังก์ชันปิด Modal
   const closeModal = () => {
     setSelectedProject(null);
-    // คืนค่าให้เลื่อนหน้าจอได้ปกติ
-    document.body.style.overflow = 'auto'; 
+    document.body.style.overflow = 'auto';
   };
 
-  if (!content) return null;
+  const getCardClass = (index) => {
+    if (index === currentIndex) return 'card-center';
+    if (index === (currentIndex - 1 + length) % length) return 'card-left';
+    if (index === (currentIndex + 1) % length) return 'card-right';
+    return 'card-hidden';
+  };
+
+  // 🌟 ดึงรูปภาพทั้งหมดของโปรเจกต์ที่เลือก
+  const modalImages = selectedProject?.images || (selectedProject?.imageUrl ? [selectedProject.imageUrl] : []);
 
   return (
-    <section id="projects" className="projects-section">
+    <section id="projects" className="projects-section" ref={sectionRef}>
       <div className="projects-container">
         
-        {/* หัวข้อ Section */}
+        {/* --- Header --- */}
         <div ref={hRef} className={`section-header reveal ${hIn ? 'reveal-visible' : ''}`}>
           <div className="hero-badge"><span className="badge-text">{content.badge}</span></div>
           <h2 className="section-title">
             {content.titleStart}
             <span className="highlight" style={{color: 'var(--spark-1)'}}> {content.titleHighlight}</span>
           </h2>
-          {content.subtitle && <p className="section-subtitle">{content.subtitle}</p>}
         </div>
 
-        {/* 🟢 Grid ผลงาน */}
-        <div className="projects-grid" ref={pRef}>
-          {content.items.map((project, index) => (
-            <div key={index} className={`project-card reveal delay-${(index % 3) + 1} ${pIn ? 'reveal-visible' : ''}`}>
-              
-              <div className="project-img-wrapper">
-                {project.imageUrl ? (
-                  <img src={project.imageUrl} alt={project.title} className="project-thumbnail" />
-                ) : (
-                  <div className="project-image-placeholder">
-                    <span className="icon-placeholder">📷 NO_IMAGE_DATA</span>
+        {/* --- Carousel 3D --- */}
+        <div className={`carousel-wrapper reveal ${pIn ? 'reveal-visible' : ''}`} ref={pRef}>
+          <div className="carousel-controls">
+            <button className="control-arrow" onClick={prevSlide}><ChevronLeft size={28} /></button>
+            <button className="control-arrow" onClick={nextSlide}><ChevronRight size={28} /></button>
+          </div>
+
+          <div className="carousel-track">
+            {projects.map((project, index) => (
+              <div 
+                key={index} 
+                className={`project-3d-card ${getCardClass(index)}`}
+                onClick={() => {
+                  if (getCardClass(index) === 'card-left') prevSlide();
+                  if (getCardClass(index) === 'card-right') nextSlide();
+                }}
+              >
+                <div className="project-img-wrapper">
+                  <img src={project.images?.[0] || project.imageUrl} alt={project.title} className="project-thumbnail" />
+                  <div className="img-gradient-overlay"></div>
+                </div>
+
+                <div className="project-inner">
+                  <div className="project-meta">
+                    <span className="prj-tag">{content.docType}: {project.docType}</span>
+                    <span className="prj-id">ID: {String(index + 1).padStart(2, '0')}</span>
                   </div>
-                )}
-                <div className="img-gradient-overlay"></div>
-              </div>
-
-              <div className="project-inner">
-                <div className="project-meta">
-                  <span className="prj-tag">DOC_TYPE: {project.docType || 'ENGINEER'}</span>
-                  <span className="prj-id">ID: {String(index + 1).padStart(2, '0')}</span>
-                </div>
-                
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-desc">{project.description}</p>
-
-                <div className="project-tech">
-                  {project.tech && project.tech.map((tech, idx) => (
-                    <span key={idx} className="tech-badge">{tech}</span>
-                  ))}
-                </div>
-
-                <div className="project-footer">
-                  {/* ⚡ 2. เปลี่ยนจากแท็ก <a> เป็น <button> เพื่อเปิด Modal แทน */}
-                  <button onClick={() => openModal(project)} className="explore-btn">
-                    OPEN_DATA <span className="arrow">↗</span>
-                  </button>
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-desc">{project.description}</p>
+                  <div className="project-tech">
+                    {project.tech?.map((tech, idx) => (
+                      <span key={idx} className="tech-badge">{tech}</span>
+                    ))}
+                  </div>
+                  <div className="project-footer">
+                    <button onClick={(e) => { e.stopPropagation(); openModal(project); }} className="explore-btn">
+                      {content.openBtn} <span className="arrow">↗</span>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
-{/* =========================================================
-          🔥 MODAL GLASSMORPHISM (ฉบับย่อส่วน & คลีน)
-      ========================================================= */}
-      {selectedProject && (
-        <div className="project-modal-overlay" onClick={closeModal}>
-          <div className="project-modal-content" onClick={(e) => e.stopPropagation()}>
-            
-            {/* 🟢 1. รูปภาพด้านบน (ปรับให้เตี้ยลง ไม่ล้นจอ) */}
-            <div className="modal-img-container">
-              {selectedProject.imageUrl ? (
-                <img src={selectedProject.imageUrl} alt={selectedProject.title} />
-              ) : (
-                <div className="modal-no-img">NO_IMAGE_DATA</div>
+      {/* =========================================
+          ✨ COMPACT MODAL (รองรับภาพทุกสัดส่วน + เลื่อนภาพ)
+      ========================================= */}
+      {selectedProject && createPortal(
+        <div className={`glass-modal-overlay ${isDark ? 'dark-mode' : ''}`} onClick={closeModal}>
+          <div className="glass-modal-box" onClick={(e) => e.stopPropagation()}>
+            <button className="glass-modal-close" onClick={closeModal}><X size={20} /></button>
+
+            {/* ฝั่งซ้าย: รองรับภาพทุกสัดส่วน + ปุ่มเลื่อนรูป */}
+            <div className="glass-modal-left">
+              
+              <div className="glass-modal-blur-bg">
+                <img src={modalImages[modalImgIndex]} alt="blur-bg" />
+              </div>
+              
+              <img src={modalImages[modalImgIndex]} alt={selectedProject.title} className="glass-modal-main-img" />
+              
+              {/* 🌟 แสดงปุ่มเลื่อนซ้ายขวา ก็ต่อเมื่อมีรูปมากกว่า 1 รูป */}
+              {modalImages.length > 1 && (
+                <div className="glass-gallery-controls">
+                  <button className="glass-gallery-btn" onClick={() => setModalImgIndex(p => (p - 1 + modalImages.length) % modalImages.length)}>
+                    <ChevronLeft size={24}/>
+                  </button>
+                  <button className="glass-gallery-btn" onClick={() => setModalImgIndex(p => (p + 1) % modalImages.length)}>
+                    <ChevronRight size={24}/>
+                  </button>
+                </div>
               )}
-              <div className="modal-scanline"></div>
+
+              <div className="glass-modal-tag-l">{selectedProject.docType}</div>
             </div>
 
-            <div className="modal-info-container">
-              <div className="modal-meta">
-                <span className="prj-tag">DOC_TYPE: {selectedProject.docType || 'ENGINEER'}</span>
-              </div>
-              <h2>{selectedProject.title}</h2>
-              <p className="modal-desc">{selectedProject.description}</p>
+            {/* ฝั่งขวา: ข้อมูลโปรเจกต์ */}
+            <div className="glass-modal-right-info">
+              <h2 className="glass-modal-title">{selectedProject.title}</h2>
               
-              {/* 🟢 2. ช่องใส่ผลงาน/รางวัลที่ได้ (Achievements) */}
-              <div className="modal-achievements">
-                <h4>🏆 REWARDS & ACHIEVEMENTS</h4>
-                <ul>
-                  {selectedProject.achievements ? (
-                    selectedProject.achievements.map((achieve, idx) => (
-                      <li key={idx}>{achieve}</li>
-                    ))
-                  ) : (
-                    <li>- รออัปเดตข้อมูลผลงานและรางวัลที่ได้รับ...</li>
-                  )}
-                </ul>
-              </div>
-
-              <div className="project-tech modal-tech">
-                {selectedProject.tech && selectedProject.tech.map((t, i) => (
-                  <span key={i} className="tech-badge">{t}</span>
+              <div className="glass-modal-tags">
+                {selectedProject.tech?.map((t, i) => (
+                  <span key={i} className="glass-tag">{t}</span>
                 ))}
               </div>
 
-              {/* 🟢 3. ปุ่มปิดแบบมินิมอล (ลบกากบาททิ้ง ใช้ปุ่มนี้แทน) */}
-              <div className="modal-actions">
-                <button className="modal-close-action-btn" onClick={closeModal}>
-                  CLOSE_PANEL
-                </button>
-              </div>
-            </div>
+              <div className="glass-modal-scroll-area">
+                <p className="glass-modal-desc">{selectedProject.description}</p>
 
+                {selectedProject.achievements && selectedProject.achievements.length > 0 && (
+                  <div className="glass-modal-rewards">
+                    <h4>✨ {content.rewardsTitle}</h4>
+                    <ul>
+                      {selectedProject.achievements.map((a, i) => <li key={i}>{a}</li>)}
+                    </ul>
+                  </div>
+                )}
+              </div>
+
+              {selectedProject.link && (
+                <a href={selectedProject.link} target="_blank" rel="noreferrer" className="glass-modal-btn">
+                  {content.linkText} <span className="arrow">↗</span>
+                </a>
+              )}
+            </div>
           </div>
-        </div>
+        </div>,
+        document.body 
       )}
     </section>
   );
