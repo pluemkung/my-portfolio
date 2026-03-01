@@ -37,33 +37,41 @@ export const th = {
     categories: [
       {
         title: "ภาษาโปรแกรม",
-        icon: "🌐",
+        icon: "Code2", // ⚡ ใส่แค่ชื่อเป็นตัวหนังสือพอครับ เว็บจะได้ไม่พัง
         items: ["Java", "Python", "C", "SQL" , "PHP"]
       },
       {
         title: "ซอฟต์แวร์และเว็บไซต์",
-        icon: "💻",
-        items: ["React", "JavaScript", "HTML5 & CSS", "Node.js", ]
+        icon: "Monitor", // ⚡
+        items: ["React", "JavaScript", "HTML5 & CSS", "Node.js"]
       },
       {
         title: "ฮาร์ดแวร์และอิเล็กทรอนิกส์",
-        icon: "🔌",
+        icon: "Cpu", // ⚡
         items: ["Microcontrollers", "IoT Systems", "Power Electronics", "Circuit Design"]
       },
       {
         title: "เครื่องมือและเฉพาะทาง",
-        icon: "🛠️",
+        icon: "Wrench", // ⚡
         items: ["Git & GitHub", "VS Code", "SolidWorks", "Arduino IDE", "Blender"]
-      },
-      
+      }
     ]
-  }, 
+  },
   projects: {
     badge: "MY WORK",
     titleStart: "ผลงาน",
     titleHighlight: "โปรเจกต์",
     subtitle: "รวมผลงานเด่นที่สะท้อนถึงการประยุกต์ใช้ความรู้ด้านฮาร์ดแวร์และซอฟต์แวร์",
     items: [
+      {
+        title: "Parallel Pure Sine Wave Inverters",
+        docType: "HARDWARE",
+        imageUrl: "/images/test3.png",
+        description: "โปรเจกต์จบ: การออกแบบและพัฒนาอินเวอร์เตอร์แบบขนานที่จ่ายคลื่นไซน์บริสุทธิ์ เพื่อเพิ่มเสถียรภาพและประสิทธิภาพในการจ่ายพลังงานไฟฟ้า",
+        tech: ["Power Electronics", "Microcontroller", "Circuit Design", "C++"],
+        linkText: "ดูรายละเอียด",
+        linkUrl: "#"
+      },
       {
         title: "Parallel Pure Sine Wave Inverters",
         docType: "HARDWARE",

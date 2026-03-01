@@ -1,5 +1,5 @@
 /* ============================================================
-   SKILLS SECTION - HOLOGRAPHIC CORE EDITION (สวยวิ้ง!)
+   SKILLS SECTION - HOLOGRAPHIC CORE EDITION (60FPS OPTIMIZED)
 ============================================================ */
 .skills-section {
   padding: 100px 10%;
@@ -9,18 +9,19 @@
 
 .skills-grid {
   display: grid;
-  /* 2x2 Grid เหมือนเดิม */
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   margin-top: 50px;
-  /* ล็อคความกว้าง กึ่งกลางจอ */
   max-width: 950px; 
   margin-left: auto;
   margin-right: auto;
 }
 
 /* =========================================
-   🟢 ตัวการ์ด (เพิ่มมิติแสงและเงาให้ดูแพงขึ้น)
+   🟢 ตัวการ์ด (เพิ่มมิติแสงและเงาแบบลื่นๆ)
+========================================= */
+/* =========================================
+   🟢 ตัวการ์ด (อัปเกรดเป็น Premium Glass 100%)
 ========================================= */
 .cyber-skill-card {
   padding: 30px 25px;
@@ -29,14 +30,35 @@
   gap: 25px;
   position: relative;
   
-  /* ⚡ เพิ่ม Gradient พื้นหลังบางๆ ให้ดูมีมิติ ไม่เรียบแบน */
-  background-image: linear-gradient(to bottom right, rgba(255,255,255,0.05), transparent);
+  /* ⚡ 1. หัวใจของกระจก: พื้นหลังใส + เบลอจัดๆ */
+  background: rgba(128, 128, 128, 0.05) !important; /* ทับสีเดิมให้โปร่งแสง โหมดมืด/สว่างก็สวย */
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
   
-  /* ทรงตัดมุมเหมือนเดิม */
+  /* ⚡ 2. ขอบกระจกสะท้อนแสง: ให้ขอบบนและซ้ายสว่างกว่าขอบอื่น */
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
+  
+  /* ทรงตัดมุม */
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%);
   
-  /* เพิ่มแสงเงาขอบการ์ดให้ดูคมขึ้น */
-  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+  /* เงาตกกระทบให้กระจกดูนูนขึ้นมาจากพื้นหลัง */
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  will-change: transform, box-shadow;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.3, 1), background 0.4s ease;
+  transform: translateZ(0);
+}
+
+/* ตอน Hover ก็ให้กระจกสว่างขึ้นนิดนึง พร้อมเรืองแสงสีส้ม */
+.cyber-skill-card:hover {
+  transform: translate3d(0, -8px, 0);
+  background: rgba(128, 128, 128, 0.1) !important;
+  border-color: rgba(255, 78, 0, 0.4) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 
+              0 0 25px rgba(255, 78, 0, 0.15), 
+              inset 0 0 15px rgba(255, 78, 0, 0.05); 
 }
 
 /* เส้นไฟนีออนวิ่งขอบบน */
@@ -45,8 +67,9 @@
   position: absolute;
   top: 0; left: 0; 
   width: 100%; height: 3px;
-  /* ใช้สีแบบไล่โทนให้ดูเหมือนลำแสงเลเซอร์ */
   background: linear-gradient(90deg, var(--spark-1), var(--spark-2));
+  
+  /* ⚡ ซ่อนไว้ด้วย scaleX(0) เหมือนเดิม ดีแล้วครับ ลื่นกว่าการใช้ width: 0 */
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.3, 1);
@@ -54,12 +77,14 @@
 }
 
 .cyber-skill-card:hover {
-  transform: translateY(-8px);
+  /* ⚡ ยกการ์ดขึ้นนุ่มๆ ด้วย translate3d แทน translateY เพื่อบังคับใช้ GPU */
+  transform: translate3d(0, -8px, 0);
   border-color: rgba(255, 78, 0, 0.5) !important;
-  /* ⚡ เพิ่มแสงฟุ้งด้านใน (Inset Glow) และเงาที่ลึกขึ้น */
+  
+  /* แสงฟุ้งด้านในและเงามิติที่ลึกขึ้น */
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 
-              0 0 30px rgba(255, 78, 0, 0.2),
-              inset 0 0 20px rgba(255, 78, 0, 0.05); 
+              0 0 20px rgba(255, 78, 0, 0.15), /* ลดรัศมีฟุ้งลงนิดนึง ช่วยลดภาระ GPU */
+              inset 0 0 15px rgba(255, 78, 0, 0.05); 
 }
 
 .cyber-skill-card:hover::before {
@@ -78,14 +103,13 @@
   position: relative;
 }
 
-/* ⚡ แอนิเมชันวงแหวนพลังงานเต้นตุบๆ */
+/* ⚡ แอนิเมชันวงแหวนพลังงานเต้นตุบๆ (ปรับให้สมูทขึ้น) */
 @keyframes pulse-core {
-  0% { box-shadow: 0 0 0 0 rgba(255, 78, 0, 0.4); }
-  70% { box-shadow: 0 0 0 15px rgba(255, 78, 0, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 78, 0, 0); }
+  0% { transform: scale(1.1) rotate(5deg); box-shadow: 0 0 0 0 rgba(255, 78, 0, 0.4); }
+  70% { transform: scale(1.1) rotate(5deg); box-shadow: 0 0 0 12px rgba(255, 78, 0, 0); }
+  100% { transform: scale(1.1) rotate(5deg); box-shadow: 0 0 0 0 rgba(255, 78, 0, 0); }
 }
 
-/* กล่องไอคอน (Tech Node) */
 .skill-icon-box {
   width: 48px;
   height: 48px;
@@ -96,16 +120,27 @@
   background: var(--badge-bg);
   border: 1px solid var(--badge-border);
   border-radius: 10px;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* เด้งดึ๋งๆ */
+  
+  /* ⚡ แยก transition ชัดเจน เบราว์เซอร์จะได้ไม่เอ๋อไปคำนวณ all */
+  transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, box-shadow;
+  transform: translateZ(0); /* ลดการสั่นของไอคอนตอนเริ่มแอนิเมชัน */
 }
-
+.skill-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0; /* ลบระยะบรรทัดที่ดันไอคอนขึ้น */
+  
+  /* 🟢 ถ้าใส่ flex แล้วยังรู้สึกว่าสูงไปอีกนิด สามารถดันลงมาด้วยคำสั่งนี้ครับ */
+  margin-top: 2px; /* ลองเปลี่ยนเลขเป็น 1px, 2px หรือ 3px ดูจนกว่าจะพอดีตาครับ */
+}
 .cyber-skill-card:hover .skill-icon-box {
   background: rgba(255, 78, 0, 0.15);
   border-color: var(--spark-1);
   color: var(--spark-1);
-  transform: scale(1.1) rotate(5deg);
-  /* ⚡ ใส่แอนิเมชันพลังงานเข้าไป */
-  animation: pulse-core 2s infinite;
+  /* ⚡ ย้ายการสเกลและหมุนไปไว้ใน keyframes เพื่อให้มันเต้นไปพร้อมกับแสง Pulse */
+  animation: pulse-core 2s infinite ease-out;
 }
 
 .skill-cat-title {
@@ -114,13 +149,13 @@
   color: var(--text-color);
   margin: 0;
   letter-spacing: 0.5px;
-  transition: color 0.3s;
+  transition: color 0.3s, text-shadow 0.3s;
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .cyber-skill-card:hover .skill-cat-title {
   color: var(--spark-1);
-  text-shadow: 0 0 10px rgba(255, 78, 0, 0.3); /* ตัวหนังสือเรืองแสง */
+  text-shadow: 0 0 10px rgba(255, 78, 0, 0.3);
 }
 
 /* =========================================
@@ -132,47 +167,55 @@
   gap: 10px;
 }
 
+/* =========================================
+   🟢 ป้ายทักษะ (Glass Chip Style)
+========================================= */
 .tech-skill-pill {
   font-family: monospace; 
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-color);
   
-  /* ⚡ เปลี่ยนพื้นหลังเป็น Gradient จางๆ ให้ดูเหมือนชิ้นส่วนแก้ว */
-  background: linear-gradient(to right, rgba(128, 128, 128, 0.1), rgba(128, 128, 128, 0.02));
-  border: 1px solid var(--matsuri-border);
+  /* ⚡ ทำป้ายให้เป็นกระจกใสชิ้นเล็กๆ */
+  background: rgba(128, 128, 128, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 3px solid var(--text-color); 
   
   padding: 7px 16px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  border-radius: 6px; /* ปรับให้มนขึ้นนิดนึง เข้ากับกระจก */
+  
+  transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
+  
   cursor: default;
   position: relative;
   overflow: hidden;
+  transform: translateZ(0); 
 }
 
 /* แสงวิ้งๆ วิ่งผ่านป้ายตอน Hover */
 .tech-skill-pill::after {
   content: '';
   position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: linear-gradient(to bottom right, transparent, rgba(255,255,255,0.2), transparent);
-  transform: rotate(45deg) translateY(-100%);
-  transition: transform 0.6s;
+  top: 0; left: -100%; 
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg); 
+  transition: left 0.5s ease;
 }
 
 .tech-skill-pill:hover {
-  background: rgba(255, 78, 0, 0.1);
+  background: rgba(255, 78, 0, 0.15);
   border-color: var(--spark-1);
   border-left-color: var(--spark-1);
   color: var(--spark-1);
-  transform: translateX(5px); 
-  box-shadow: 0 5px 20px rgba(255, 78, 0, 0.15);
+  transform: translate3d(4px, -2px, 0); /* ยกขึ้นนิดๆ ขยับขวาหน่อยๆ */
+  box-shadow: 0 8px 20px rgba(255, 78, 0, 0.15);
 }
 
 .tech-skill-pill:hover::after {
-  transform: rotate(45deg) translateY(100%); /* สั่งให้แสงวิ้งวิ่งผ่าน */
+  left: 150%; 
 }
 
 /* =========================================
