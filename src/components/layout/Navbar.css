@@ -1,3 +1,6 @@
+/* =========================================
+   1. MAIN NAVBAR (SLEEK PILL CAPSULE)
+========================================= */
 .nav-container {
   position: fixed;
   top: 20px;
@@ -6,6 +9,17 @@
   display: flex;
   justify-content: center;
   z-index: 1000;
+  /* ⚡ เตรียมความพร้อมให้แถบขยับนุ่มๆ ตอนเลื่อนจอ */
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ⚡ เอฟเฟกต์ตอนเลื่อนจอ (Navbar จะหดขึ้นไปนิดนึงและเงาชัดขึ้น) */
+.nav-container.scrolled {
+  top: 10px;
+}
+.nav-container.scrolled .navbar {
+  background: var(--bg-main-2); /* ให้สีพื้นหลังทึบขึ้นตอนเลื่อนผ่านเนื้อหา */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .navbar {
@@ -27,12 +41,18 @@
   transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+/* =========================================
+   2. NAV LINKS & HOVER EFFECTS (สไตล์ภาพเรฟเฟอเรนซ์)
+========================================= */
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 5px; 
+  gap: 2px; 
   margin: 0;
-  padding: 0;
+  /* ⚡ จับเมนูมัดรวมกันในกรอบจางๆ ให้ดูเป็นกลุ่มเดียวกัน */
+  background: rgba(128, 128, 128, 0.05);
+  padding: 4px;
+  border-radius: 50px;
 }
 
 .nav-links li {
@@ -42,42 +62,41 @@
 
 .nav-links a {
   font-family: 'Kanit', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 12px; /* เล็กลงนิดนึงให้ดูคลีน */
+  font-weight: 700; /* หนาขึ้น */
+  text-transform: uppercase; /* บังคับพิมพ์ใหญ่ตามภาพ */
+  letter-spacing: 1.5px; /* ถ่างช่องไฟให้ดูแพง */
   color: var(--text-color);
   text-decoration: none;
-  opacity: 0.75;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 0.4; /* ⚡ ตัวที่ไม่ได้เลือกให้จางลง (เหมือนคำว่า TRANSCRIPT ในรูป) */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: flex; 
   align-items: center;
   justify-content: center;
-  height: 35px;
+  height: 36px;
   width: 100%; 
   border-radius: 50px;
-  border: 1px solid transparent; 
 }
 
 .nav-links a:hover {
   opacity: 1;
-  color: var(--spark-1);
-  background: rgba(255, 78, 0, 0.05); 
-  transform: translateY(-2px); 
+  color: var(--text-color);
+  background: rgba(128, 128, 128, 0.1); 
 }
 
+/* ⚡ พระเอกของเรา: แคปซูลทึบสีตรงข้ามเวลากด Active */
 .nav-links a.active-nav-item {
-  background: var(--badge-bg); 
-  color: var(--text-color) !important; 
-  font-weight: 600; 
+  background: var(--text-color) !important; /* โหมดมืด=ปุ่มขาว, สว่าง=ปุ่มดำ */
+  color: var(--bg-main-1) !important; /* โหมดมืด=อักษรดำ, สว่าง=อักษรขาว */
   opacity: 1;
-  border: 1px solid var(--spark-1) !important; 
-  border-radius: 50px; 
-  box-shadow: 0 4px 15px rgba(255, 78, 0, 0.15), 
-              inset 0 0 8px rgba(255, 78, 0, 0.05); 
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transform: none;
-  transition: all 0.5s ease; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+  text-shadow: none; /* เอาแสงฟุ้งตัวอักษรออกให้ดูมินิมอลสุดๆ */
+  transform: scale(1.02); /* ขยายขึ้นมานิดนึงตอนสไลด์มาโดน */
 }
 
+/* =========================================
+   3. CONTROLS (BUTTONS & DIVIDER)
+========================================= */
 .nav-divider {
   width: 1px;
   height: 20px;
@@ -146,6 +165,9 @@
   box-shadow: 0 8px 20px rgba(255, 78, 0, 0.4);
 }
 
+/* =========================================
+   4. MOBILE RESPONSIVE
+========================================= */
 .mobile-toggle {
   display: none;
   font-size: 20px;
@@ -208,6 +230,8 @@
     font-size: 15px; 
     height: 42px; 
     border-radius: 8px; 
+    /* มือถือให้มันกลับมาสว่างหน่อย จะได้อ่านง่าย */
+    opacity: 0.7; 
   }
 }
 

@@ -1,10 +1,6 @@
-/* ============================================================
-   1. IMPORT & GLOBAL SETUP
-============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600&display=swap');
 
 :root {
-  /* Colors */
   --bg-main-1: #ffffff;
   --bg-main-2: #f8f8fa; 
   --text-color: #1a1a1e;
@@ -22,11 +18,13 @@
   --wave-2: rgba(26, 26, 30, 0.5);
   --wave-3: rgba(26, 26, 30, 0.3);
 
-  /* Matsuri Cards Setup (ล็อคสีตามโหมดสว่าง) */
   --matsuri-bg: rgba(255, 255, 255, 0.85);
   --matsuri-border: rgba(0, 0, 0, 0.08);
 
-  /* Font Weights */
+  --cursor-main: #1a1a1e;
+  --cursor-ring: rgba(26, 26, 30, 0.4);
+  --cursor-hover: rgba(26, 26, 30, 0.1);
+
   --fw-thin: 200;
   --fw-light: 300;
   --fw-reg: 400;
@@ -52,14 +50,14 @@
   --wave-2: rgba(245, 245, 247, 0.5);
   --wave-3: rgba(245, 245, 247, 0.3);
 
-  /* Matsuri Cards Setup (ล็อคสีตามโหมดมืด) */
   --matsuri-bg: rgba(26, 26, 30, 0.95);
   --matsuri-border: rgba(255, 78, 0, 0.3);
+
+  --cursor-main: #ffffff;
+  --cursor-ring: rgba(255, 255, 255, 0.4);
+  --cursor-hover: rgba(255, 255, 255, 0.1);
 }
 
-/* ============================================================
-   2. BASE STYLES
-============================================================ */
 * {
   box-sizing: border-box;
   font-family: 'Mitr', sans-serif !important; 
@@ -69,7 +67,6 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 10px;
   background-color: var(--bg-main-2);
-  /* ⚡ ค่อยๆ เปลี่ยนสีพื้นหลังหลัก */
   transition: background-color 0.6s ease;
   overflow-x: hidden;
 }
@@ -80,7 +77,6 @@ body {
   font-weight: var(--fw-light);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  /* ⚡ ค่อยๆ เปลี่ยนสีตัวหนังสือ */
   transition: color 0.6s ease;
 }
 
@@ -94,9 +90,6 @@ p, span, li, a {
   font-weight: var(--fw-light);
 }
 
-/* ============================================================
-   3. REUSABLE COMPONENTS (Buttons & Matsuri Cards)
-============================================================ */
 .zzz-btn-primary {
   background: var(--spark-1);
   color: #fff !important;
@@ -107,17 +100,14 @@ p, span, li, a {
   display: inline-block;
 }
 
-/* Matsuri Card - ปรับจังหวะให้ค่อยๆ เปลี่ยนสีแบบที่คุณชอบ */
 .matsuri-card {
   position: relative;
-  /* 🟢 ถอด !important ออกเพื่อให้ transition ทำงานได้นุ่มนวล */
   background: var(--matsuri-bg);
   border: 1px solid var(--matsuri-border);
   color: var(--text-color);
   clip-path: polygon(0 0, 97% 0, 100% 12%, 100% 100%, 3% 100%, 0 88%);
   padding: 2.5rem;
   backdrop-filter: blur(12px);
-  /* ⚡ บรรทัดนี้ทำให้กล่องค่อยๆ เปลี่ยนสีจากดำไปขาว */
   transition: background 0.6s ease, border 0.6s ease, color 0.6s ease, transform 0.4s ease;
 }
 
@@ -128,104 +118,119 @@ p, span, li, a {
   border-left: 4px solid var(--spark-1);
   clip-path: polygon(0 0, 90% 0, 100% 25%, 100% 100%, 0 100%);
   padding: 1.5rem;
-  /* ⚡ ค่อยๆ เปลี่ยนสีเหมือนกัน */
   transition: background 0.6s ease, border 0.6s ease, color 0.6s ease, transform 0.4s ease;
 }
 
-/* ============================================================
-   4. BACKGROUND EFFECTS (ZZZ x KITASAN)
-============================================================ */
-
-/* 🟠 1. ก้อนสีส้มเบลอๆ */
 html::before {
   content: ''; position: fixed; top: 10%; left: 15%; width: 60vw; height: 60vh;
   background: radial-gradient(circle, var(--spark-1) 0%, transparent 65%);
-  filter: blur(120px); pointer-events: none; z-index: -3;
-  animation: orangePulse 6s ease-in-out infinite alternate;
+  pointer-events: none; z-index: -3;
+  animation: orangePulse 8s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+  transform: translateZ(0); 
 }
 
-/* 🔴 2. ออร่ามุมขวาล่าง */
 body::after {
   content: ''; position: fixed; bottom: -20vh; right: -10vw; width: 75vw; height: 75vh;
-  background: radial-gradient(ellipse at center, rgba(217, 4, 41, 0.25) 0%, rgba(255, 78, 0, 0.15) 40%, rgba(255, 204, 0, 0.05) 60%, transparent 80%);
-  filter: blur(80px); pointer-events: none; z-index: -2;
-  animation: matsuriAura 4s ease-in-out infinite alternate;
+  background: radial-gradient(ellipse at center, rgba(217, 4, 41, 0.2) 0%, rgba(255, 78, 0, 0.1) 40%, rgba(255, 204, 0, 0.05) 60%, transparent 80%);
+  pointer-events: none; z-index: -2;
+  animation: matsuriAura 6s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
-/* ⚡ 3. เส้นสเกตไฟเฉียงๆ */
 body::before {
-  content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
-  background: repeating-linear-gradient(-45deg, transparent 0, transparent 60px, rgba(255, 78, 0, 0.03) 60px, rgba(255, 78, 0, 0.04) 62px, transparent 62px, transparent 68px, rgba(217, 4, 41, 0.03) 68px, rgba(217, 4, 41, 0.03) 70px);
-  pointer-events: none; z-index: -1; animation: sprintWind 10s linear infinite;
+  content: ''; position: fixed; 
+  top: -10%; left: -10%; width: 120%; height: 120%;
+  background: repeating-linear-gradient(
+    -45deg, 
+    transparent 0, 
+    transparent 100px, 
+    rgba(255, 78, 0, 0.03) 100px, 
+    rgba(255, 78, 0, 0.04) 102px, 
+    transparent 102px, 
+    transparent 110px, 
+    rgba(217, 4, 41, 0.03) 110px, 
+    rgba(217, 4, 41, 0.03) 112px
+  );
+  pointer-events: none; z-index: -1; 
+  animation: sprintWind 12s linear infinite; 
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
-/* 🌀 4. Blob คู่หู สว่าง-ดับ */
 #root::before, #root::after {
-  content: ''; position: fixed; filter: blur(60px); pointer-events: none; z-index: 0;
+  content: ''; position: fixed; pointer-events: none; z-index: 0;
+  filter: blur(45px); 
+  will-change: transform; 
+  transform: translate3d(0,0,0);
+  backface-visibility: hidden; 
 }
 
 #root::before {
   top: 20%; right: -10%; width: 55vw; height: 55vw; max-width: 700px;
   background: linear-gradient(135deg, var(--spark-1) 0%, var(--spark-2) 80%);
-  opacity: 0.4; animation: blob-bounce 25s infinite ease-in-out alternate, blob-pulse-smooth 8s infinite ease-in-out alternate;
+  opacity: 0.35; 
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; 
+  animation: blob-bounce 25s infinite linear; 
 }
 
 #root::after {
   bottom: 10%; left: -15%; width: 45vw; height: 45vw; max-width: 600px;
   background: linear-gradient(to top right, var(--spark-1) 20%, rgba(255, 120, 0, 0.8) 100%);
-  opacity: 0.3; animation: blob-bounce 30s infinite ease-in-out alternate-reverse -5s, blob-pulse-smooth 10s infinite ease-in-out alternate -2s;
+  opacity: 0.25; 
+  border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; 
+  animation: blob-bounce 30s infinite linear reverse;
 }
 
 body:not(.dark-mode) #root::before, body:not(.dark-mode) #root::after {
-  opacity: 0.1 !important; filter: blur(90px) brightness(1) !important; animation-name: blob-bounce;
+  opacity: 0.1 !important; 
 }
 
-/* ============================================================
-   5. SCROLL REVEAL & ANIMATIONS
-============================================================ */
-
-/* ⚡ Reveal System */
 .reveal {
-  opacity: 0; transform: translateY(20px) scaleX(0.95); filter: blur(10px);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0; transform: translateY(20px) scaleX(0.95);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform; 
 }
-.reveal-visible { opacity: 1; transform: translateY(0) scaleX(1); filter: blur(0); }
+.reveal-visible { opacity: 1; transform: translateY(0) scaleX(1); }
 
-/* หัวข้อกะพริบนีออน */
 .section-header.reveal.reveal-visible { animation: neonFlicker 0.6s ease-in-out forwards; }
 
 @keyframes neonFlicker {
-  0% { opacity: 0; filter: brightness(3); }
+  0% { opacity: 0; filter: brightness(2); }
   20% { opacity: 1; filter: brightness(1); }
-  40% { opacity: 0.3; filter: brightness(2); }
+  40% { opacity: 0.3; filter: brightness(1.5); }
   100% { opacity: 1; filter: brightness(1); }
 }
 
-@keyframes blob-pulse-smooth {
-  0% { opacity: 0.3; filter: blur(60px) brightness(1); transform: scale(1); }
-  100% { opacity: 0.55; filter: blur(50px) brightness(1.3); transform: scale(1.05); }
-}
-
 @keyframes blob-bounce {
-  0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
-  33% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; transform: translate(-10vw, 5vh) rotate(90deg) scale(1.1); }
-  66% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; transform: translate(-5vw, 15vh) rotate(180deg) scale(0.9); }
-  100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(0, 0) rotate(360deg) scale(1); }
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  33% { transform: translate3d(-5vw, 5vh, 0) rotate(120deg) scale(1.05); }
+  66% { transform: translate3d(-2vw, 10vh, 0) rotate(240deg) scale(0.95); }
+  100% { transform: translate3d(0, 0, 0) rotate(360deg) scale(1); }
 }
 
-@keyframes orangePulse { 0% { opacity: 0.1; transform: scale(0.8); } 100% { opacity: 0.35; transform: scale(1.1); } }
-@keyframes matsuriAura { 0% { transform: scale(0.9); opacity: 0.7; } 100% { transform: scale(1.15); opacity: 1; } }
-@keyframes sprintWind { 0% { transform: translate(0, 0); } 100% { transform: translate(-150px, 150px); } }
+@keyframes orangePulse { 
+  0% { opacity: 0.15; transform: scale(0.9) translateZ(0); } 
+  100% { opacity: 0.3; transform: scale(1.1) translateZ(0); } 
+}
 
-/* Delays */
-.delay-1 { transition-delay: 0.15s; }
-.delay-2 { transition-delay: 0.3s; }
-.delay-3 { transition-delay: 0.45s; }
-.delay-4 { transition-delay: 0.6s; }
+@keyframes matsuriAura { 
+  0% { transform: scale(0.95) translateZ(0); opacity: 0.7; } 
+  100% { transform: scale(1.05) translateZ(0); opacity: 1; } 
+}
 
-/* ============================================================
-   6. UTILITIES (Glassmorphism)
-============================================================ */
+@keyframes sprintWind { 
+  0% { transform: translate3d(0, 0, 0); } 
+  100% { transform: translate3d(-112px, 112px, 0); } 
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
 .glass-panel {
   background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08); border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -235,107 +240,100 @@ body:not(.dark-mode) #root::before, body:not(.dark-mode) #root::after {
 body:not(.dark-mode) .glass-panel {
   background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
-/* ============================================================
-   7. SECTION HEADERS & BADGES
-============================================================ */
 
-/* 🟢 คุมโครงสร้างหัวข้อให้อยู่ตรงกลาง และป้องกันการยืด */
 .section-header {
   display: flex;
   flex-direction: column;
   align-items: center; 
-  justify-content: flex-end; /* ⚡ ดันเนื้อหาให้ชิดด้านล่างของกล่อง */
+  justify-content: flex-end; 
   text-align: center;
   margin-bottom: 3rem;
   width: 100%;
-  min-height: 120px; /* ⚡ ล็อคความสูงไว้เผื่อเปลี่ยนภาษา หน้าจะได้ไม่ขยับ! */
+  min-height: 120px; 
 }
 
-/* 🟢 ป้าย Badge (เช่น EXPERTISE, ABOUT ME) */
 .hero-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: fit-content !important; /* บังคับให้หดพอดีคำ */
+  width: fit-content !important; 
   margin-bottom: 1rem;
   padding: 6px 18px;
   background: var(--badge-bg);
   border: 1px solid var(--badge-border);
-  border-radius: 50px; /* ทรงแคปซูลมนๆ */
+  border-radius: 50px; 
   color: var(--badge-text);
   box-shadow: 0 0 15px var(--badge-glow);
   font-size: 0.85rem;
   font-weight: var(--fw-bold);
   letter-spacing: 1.5px;
-  /* ⚡ ค่อยๆ เปลี่ยนสีตามโหมด 0.6 วินาที */
   transition: all 0.6s ease;
 }
 
-/* 🟢 ตัวหนังสือหัวข้อหลัก */
 .section-title {
-  color: var(--text-color); /* ⚡ ล็อคสีให้สว่างในโหมดมืด */
+  color: var(--text-color); 
   font-size: 2.5rem;
   margin: 0 0 10px 0;
   transition: color 0.6s ease;
 }
 
-/* 🟢 ตัวหนังสือหัวข้อรอง (ถ้ามี) */
 .section-subtitle {
   color: var(--text-color);
   opacity: 0.7;
-  
-  /* ⚡ พระเอกคือตรงนี้ครับ ขยายจาก 600px เป็น 900px ข้อความจะได้ไม่ร่วง */
   max-width: 900px; 
-  
   font-size: 1rem;
   margin: 0;
   line-height: 1.6;
   transition: color 0.6s ease;
 }
 
-/* 🟢 ไฮไลท์ข้อความ (สีส้ม ZZZ) */
 .highlight {
   color: var(--spark-1);
 }
 
-/* =========================================
-   SMOOTH TRAILING CURSOR (วงแหวนสมูท ไม่บังเมาส์หลัก)
-========================================= */
+@media (min-width: 992px) {
+  html, body, *, a, button, input, textarea, select {
+    cursor: none !important;
+  }
+}
 
-/* 🟢 วงแหวนออร่าโปร่งแสงที่วิ่งตามเมาส์ */
-.zz-cursor-ring {
+.cursor-dot {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(255, 78, 0, 0.4); /* วงแหวนสีส้มโปร่งแสง */
+  top: 0; left: 0;
+  width: 6px; height: 6px; 
+  background-color: var(--cursor-main);
   border-radius: 50%;
-  pointer-events: none; /* กดทะลุได้ 100% ไม่กวนการคลิก */
+  pointer-events: none; 
   z-index: 999999;
-  
-  /* ⚡ เคล็ดลับความลื่น: สั่งให้เบราว์เซอร์เตรียมการ์ดจอไว้รอเลย */
+  margin-top: -3px; 
+  margin-left: -3px; 
   will-change: transform;
-  
-  /* อนิเมชันเฉพาะตอนเปลี่ยนขนาด/สี (ไม่เกี่ยวกับตอนขยับ) */
-  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* 🟢 เอฟเฟกต์ตอนเอาเมาส์ไปชี้กล่องกระจกหรือปุ่ม */
-.zz-cursor-ring.hover-active {
-  width: 60px; /* ขยายวงแหวนให้กว้างขึ้น */
-  height: 60px;
-  border-color: var(--spark-1); /* สีขอบเข้มขึ้น */
-  background-color: rgba(255, 78, 0, 0.05); /* เติมสีพื้นหลังจางๆ */
-  
-  /* ชดเชยตำแหน่งเวลาวงแหวนมันใหญ่ขึ้น จะได้อยู่กึ่งกลางเหมือนเดิม */
-  margin-top: -10px;
-  margin-left: -10px; 
+.cursor-outline {
+  position: fixed;
+  top: 0; left: 0;
+  width: 32px; height: 32px;
+  border: 1px solid var(--cursor-ring);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999998; 
+  margin-top: -16px; 
+  margin-left: -16px;
+  will-change: transform;
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, margin 0.3s ease, border-color 0.3s ease;
 }
 
-/* 📱 ปิดการทำงานในมือถือและแท็บเล็ต */
+.cursor-outline.hover-active {
+  width: 50px; height: 50px; 
+  background-color: var(--cursor-hover); 
+  border-color: var(--cursor-main);
+  margin-top: -25px; 
+  margin-left: -25px;
+}
+
 @media (max-width: 991px) {
-  .zz-cursor-ring {
+  .cursor-dot, .cursor-outline {
     display: none !important;
   }
 }

@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import './About.css';
 
 const About = ({ content }) => {
-  const options = { triggerOnce: false, threshold: 0.1, rootMargin: '100px 0px' };
+ const options = { triggerOnce: true, threshold: 0.1, rootMargin: '100px 0px' };
 
   const { ref: hRef, inView: hIn } = useInView(options);
   const { ref: tRef, inView: tIn } = useInView(options);

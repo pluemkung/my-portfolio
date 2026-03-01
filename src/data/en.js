@@ -11,7 +11,7 @@ export const en = {
     greeting: "Creative Technologist • Thailand",
     name: "Natthakit Moonwong",
     role: "Electronics Computer Technology Student",
-    description: "Interested in all types of technology...",
+    description: "Interested in creating all types of technology from hardware and electronics to web apps and software. I enjoy experimenting, learning, and turning ideas into reality.",
     phone: "063-758-8253",
     email: "natthakit.moonwong@gmail.com",
     viewProjects: "PROJECTS",

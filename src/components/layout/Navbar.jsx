@@ -10,24 +10,32 @@ const Navbar = ({ lang, setLang, isDarkMode, setIsDarkMode, content }) => {
   // 🟢 State ไว้เก็บว่าตอนนี้อยู่หน้าไหน
   const [activeSection, setActiveSection] = useState('');
 
-  // 🟢 ระบบตรวจจับว่าเลื่อนจอถึงไหนแล้ว
+  // 🟢 ระบบตรวจจับว่าเลื่อนจอถึงไหนแล้ว (ฉบับอัปเกรด Performance หายกระตุกชัวร์)
   useEffect(() => {
-    const handleScroll = () => {
-      // ดึงตำแหน่งของแต่ละ Section บนหน้าเว็บ
-      const sections = mainNavItems.map(item => document.getElementById(item));
-      const scrollPosition = window.scrollY + 150; // ชดเชยความสูงของ Navbar
+    let ticking = false; // ⚡ ตัวแปรคอยเบรกไม่ให้ React คำนวณซ้ำซ้อนรัวเกินไป
 
-      // วนลูปเช็กว่า Scroll ผ่าน Section ไหนไปแล้วบ้าง
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(mainNavItems[i]);
-          break;
-        }
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // ใช้ลอจิกคำนวณระยะเดิมของคุณเป๊ะๆ เลยครับ ไม่ขยับแน่นอน
+          const sections = mainNavItems.map(item => document.getElementById(item));
+          const scrollPosition = window.scrollY + 150; // ชดเชยความสูงของ Navbar
+
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const section = sections[i];
+            if (section && section.offsetTop <= scrollPosition) {
+              setActiveSection(mainNavItems[i]);
+              break;
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // ⚡ เติม passive: true เพื่อบอกเบราว์เซอร์ให้เลื่อนจอไปได้เลย ไม่ต้องรอสคริปต์
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [mainNavItems]);
 
@@ -43,15 +51,18 @@ const Navbar = ({ lang, setLang, isDarkMode, setIsDarkMode, content }) => {
         {/* ใส่ Class 'active' เมื่อกดเปิดเมนูบนมือถือ */}
         <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
           {mainNavItems.map((item) => (
-            <li key={item} onClick={() => setIsMobileMenuOpen(false)}> 
-              <a 
-                href={`#${item}`} 
-                // 🟢 ถ้าเมนูนี้ตรงกับหน้าที่อยู่ ให้ใส่คลาส active-nav-item เพื่อตีกรอบ
-                className={activeSection === item ? 'active-nav-item' : ''}
-              >
-                {content.nav[item]}
-              </a>
-            </li>
+            /* ⚡ เติม content.nav[item] && ดักไว้ เพื่อกันเมนูล่องหนตอนเปลี่ยนภาษาครับ */
+            content.nav[item] && (
+              <li key={item} onClick={() => setIsMobileMenuOpen(false)}> 
+                <a 
+                  href={`#${item}`} 
+                  // 🟢 ถ้าเมนูนี้ตรงกับหน้าที่อยู่ ให้ใส่คลาส active-nav-item เพื่อตีกรอบ
+                  className={activeSection === item ? 'active-nav-item' : ''}
+                >
+                  {content.nav[item]}
+                </a>
+              </li>
+            )
           ))}
         </ul>
 
