@@ -98,17 +98,30 @@ export const en = {
     items: [
       {
         level: "Bachelor's / Associate's Degree in Computer Electronics Technology",
-        school: "Your University Name",
-        year: "2566 - Present",
-        description: "Focusing on embedded systems and developing Parallel Pure Sine Wave Inverters projects.",
-        logo: "/images/uni-logo.png" // ใส่ Path รูปตรามหาวิทยาลัยตรงนี้ครับ
+        school: "King Mongkut's University of Technology North Bangkok",
+        year: "2567 - Present",
+        description: "Continuing studies in Computer Electronics Technology.",
+        logo: "/images/KMUTNB.png",
+        transcript: "/documents/KMUTNB_Transcript.pdf", 
+        mapLink: "https://maps.app.goo.gl/TaUkY4QNFKbkYPb2A"
       },
       {
-        level: "High School / Vocational Diploma",
-        school: "Your Previous School Name",
-        year: "2563 - 2566",
-        description: "Basic knowledge in electrical and electronics fundamentals.",
-        logo: "/images/school-logo.png" // ใส่ Path รูปตราโรงเรียนเก่าตรงนี้ครับ
+        level: "Associate's Degree in Electronics",
+        school: "Talung Cement Thai Anusorn Technical College",
+        year: "2565 - 2566",
+        description: "Associate's Degree in Electronics.",
+        logo: "/images/TTL.png",
+        transcript: "#", 
+        mapLink: "https://maps.app.goo.gl/Uzc6EcCJZPcRP8vs9"
+      },
+      {
+        level: "High School Diploma in Electronics",
+        school: "Talung Cement Thai Anusorn Technical College",
+        year: "2562 - 2564",
+        description: "High School Diploma in Electronics.",
+        logo: "/images/TTL.png",
+        transcript: "#", 
+        mapLink: "https://maps.app.goo.gl/Uzc6EcCJZPcRP8vs9"
       }
     ]
   },

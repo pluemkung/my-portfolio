@@ -41,45 +41,54 @@
   z-index: 2;
 }
 
-/* --- ส่วนโลโก้สถาบัน (Logo Area) --- */
+/* --- ส่วนโลโก้สถาบัน (ทลายกรอบ! โชว์โลโก้ลอยเพียวๆ) --- */
 .logo-circle {
   width: 90px;
   height: 90px;
-  /* ใช้สีพื้นหลังจาก index.css เพื่อให้สลับธีมแล้วไม่มืดจม */
-  background: var(--bg-main-2); 
-  border: 2px solid var(--badge-border);
-  border-radius: 50%;
+  background: transparent; /* เอาพื้นหลังออก */
+  border: none; /* เอากรอบออก */
+  box-shadow: none; /* เอาเงาวงกลมออก */
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 0 20px var(--badge-glow);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  flex-shrink: 0; /* ป้องกันวงกลมเบี้ยว */
+  flex-shrink: 0; 
+  padding: 0; 
 }
 
 .edu-item:hover .logo-circle {
-  transform: scale(1.1);
-  border-color: var(--spark-1);
-  box-shadow: 0 0 30px rgba(255, 78, 0, 0.3);
+  transform: scale(1.15); /* ขยายโลโก้ขึ้นเวลาเอาเมาส์ชี้ */
 }
 
+/* ตัวรูปภาพโลโก้ */
 .edu-img {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-  /* เพิ่ม Filter นิดหน่อยให้ตราสถาบันดูชัดขึ้นในโหมดมืด */
-  filter: drop-shadow(0 0 5px rgba(0,0,0,0.1));
+  width: 100%; 
+  height: 100%;
+  object-fit: contain; /* บังคับให้พอดี ไม่เบี้ยว */
+  /* ใส่เงาให้รูปภาพโดยตรง เงาจะล้อตามทรงโลโก้ */
+  filter: drop-shadow(0 5px 15px rgba(255, 78, 0, 0.2));
+  transition: filter 0.4s ease;
+}
+
+.edu-item:hover .edu-img {
+  filter: drop-shadow(0 8px 25px rgba(255, 78, 0, 0.5)); /* เงาสว่างขึ้นตอน Hover */
+}
+
+/* 🌙 ปรับแสงโลโก้ตอนเปิดโหมดมืด (ช่วยให้โลโก้สีทึบดูเด่นขึ้น) */
+.dark-mode .edu-img {
+  filter: drop-shadow(0 5px 15px rgba(255, 78, 0, 0.4)) brightness(1.2);
+}
+.dark-mode .edu-item:hover .edu-img {
+  filter: drop-shadow(0 8px 25px rgba(255, 78, 0, 0.7)) brightness(1.2);
 }
 
 /* --- การ์ดการศึกษา (เอาเยี่ยงอย่างจาก Project Card) --- */
 .edu-card {
-  /* ใช้ Glassmorphism แบบเดียวกับหน้า Projects แต่เพิ่มความสว่าง */
   background: var(--badge-bg); 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--badge-border);
-  border-top: 1px solid rgba(255, 255, 255, 0.2); /* ขอบบนสว่างสไตล์หน้า Projects */
+  border-top: 1px solid rgba(255, 255, 255, 0.2); 
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
   
   padding: 30px;
@@ -87,12 +96,11 @@
   position: relative;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   
-  /* มุมตัดสไตล์ Tech แบบหน้า Projects */
   clip-path: polygon(25px 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%, 0 25px);
 }
 
 .edu-item:hover .edu-card {
-  transform: translateX(15px); /* เขยิบออกข้างแทนการยกขึ้น */
+  transform: translateX(15px); 
   border-color: rgba(255, 78, 0, 0.4);
   background: rgba(255, 255, 255, 0.05);
 }
@@ -108,28 +116,33 @@
 }
 
 .edu-level {
-  font-size: 22px;
+  font-size: 20px; /* ปรับลดลงนิดนึงเพื่อให้พอดีกับปุ่มฝั่งขวา */
+  font-weight: 800; 
   color: var(--name-color);
-  margin: 0 0 5px 0;
-  line-height: 1.3;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
 }
-
+/* ชื่อสถาบัน (ใส่สี Spark จางๆ หรือเพิ่มความหนาปานกลาง) */
 .edu-school {
-  font-size: 16px;
-  color: var(--text-color);
+  font-size: 15.5px;
+  color: var(--spark-1); /* ใช้สีเน้นเพื่อให้รู้ว่าคือที่ไหน */
   opacity: 0.9;
-  margin-bottom: 15px;
-  font-weight: var(--fw-med);
+  margin-bottom: 12px;
+  font-weight: 600;
+  display: block;
 }
 
+/* รายละเอียด (ทำให้อ่านง่ายขึ้น) */
 .edu-desc {
-  font-size: 14.5px;
+  font-size: 14px;
   color: var(--text-color);
   opacity: 0.7;
   line-height: 1.6;
+  border-top: 1px solid rgba(128, 128, 128, 0.1); /* เพิ่มเส้นคั่นบางๆ */
+  padding-top: 10px;
 }
 
-/* --- ของตกแต่งมุมการ์ด (ดึงมาจากหน้า Projects) --- */
+/* --- ของตกแต่งมุมการ์ด --- */
 .card-ui-corner {
   position: absolute;
   width: 12px;
@@ -161,7 +174,7 @@
     gap: 20px;
   }
   .timeline-spine {
-    left: 30px;
+    left: 30px; /* ปรับตำแหน่งเส้นตามขนาดโลโก้มือถือ */
   }
   .logo-circle {
     width: 60px;
@@ -173,5 +186,70 @@
   }
   .edu-level {
     font-size: 18px;
+  }
+}
+/* จัดเลย์เอาต์ภายในการ์ดให้เป็นแนวนอน */
+.edu-card-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.edu-content-left {
+  flex: 1; /* ให้ข้อมูลกินพื้นที่ที่เหลือ */
+}
+
+/* กลุ่มปุ่ม Action ฝั่งขวา */
+.edu-actions-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 120px; /* เพิ่มความกว้างขั้นต่ำเพื่อให้ข้อความไม่ตัด */
+}
+.edu-btn-action {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* ระยะห่างระหว่างไอคอนกับข้อความ */
+  padding: 8px 15px;
+  background: rgba(255, 78, 0, 0.08);
+  border: 1px solid rgba(255, 78, 0, 0.2);
+  border-radius: 8px;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+/* ข้อความข้างในปุ่ม */
+.btn-label {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap; /* กันข้อความตกบรรทัด */
+}
+
+.edu-btn-action:hover {
+  background: var(--spark-1);
+  color: #fff !important;
+  transform: translateX(-5px); /* เลื่อนไปทางซ้ายนิดนึงตอน Hover ให้ดูโต้ตอบ */
+  box-shadow: 0 5px 15px rgba(255, 78, 0, 0.3);
+  border-color: var(--spark-1);
+}
+
+.dark-mode .edu-btn-action {
+  background: rgba(255, 78, 0, 0.1);
+  border-color: rgba(255, 78, 0, 0.3);
+}
+
+/* ปรับแต่งสำหรับมือถือ */
+@media (max-width: 600px) {
+  .edu-actions-right {
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .edu-btn-action {
+    flex: 1; /* ให้ปุ่มขยายเท่ากันในมือถือ */
+    justify-content: center;
   }
 }

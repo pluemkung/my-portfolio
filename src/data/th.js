@@ -92,18 +92,31 @@ export const th = {
     subtitle: "เส้นทางการเรียนรู้และการพัฒนาทักษะทางด้านเทคโนโลยีของผม",
     items: [
       {
-        level: "ปริญญาตรี / ปวส. เทคโนโลยีอิเล็กทรอนิกส์คอมพิวเตอร์",
-        school: "ชื่อมหาวิทยาลัยของคุณ",
-        year: "2566 - ปัจจุบัน",
-        description: "เน้นด้านระบบสมองกลฝังตัว (Embedded Systems) และการพัฒนาโปรเจกต์ Parallel Pure Sine Wave Inverters",
-        logo: "/images/uni-logo.png" // ใส่ Path รูปตรามหาวิทยาลัยตรงนี้ครับ
+        level: "ปริญญาตรี (กำลังศึกษา)",
+        school: "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ",
+        year: "2567 - ปัจจุบัน",
+        description: "อุตสาหกรรมศาสตรบัณฑิต (ต่อเนื่อง) - เทคโนโลยีคอมพิวเตอร์อิเล็กทรอนิกส์",
+        logo: "/images/KMUTNB.png",
+        transcript: "/documents/KMUTNB_Transcript.pdf", 
+        mapLink: "https://maps.app.goo.gl/TaUkY4QNFKbkYPb2A"
       },
       {
-        level: "มัธยมศึกษาตอนปลาย / ปวช.",
-        school: "ชื่อโรงเรียนเก่าของคุณ",
-        year: "2563 - 2566",
-        description: "พื้นฐานด้านไฟฟ้าและอิเล็กทรอนิกส์เบื้องต้น",
-        logo: "/images/school-logo.png" // ใส่ Path รูปตราโรงเรียนเก่าตรงนี้ครับ
+        level: "ประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.)",
+        school: "วิทยาลัยเทคนิคท่าหลวงซิเมนต์ไทยอนุสรณ์",
+        year: "2565 - 2566",
+        description: "เอิเล็กทรอนิกส์",
+        logo: "/images/TTL.png",
+        transcript: "#", 
+        mapLink: "https://maps.app.goo.gl/Uzc6EcCJZPcRP8vs9"
+      },
+      {
+        level: "ประกาศนียบัตรวิชาชีพ (ปวช.)",
+        school: "วิทยาลัยเทคนิคท่าหลวงซิเมนต์ไทยอนุสรณ์",
+        year: "2562 - 2564",
+        description: "อิเล็กทรอนิกส์",
+        logo: "/images/TTL.png",
+        transcript: "#", 
+        mapLink: "https://maps.app.goo.gl/Uzc6EcCJZPcRP8vs9"
       }
     ]
   },
