@@ -14,6 +14,7 @@ import Education from './components/Education';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import CustomCursor from './components/CustomCursor';
+import Footer from './components/Footer';
 
 function App() {
   const [lang, setLang] = useState('th');
@@ -43,7 +44,9 @@ function App() {
         {content.education && <Education content={content.education} />}
         {content.experience && <Experience content={content.experience} />}
         {content.contact && <Contact content={content.contact} />}
+        
       </main>
+      {content.footer && <Footer content={content.footer} />}
       <ScrollToTop />
     </div>
   );

@@ -1,0 +1,62 @@
+.footer-main {
+  background-color: var(--bg-main-1);
+  border-top: 1px solid var(--badge-border);
+  overflow: hidden;
+  padding-bottom: 20px; /* เพิ่มพื้นที่นิดหน่อยให้ดูไม่ติดขอบล่างเกินไป */
+}
+
+.footer-marquee-mini {
+  height: 30px; 
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.animate-marquee-fast {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee-move 25s linear infinite; /* ปรับความเร็วให้พอดีกับภาษาไทย */
+}
+
+.marquee-text-mini {
+  color: #000;
+  font-weight: 900;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 0 30px;
+  font-family: inherit; /* ใช้ฟอนต์หลักของโปรเจกต์ */
+}
+
+@keyframes marquee-move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.footer-center-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.footer-top-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.mini-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--spark-1);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--spark-1);
+}

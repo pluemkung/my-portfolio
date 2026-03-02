@@ -1,164 +1,185 @@
 /* =========================================
-   Contact Section (High Contrast & Adaptive Theme)
+   ✨ Premium Contact Section (Cyberpunk Tech Style)
 ========================================= */
 
 .contact-section {
   padding: 80px 10%;
   position: relative;
   z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 1000px; /* บีบให้กะทัดรัดขึ้นอีกนิดเพื่อความเนี้ยบ */
 }
 
 .contact-main-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 30px;
   margin-top: 40px;
-  align-items: stretch; 
+  align-items: start;
 }
 
-/* --- Left Side --- */
-.contact-left-side {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
+/* --- การ์ดข้อมูล (Info Cards) --- */
 .info-top-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr; /* ปรับให้เรียงแนวดิ่งเพื่อให้แผนที่ดูยาวสมส่วน */
+  gap: 15px;
 }
 
 .contact-info-card {
-  /* 🟢 เพิ่มความทึบของพื้นหลังเพื่อให้ตัวอักษรลอยออกมา */
-  background: rgba(255, 255, 255, 0.08); 
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--badge-border);
-  border-top: 1px solid rgba(255, 255, 255, 0.25); /* เพิ่มความสว่างขอบบน */
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 78, 0, 0.15); /* ขอบสี Spark จางๆ */
+  border-left: 3px solid var(--spark-1); /* เพิ่มเส้นเน้นด้านซ้ายให้ดูมีดีไซน์ */
+  padding: 18px 25px;
   display: flex;
   align-items: center;
   gap: 15px;
   position: relative;
-  clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
-  transition: all 0.4s ease;
+  /* ตัดมุมเฉพาะด้านขวาบนและล่างซ้ายให้ดูแปลกตา */
+  clip-path: polygon(0 0, 90% 0, 100% 25%, 100% 100%, 10% 100%, 0 75%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-info-card:hover {
+  background: rgba(255, 78, 0, 0.05);
+  transform: translateX(5px);
+  border-color: var(--spark-1);
+}
+
+.card-icon {
+  font-size: 20px;
+  filter: drop-shadow(0 0 8px var(--spark-1));
 }
 
 .card-text .label {
-  font-size: 11px;
-  color: var(--spark-1); /* สีส้ม Spark */
-  font-weight: var(--fw-bold);
-  letter-spacing: 1px;
-  opacity: 1; /* บังคับให้สว่างสุด */
+  font-size: 10px;
+  color: var(--spark-1);
+  letter-spacing: 2px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .card-text p {
-  margin: 0;
-  /* 🟢 ใช้สีขาวเกือบสนิทในโหมดมืดเพื่อให้มองเห็นชัด */
-  color: #ffffff; 
-  font-weight: var(--fw-med);
+  margin: 2px 0 0;
+  color: var(--text-color); /* ⚡ เปลี่ยนจาก #fff เป็นสีตามโหมด */
   font-size: 15px;
+  font-weight: 500;
 }
 
-body:not(.dark-mode) .card-text p {
-  color: var(--text-color); /* กลับเป็นสีมืดเมื่อเป็น Light Mode */
-}
-
-/* --- Map Area --- */
+/* --- แผนที่ (Map Frame) --- */
 .contact-map-wrapper {
-  flex-grow: 1;
-  min-height: 350px;
+  margin-top: 15px;
+  height: 260px; /* ความสูงกะทัดรัด */
+  position: relative;
 }
 
 .map-glass-frame {
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.05);
+  background: #000;
   border: 1px solid var(--badge-border);
-  padding: 10px;
-  clip-path: polygon(25px 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%, 0 25px);
+  padding: 5px;
+  clip-path: polygon(0 15%, 5% 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .map-glass-frame iframe {
-  filter: grayscale(1) invert(0.9) contrast(1.2) opacity(0.8);
-  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  filter: grayscale(1) invert(0.9) brightness(0.8) contrast(1.2);
+  transition: 0.5s;
 }
 
-body:not(.dark-mode) .map-glass-frame iframe {
-  filter: grayscale(0.2) opacity(0.9);
+.map-glass-frame:hover iframe {
+  filter: grayscale(0.4) invert(0) brightness(1);
 }
 
-/* --- Right Side (Form Card) --- */
+/* --- แบบฟอร์ม (Form Design) --- */
 .contact-form-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--badge-border);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding: 40px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
-  clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
-  display: flex;
-  flex-direction: column;
+  /* ดีไซน์ตัดมุมแบบล้ำสมัย (Hexagon Style) */
+  clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
+}
+
+.contact-form-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--spark-1) 0%, transparent 15%);
+  opacity: 0.2;
+  pointer-events: none;
 }
 
 .form-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-color); /* ⚡ เปลี่ยนจาก #fff เป็นสีตามโหมด */
   margin-bottom: 25px;
-  color: #ffffff; /* 🟢 ชื่อหัวข้อแบบสว่างชัดเจน */
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-body:not(.dark-mode) .form-title {
-  color: var(--name-color);
+.form-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--spark-1), transparent);
 }
 
-/* --- Input Fields --- */
-.input-field {
-  margin-bottom: 15px;
-}
-
-.input-field input, .input-field textarea {
+/* --- Input Styling --- */
+.input-field input, 
+.input-field textarea {
   width: 100%;
-  padding: 15px;
-  background: rgba(0, 0, 0, 0.3); /* 🟢 พื้นหลัง Input ให้เข้มขึ้นเพื่อตัดกับตัวหนังสือขาว */
-  border: 1px solid var(--badge-border);
-  color: #ffffff; /* 🟢 ตัวอักษรขณะพิมพ์ให้เป็นสีขาวชัดเจน */
-  font-family: 'Mitr', sans-serif;
-  outline: none;
+  padding: 14px 18px;
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0; /* กลับเป็นเหลี่ยมเพื่อให้เข้ากับ Clip-path */
+  color: var(--text-color); /* ⚡ เปลี่ยนจาก #fff เป็นสีตามโหมด */
+  font-size: 14px;
   transition: 0.3s;
 }
 
-/* 🟢 ปรับสี Placeholder ให้สว่างขึ้นเพื่อให้มองออกว่าต้องพิมพ์อะไร */
-.input-field input::placeholder, 
-.input-field textarea::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-body:not(.dark-mode) .input-field input,
-body:not(.dark-mode) .input-field textarea {
-  background: rgba(255, 255, 255, 0.8);
-  color: var(--text-color);
-}
-
-body:not(.dark-mode) .input-field input::placeholder, 
-body:not(.dark-mode) .input-field textarea::placeholder {
-  color: rgba(0, 0, 0, 0.4);
-}
-
-/* 🟢 UI Decorations */
-.card-ui-corner {
-  position: absolute;
-  width: 15px;
-  height: 15px;
+.input-field input:focus, 
+.input-field textarea:focus {
   border-color: var(--spark-1);
-  opacity: 0.8; /* เพิ่มความชัดของมุม */
+  background: rgba(255, 78, 0, 0.05) !important;
+  box-shadow: 0 0 15px rgba(255, 78, 0, 0.1);
 }
 
-.card-ui-corner.bottom-right { bottom: 12px; right: 12px; border-bottom: 2px solid; border-right: 2px solid; }
-.card-ui-corner.top-right { top: 12px; right: 12px; border-top: 2px solid; border-right: 2px solid; }
+.submit-btn {
+  margin-top: 15px;
+  cursor: pointer;
+  border: none;
+  width: 100% !important;
+}
 
-/* Responsive */
-@media (max-width: 992px) {
-  .contact-main-grid { grid-template-columns: 1fr; }
-  .info-top-row { grid-template-columns: 1fr; }
+/* --- Responsive --- */
+@media (max-width: 850px) {
+  .contact-main-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .contact-section { padding: 50px 5%; }
+}
+
+/* =========================================
+   ☀️ Light Mode Fixes (แก้ปัญหาตัวอักษรกลืนกับพื้นหลัง)
+========================================= */
+body:not(.dark-mode) .input-field input, 
+body:not(.dark-mode) .input-field textarea {
+  background: rgba(0, 0, 0, 0.05) !important; /* ในโหมดสว่าง ปรับพื้นหลังช่องกรอกให้สว่างขึ้น */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body:not(.dark-mode) .contact-info-card,
+body:not(.dark-mode) .contact-form-card {
+  background: rgba(0, 0, 0, 0.02); /* ปรับพื้นหลังการ์ดให้อ่านง่ายขึ้นในโหมดสว่าง */
 }

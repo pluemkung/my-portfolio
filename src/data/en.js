@@ -21,6 +21,8 @@ export const en = {
     badge: "ABOUT ME",
     titleStart: "Get to know ",
     titleHighlight: "Me",
+    resumeBtn: "Download Resume",
+    resumeUrl: "/resume.pdf",
     desc1: "Hello! I'm Natthakit Moonwong, a Computer Electronics Technology student passionate about creating tangible and practical technology. I enjoy continuously learning and developing my skills, whether it's writing code (Software) or designing circuits (Hardware).",
     desc2: "Currently, I am focusing on my final project regarding Parallel Pure Sine Wave Inverters, alongside developing my Web Development skills. My goal is to become a developer who can seamlessly bridge the gap between the hardware world and online systems.",
     highlights: [
@@ -128,42 +130,51 @@ export const en = {
     ]
   },
   experience: {
-    badge: "CAREER",
-    titleStart: "My ",
+    badge: "EXPERIENCE",
+    titleStart: "Work",
     titleHighlight: "Experience",
-    subtitle: "My professional journey and projects.",
+    subtitle: "My professional journey and internship experiences in specialized technology fields.",
+    mapsBtn: "View Maps",
     items: [
       {
-        role: "Engineering Intern",
-        company: "Your Company Name",
-        duration: "June 2568 - August 2568",
-        description: "Assisted in designing and testing power control circuits, collaborating with engineering teams to solve field issues.",
-        skills: ["Circuit Testing", "Power Electronics", "Soldering"]
+        duration: "Semester 2 / 2022",
+        role: "Internship (Graphene Synthesis Innovation)",
+        company: "National Science and Technology Development Agency (NSTDA)",
+        description: "Conducted research at the Graphene Synthesis Innovation Laboratory, focusing on advanced material research processes and high-tech synthesis technologies.",
+        skills: ["Research", "Laboratory", "Graphene Synthesis", "Innovation"],
+        mapLink: "https://maps.app.goo.gl/xj9udKzhHwcUCwbm7"
       },
       {
-        role: "Freelance Web Developer",
-        company: "Freelance",
-        duration: "2567 - Present",
-        description: "Designed and developed landing pages for small businesses, focusing on modern UI and mobile responsiveness.",
-        skills: ["React", "CSS Grid", "Responsive Design"]
+        duration: "Semester 5 / 2021",
+        role: "Internship (EDP Coating Process)",
+        company: "Thalan-Zinc Limited Partnership",
+        description: "Studied and practiced Electro Deposition Painting (EDP) processes within an industrial manufacturing system.",
+        skills: ["EDP Process", "Metal Coating", "Industrial Engineering", "Quality Control"],
+        mapLink: "https://maps.app.goo.gl/3pKhvHxsENPtAmhk9"
       }
     ]
   },
   contact: {
-    badge: "GET IN TOUCH",
-    titleStart: "My Contact",
-    titleHighlight: "Information",
-    subtitle: "I'm open to feedback and collaboration opportunities.",
+    badge: "CONTACT",
+    titleStart: "Contact",
+    titleHighlight: "Me",
+    subtitle: "Feel free to reach out for collaboration or inquiries.",
+    emailLabel: "Direct Email",
     email: "pluemkub1313@gmail.com",
-    phone: "063-758-82533",
-    location: "กรุงเทพมหานคร, ประเทศไทย",
-    github: "github.com/yourusername",
-    formTitle: "ส่งข้อความหาผม",
+    phoneLabel: "Contact Number",
+    phone: "063-758-8253",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d477.33609982581163!2d100.51718492328534!3d13.821583513967107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29b9cbb3aa17b%3A0xa3e1141bc9c31250!2zMTc4IOC4i-C4reC4oiDguKHguKvguLLguKjguLLguKUg4LmB4LiC4Lin4LiH4Lin4LiH4Lio4LmM4Liq4Lin4LmI4Liy4LiHIOC4muC4suC4h-C4i-C4t-C5iOC4rSDguIHguKPguLjguIfguYDguJfguJ7guKHguKvguLLguJnguITguKMgMTA4MDA!5e0!3m2!1sth!2sth!4v1772431926738!5m2!1sth!2sth",
+    formTitle: "Send me a message",
     placeholders: {
-      name: "ชื่อของคุณ",
-      email: "อีเมลของคุณ",
-      message: "ข้อความของคุณ",
-      send: "ส่งข้อความ"
+      name: "Your Name",
+      email: "Your Email",
+      message: "Type your message here...",
+      send: "Send Message"
     }
   },
+  footer: {
+    marquee: "LIFE // TIME // DREAMS // ",
+    mission: "DESIGNED FOR MISSION_OBJECTIVE",
+    stable: "STABLE CONNECTION"
+  }
 };

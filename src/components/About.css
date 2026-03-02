@@ -122,6 +122,68 @@
 }
 
 /* =========================================
+   🌟 Resume Button Styles (Dark & Light Mode Ready)
+========================================= */
+.resume-btn-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.resume-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: rgba(128, 128, 128, 0.05);
+  border: 1px solid var(--spark-1);
+  color: var(--text-color);
+  font-family: 'Kanit', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.resume-download-btn svg {
+  color: var(--spark-1);
+  transition: transform 0.3s ease;
+}
+
+.resume-download-btn:hover {
+  background: var(--spark-1);
+  color: var(--bg-main-1); 
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 78, 0, 0.3);
+}
+
+.resume-download-btn:hover svg {
+  color: var(--bg-main-1);
+  transform: translateY(2px); /* เอฟเฟกต์ลูกศรชี้ลงตอน Hover */
+}
+
+/* ☀️ โหมดสว่างให้อ่านง่ายขึ้น (Light Mode Fixes) */
+body:not(.dark-mode) .resume-download-btn {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(255, 78, 0, 0.6);
+}
+
+body:not(.dark-mode) .resume-download-btn:hover {
+  background: var(--spark-1);
+  color: #fff !important;
+  border-color: var(--spark-1);
+}
+
+body:not(.dark-mode) .resume-download-btn:hover svg {
+  color: #fff !important;
+}
+
+/* =========================================
    Responsive 
 ========================================= */
 @media (max-width: 992px) {
@@ -145,5 +207,8 @@
   }
   .about-highlights {
     grid-template-columns: 1fr; /* เรียงเป็นแถวเดียวในมือถือ */
+  }
+  .resume-btn-container {
+    justify-content: center; /* ในมือถือให้ปุ่มอยู่ตรงกลาง */
   }
 }

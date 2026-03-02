@@ -9,17 +9,17 @@
   display: flex;
   justify-content: center;
   z-index: 1000;
-  /* ⚡ เตรียมความพร้อมให้แถบขยับนุ่มๆ ตอนเลื่อนจอ */
   transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* ⚡ เอฟเฟกต์ตอนเลื่อนจอ (Navbar จะหดขึ้นไปนิดนึงและเงาชัดขึ้น) */
 .nav-container.scrolled {
   top: 10px;
 }
+
 .nav-container.scrolled .navbar {
-  background: var(--bg-main-2); /* ให้สีพื้นหลังทึบขึ้นตอนเลื่อนผ่านเนื้อหา */
+  background: var(--bg-main-2);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: scale(0.98); /* หดนิดนึงตอนเลื่อนเพื่อความเท่ */
 }
 
 .navbar {
@@ -31,25 +31,21 @@
   gap: 15px; 
   background: var(--nav-bg); 
   backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-top: 1px solid rgba(255, 255, 255, 0.15); 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 100px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* =========================================
-   2. NAV LINKS & HOVER EFFECTS (สไตล์ภาพเรฟเฟอเรนซ์)
+   2. NAV LINKS & BUTTONS (เปลี่ยนจาก a เป็น button)
 ========================================= */
 .nav-links {
   display: flex;
   list-style: none;
   gap: 2px; 
   margin: 0;
-  /* ⚡ จับเมนูมัดรวมกันในกรอบจางๆ ให้ดูเป็นกลุ่มเดียวกัน */
   background: rgba(128, 128, 128, 0.05);
   padding: 4px;
   border-radius: 50px;
@@ -60,15 +56,17 @@
   text-align: center;
 }
 
-.nav-links a {
+.nav-links button {
+  background: none;
+  border: none;
+  cursor: pointer;
   font-family: 'Kanit', sans-serif;
-  font-size: 12px; /* เล็กลงนิดนึงให้ดูคลีน */
-  font-weight: 700; /* หนาขึ้น */
-  text-transform: uppercase; /* บังคับพิมพ์ใหญ่ตามภาพ */
-  letter-spacing: 1.5px; /* ถ่างช่องไฟให้ดูแพง */
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
   color: var(--text-color);
-  text-decoration: none;
-  opacity: 0.4; /* ⚡ ตัวที่ไม่ได้เลือกให้จางลง (เหมือนคำว่า TRANSCRIPT ในรูป) */
+  opacity: 0.4; 
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: flex; 
   align-items: center;
@@ -76,34 +74,32 @@
   height: 36px;
   width: 100%; 
   border-radius: 50px;
+  outline: none;
 }
 
-.nav-links a:hover {
+.nav-links button:hover {
   opacity: 1;
-  color: var(--text-color);
   background: rgba(128, 128, 128, 0.1); 
 }
 
-/* ⚡ พระเอกของเรา: แคปซูลทึบสีตรงข้ามเวลากด Active */
-.nav-links a.active-nav-item {
-  background: var(--text-color) !important; /* โหมดมืด=ปุ่มขาว, สว่าง=ปุ่มดำ */
-  color: var(--bg-main-1) !important; /* โหมดมืด=อักษรดำ, สว่าง=อักษรขาว */
+/* ⚡ ACTIVE STATE: แคปซูลทึบสีตรงข้าม */
+.nav-links button.active-nav-item {
+  background: var(--text-color) !important; 
+  color: var(--bg-main-1) !important; 
   opacity: 1;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
-  text-shadow: none; /* เอาแสงฟุ้งตัวอักษรออกให้ดูมินิมอลสุดๆ */
-  transform: scale(1.02); /* ขยายขึ้นมานิดนึงตอนสไลด์มาโดน */
+  transform: scale(1.02);
 }
 
 /* =========================================
-   3. CONTROLS (BUTTONS & DIVIDER)
+   3. CONTROLS & SPECIAL BUTTONS
 ========================================= */
 .nav-divider {
   width: 1px;
   height: 20px;
   background-color: var(--text-color);
   opacity: 0.15; 
-  margin: 0 8px; 
-  border-radius: 2px;
+  margin: 0 8px;
 }
 
 .nav-controls {
@@ -126,115 +122,64 @@
   justify-content: center;
   cursor: pointer;
   border-radius: 50%;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.control-btn.lang-btn {
-  width: 40px; 
-  border-radius: 20px; 
+  transition: all 0.3s ease;
 }
 
 .control-btn:hover {
   background: var(--text-color);
   color: var(--bg-main-1);
-  transform: translateY(-2px) scale(1.05); 
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .zzz-nav-btn {
   background: linear-gradient(135deg, var(--spark-1), #ff6a00);
   color: #fff !important;
+  border: none;
+  cursor: pointer;
   font-family: 'Kanit', sans-serif;
   font-size: 13px;
   font-weight: 700;
-  text-decoration: none;
-  width: 85px;
+  width: 95px; /* เพิ่มความกว้างนิดนึง */
   height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s ease;
   clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-  box-shadow: 0 4px 15px rgba(255, 78, 0, 0.3);
 }
 
 .zzz-nav-btn:hover {
-  background: var(--spark-2);
-  color: #1a1a1e !important; 
   transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 78, 0, 0.4);
+  filter: brightness(1.1);
 }
 
 /* =========================================
    4. MOBILE RESPONSIVE
 ========================================= */
-.mobile-toggle {
-  display: none;
-  font-size: 20px;
-  color: var(--text-color);
-  cursor: pointer;
-  padding: 0 10px;
-  font-weight: 900;
-  transition: 0.3s;
-}
-
-.mobile-toggle:hover {
-  color: var(--spark-1);
-}
-
 @media (max-width: 950px) {
-  .nav-container { top: 15px; }
+  .navbar { width: 92%; justify-content: space-between; }
   .mobile-toggle { display: block; }
-
-  .navbar {
-    width: 92%; 
-    justify-content: space-between;
-    padding: 0 15px;
-  }
-
+  
   .nav-links {
     position: absolute;
-    top: 60px;
+    top: 65px;
     left: 50%;
     transform: translateX(-50%) translateY(-10px); 
     width: 100%;
     background: var(--nav-bg);
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-top: 2px solid var(--spark-1);
-    border-radius: 16px;
     flex-direction: column;
-    padding: 20px 0;
-    gap: 8px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    padding: 15px 0;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.4s ease;
   }
 
   .nav-links.active {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(10px); 
+    transform: translateX(-50%) translateY(0); 
   }
 
-  .nav-links li { 
-    width: 100%; 
-    display: flex; 
-    justify-content: center; 
-  }
-  
-  .nav-links a { 
-    width: 85%; 
-    font-size: 15px; 
-    height: 42px; 
-    border-radius: 8px; 
-    /* มือถือให้มันกลับมาสว่างหน่อย จะได้อ่านง่าย */
-    opacity: 0.7; 
-  }
-}
-
-@media (max-width: 480px) {
-  .zzz-nav-btn { display: none; }
+  .nav-links li { width: 100%; }
+  .nav-links button { width: 90%; font-size: 14px; opacity: 0.7; }
 }

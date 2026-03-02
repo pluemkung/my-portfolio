@@ -21,6 +21,8 @@ export const th = {
     badge: "ABOUT ME",
     titleStart: "รู้จักกับ",
     titleHighlight: "ฉัน",
+    resumeBtn: "เรซูเม่",
+    resumeUrl: "/resume.pdf",
     desc1: "สวัสดีครับ ผม ณัฐกิตติ์ มูนวงษ์ นักศึกษาอิเล็กทรอนิกส์คอมพิวเตอร์เทคโนโลยี ที่มีความหลงใหลในการสร้างสรรค์เทคโนโลยีที่สามารถจับต้องและใช้งานได้จริง ผมสนุกกับการเรียนรู้และพัฒนาตัวเองอยู่เสมอ ไม่ว่าจะเป็นการเขียนโค้ด (Software) หรือการออกแบบและต่อวงจร (Hardware)",
     desc2: "ปัจจุบันผมกำลังโฟกัสกับการทำโปรเจกต์จบเกี่ยวกับ Parallel Pure Sine Wave Inverters ควบคู่ไปกับการพัฒนาทักษะด้าน Web Development เพื่อเตรียมพร้อมสำหรับการเป็นนักพัฒนาที่สามารถเชื่อมโยงโลกของฮาร์ดแวร์เข้ากับระบบออนไลน์ได้อย่างสมบูรณ์แบบ",
     highlights: [
@@ -81,7 +83,7 @@ export const th = {
           "พัฒนาแบบ Cross-platform ให้รองรับ Android ผ่าน Flutter",
           "ระบบสามารถคำนวณและสรุปยอดบัญชีได้แบบ Real-time"
         ],
-        link: "#" // ถ้ามีลิงก์ GitHub หรือวิดีโอสาธิตการใช้งาน เอาลิงก์มาวางแทน "#" ได้เลยครับ
+        // link: "#" // ถ้ามีลิงก์ GitHub หรือวิดีโอสาธิตการใช้งาน เอาลิงก์มาวางแทน "#" ได้เลยครับ
       },
     ]
   },
@@ -127,38 +129,47 @@ export const th = {
     titleStart: "ประสบการณ์",
     titleHighlight: "การทำงาน",
     subtitle: "เส้นทางการทำงานและโปรเจกต์ที่ได้รับมอบหมายในระดับมืออาชีพ",
+    mapsBtn: "ดูแผนที่",
     items: [
       {
-        role: "นักศึกษาฝึกงานด้านวิศวกรรม",
-        company: "ชื่อบริษัทหรือหน่วยงาน",
-        duration: "มิ.ย. 2568 - ส.ค. 2568",
-        description: "ช่วยออกแบบและทดสอบวงจรควบคุมกำลังไฟฟ้า ร่วมกับทีมวิศวกรในการแก้ปัญหาหน้างาน",
-        skills: ["Circuit Testing", "Power Electronics", "Soldering"]
+        duration: "ภาคเรียนที่ 2 / 2565",
+        role: "นักศึกษาฝึกงาน (Graphene Synthesis Innovation)",
+        company: "สำนักงานพัฒนาวิทยาศาสตร์และเทคโนโลยีแห่งชาติ (สวทช.)",
+        description: "ปฏิบัติงานในห้องปฏิบัติการนวัตกรรมการสังเคราะห์กราฟีน เรียนรู้กระบวนการวิจัยและเทคโนโลยีวัสดุขั้นสูง",
+        skills: ["Research", "Laboratory", "Graphene Synthesis", "Innovation"],
+        mapLink: "https://maps.app.goo.gl/xj9udKzhHwcUCwbm7"
       },
       {
-        role: "Freelance Web Developer",
-        company: "งานอิสระ",
-        duration: "2567 - ปัจจุบัน",
-        description: "รับออกแบบและพัฒนา Landing Page สำหรับธุรกิจขนาดเล็ก โดยเน้นความทันสมัยและรองรับมือถือ",
-        skills: ["React", "CSS Grid", "Responsive Design"]
+        duration: "ภาคเรียนที่ 5 / 2564",
+        role: "นักศึกษาฝึกงาน (EDP Coating Process)",
+        company: "ห้างหุ้นส่วนจำกัด ท่าลาน-ซิงค์",
+        description: "เรียนรู้กระบวนการชุบโลหะด้วยวิธีไฟฟ้า (Electro Deposition Painting) ในระบบอุตสาหกรรม",
+        skills: ["EDP Process", "Metal Coating", "Industrial Engineering", "Quality Control"],
+        mapLink: "https://maps.app.goo.gl/3pKhvHxsENPtAmhk9"
       }
     ]
   },
   contact: {
-    badge: "GET IN TOUCH",
-    titleStart: "ช่องทางการ",
+    badge: "CONTACT",
+    titleStart: "ช่องทาง",
     titleHighlight: "ติดต่อ",
-    subtitle: "ยินดีรับฟังข้อเสนอแนะหรือโอกาสในการร่วมงานครับ",
+    subtitle: "ยินดีรับฟังทุกข้อเสนอแนะ หรือความต้องการร่วมงานครับ",
+    emailLabel: "อีเมลติดต่อ",
     email: "pluemkub1313@gmail.com",
-    phone: "063-758-82533",
-    location: "กรุงเทพมหานคร, ประเทศไทย",
-    github: "github.com/yourusername",
+    phoneLabel: "เบอร์โทรศัพท์",
+    phone: "063-758-8253",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d477.33609982581163!2d100.51718492328534!3d13.821583513967107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29b9cbb3aa17b%3A0xa3e1141bc9c31250!2zMTc4IOC4i-C4reC4oiDguKHguKvguLLguKjguLLguKUg4LmB4LiC4Lin4LiH4Lin4LiH4Lio4LmM4Liq4Lin4LmI4Liy4LiHIOC4muC4suC4h-C4i-C4t-C5iOC4rSDguIHguKPguLjguIfguYDguJfguJ7guKHguKvguLLguJnguITguKMgMTA4MDA!5e0!3m2!1sth!2sth!4v1772431926738!5m2!1sth!2sth",
     formTitle: "ส่งข้อความหาผม",
     placeholders: {
       name: "ชื่อของคุณ",
-      email: "อีเมลของคุณ",
-      message: "ข้อความของคุณ",
+      email: "อีเมลติดต่อ",
+      message: "พิมพ์ข้อความของคุณที่นี่...",
       send: "ส่งข้อความ"
     }
   },
+  footer: {
+  marquee: "ชีวิต // เวลา // ความฝัน // ",
+  mission: "มุ่งมั่นพัฒนาอย่างไร้ขีดจำกัด",
+  stable: "การเชื่อมต่อปกติ"
+}
 };

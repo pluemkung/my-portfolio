@@ -41,6 +41,9 @@
 
 /* จุด Timeline */
 .exp-dot-wrapper {
+  width: 40px; /* จองพื้นที่ให้เท่ากับความกว้าง Spine */
+  display: flex;
+  justify-content: center;
   position: relative;
   z-index: 3;
 }
@@ -51,7 +54,7 @@
   background: var(--bg-main-1);
   border: 2px solid var(--spark-1);
   border-radius: 50%;
-  margin-top: 35px; /* จัดให้ตรงกับหัวข้อการ์ด */
+  margin-top: 38px; /* ปรับให้ตรงกับบรรทัดแรกของการ์ด */
   box-shadow: 0 0 10px var(--spark-1);
 }
 
