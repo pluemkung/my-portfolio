@@ -45,13 +45,13 @@ const Education = ({ content }) => {
                     {item.transcript && (
                       <a href={item.transcript} target="_blank" rel="noreferrer" className="edu-btn-action" title="ผลการเรียน">
                         <FileText size={16} />
-                        <span className="btn-label">ผลการเรียน</span>
+                        <span className="btn-label">{content.transcriptBtn}</span>
                       </a>
                     )}
                     {item.mapLink && (
                       <a href={item.mapLink} target="_blank" rel="noreferrer" className="edu-btn-action" title="ดูแผนที่">
                         <MapPin size={16} />
-                        <span className="btn-label">ดูแผนที่</span>
+                        <span className="btn-label">{content.mapsBtn}</span>
                       </a>
                     )}
                   </div>

@@ -10,10 +10,10 @@ export const th = {
   hero: {
     greeting: "Creative Technologist • Thailand",
     name: "ณัฐกิตติ์ มูนวงษ์",
-    role: "นักศึกษาอิเล็กทรอนิกส์คอมพิวเตอร์เทคโนโลยี", 
-    description: "สนใจการสร้างเทคโนโลยีทุกรูปแบบตั้งแต่ฮาร์ดแวร์ อิเล็กทรอนิกส์ไปจนถึงเว็บแอปและซอฟต์แวร์ ชอบทดลอง เรียนรู้ และเปลี่ยนไอเดียให้กลายเป็นของจริง", 
-    phone: "063-758-8253", 
-    email: "natthakit.moonwong@gmail.com", 
+    role: "นักศึกษาอิเล็กทรอนิกส์คอมพิวเตอร์เทคโนโลยี",
+    description: "สนใจการสร้างเทคโนโลยีทุกรูปแบบตั้งแต่ฮาร์ดแวร์ อิเล็กทรอนิกส์ไปจนถึงเว็บแอปและซอฟต์แวร์ ชอบทดลอง เรียนรู้ และเปลี่ยนไอเดียให้กลายเป็นของจริง",
+    phone: "063-758-8253",
+    email: "natthakit.moonwong@gmail.com",
     viewProjects: "โปรเจกต์",
     contactMe: "ติดต่อ"
   },
@@ -38,7 +38,7 @@ export const th = {
       {
         title: "ภาษาโปรแกรม",
         icon: "Code2", // ⚡ ใส่แค่ชื่อเป็นตัวหนังสือพอครับ เว็บจะได้ไม่พัง
-        items: ["Java", "Python", "C", "SQL" , "PHP"]
+        items: ["Java", "Python", "C", "SQL", "PHP"]
       },
       {
         title: "ซอฟต์แวร์และเว็บไซต์",
@@ -57,7 +57,7 @@ export const th = {
       }
     ]
   },
- projects: {
+  projects: {
     badge: "MY WORK",
     titleStart: "ผลงาน",
     titleHighlight: "โปรเจกต์",
@@ -73,7 +73,7 @@ export const th = {
         title: "Business Expense Tracker", // เปลี่ยนชื่อแอปตามต้องการได้เลยครับ
         docType: "SOFTWARE", // เปลี่ยนประเภทเป็น SOFTWARE หรือ MOBILE APP
         images: [
-          "/images/project1.png" 
+          "/images/project1.png"
         ],
         description: "มินิโปรเจกต์: พัฒนาแอปพลิเคชันบันทึกรายรับ-รายจ่ายสำหรับธุรกิจด้วย Flutter เพื่อช่วยให้ผู้ประกอบการสามารถจัดการบัญชีและดูสรุปยอดได้อย่างสะดวกและรวดเร็วบนมือถือ",
         tech: ["Flutter", "Dart", "Mobile Development", "UI/UX"], // ถ้าใช้ Database อย่าง Firebase หรือ SQLite เพิ่มเข้าไปได้เลยครับ
@@ -90,6 +90,8 @@ export const th = {
     titleStart: "ประวัติ",
     titleHighlight: "การศึกษา",
     subtitle: "เส้นทางการเรียนรู้และการพัฒนาทักษะทางด้านเทคโนโลยีของผม",
+    transcriptBtn: "ผลการเรียน", // ภาษาไทย
+    mapsBtn: "ดูแผนที่",
     items: [
       {
         level: "ปริญญาตรี (กำลังศึกษา)",
@@ -97,7 +99,7 @@ export const th = {
         year: "2567 - ปัจจุบัน",
         description: "อุตสาหกรรมศาสตรบัณฑิต (ต่อเนื่อง) - เทคโนโลยีคอมพิวเตอร์อิเล็กทรอนิกส์",
         logo: "/images/KMUTNB.png",
-        transcript: "/documents/KMUTNB_Transcript.pdf", 
+        transcript: "/documents/KMUTNB_Transcript.pdf",
         mapLink: "https://maps.app.goo.gl/TaUkY4QNFKbkYPb2A"
       },
       {
@@ -106,7 +108,7 @@ export const th = {
         year: "2565 - 2566",
         description: "เอิเล็กทรอนิกส์",
         logo: "/images/TTL.png",
-        transcript: "#", 
+        // transcript: "#", 
         mapLink: "https://maps.app.goo.gl/Uzc6EcCJZPcRP8vs9"
       },
       {
@@ -115,7 +117,7 @@ export const th = {
         year: "2562 - 2564",
         description: "อิเล็กทรอนิกส์",
         logo: "/images/TTL.png",
-        transcript: "#", 
+        // transcript: "#", 
         mapLink: "https://maps.app.goo.gl/Uzc6EcCJZPcRP8vs9"
       }
     ]

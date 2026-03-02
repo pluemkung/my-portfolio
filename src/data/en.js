@@ -39,13 +39,13 @@ export const en = {
         title: "Languages",
         icon: "🌐",
         description: "Programming and development languages.",
-        items: ["Java", "Python", "C", "SQL" , "PHP"]
+        items: ["Java", "Python", "C", "SQL", "PHP"]
       },
       {
         title: "Software & Web",
         icon: "💻",
         description: "Web development and programming.",
-        items: ["React", "JavaScript", "HTML5 & CSS", "Node.js", ]
+        items: ["React", "JavaScript", "HTML5 & CSS", "Node.js",]
       },
       {
         title: "Hardware & Electronics",
@@ -59,7 +59,7 @@ export const en = {
         description: "Development tools and project management.",
         items: ["Git & GitHub", "VS Code", "SolidWorks", "Arduino IDE", "Blender"]
       }
-      
+
     ]
   },
   projects: {
@@ -78,7 +78,7 @@ export const en = {
         title: "Business Expense Tracker", // เปลี่ยนชื่อแอปตามต้องการได้เลยครับ
         docType: "SOFTWARE", // เปลี่ยนประเภทเป็น SOFTWARE หรือ MOBILE APP
         images: [
-          "/images/project1.png" 
+          "/images/project1.png"
         ],
         description: "Mini project: Developed a business expense tracking app using Flutter to help entrepreneurs manage their accounts and view summaries easily on mobile devices.",
         tech: ["Flutter", "Dart", "Mobile Development", "UI/UX"], // ถ้าใช้ Database อย่าง Firebase หรือ SQLite เพิ่มเข้าไปได้เลยครับ
@@ -95,6 +95,8 @@ export const en = {
     titleStart: "My ",
     titleHighlight: "Education",
     subtitle: "My journey of learning and developing technical skills.",
+    transcriptBtn: "Transcript", // English
+    mapsBtn: "View Maps",
     items: [
       {
         level: "Bachelor's / Associate's Degree in Computer Electronics Technology",
@@ -102,7 +104,7 @@ export const en = {
         year: "2567 - Present",
         description: "Continuing studies in Computer Electronics Technology.",
         logo: "/images/KMUTNB.png",
-        transcript: "/documents/KMUTNB_Transcript.pdf", 
+        transcript: "/documents/KMUTNB_Transcript.pdf",
         mapLink: "https://maps.app.goo.gl/TaUkY4QNFKbkYPb2A"
       },
       {
@@ -111,7 +113,7 @@ export const en = {
         year: "2565 - 2566",
         description: "Associate's Degree in Electronics.",
         logo: "/images/TTL.png",
-        transcript: "#", 
+        // transcript: "#", 
         mapLink: "https://maps.app.goo.gl/Uzc6EcCJZPcRP8vs9"
       },
       {
@@ -120,7 +122,7 @@ export const en = {
         year: "2562 - 2564",
         description: "High School Diploma in Electronics.",
         logo: "/images/TTL.png",
-        transcript: "#", 
+        // transcript: "#", 
         mapLink: "https://maps.app.goo.gl/Uzc6EcCJZPcRP8vs9"
       }
     ]
@@ -147,7 +149,7 @@ export const en = {
       }
     ]
   },
-    contact: {
+  contact: {
     badge: "GET IN TOUCH",
     titleStart: "My Contact",
     titleHighlight: "Information",
